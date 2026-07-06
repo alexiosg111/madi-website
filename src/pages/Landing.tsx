@@ -159,13 +159,13 @@ export default function Landing() {
       <div className="border-b border-border/70 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 sticky top-0 z-40">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <div className="flex h-14 items-center justify-between">
-            <a href="#top" className="group flex items-center gap-3">
-              <span aria-hidden className="grid h-7 w-7 place-items-center rounded-[2px] border border-foreground/70">
-                <span className="font-serif text-[15px] leading-none">M</span>
+            <a href="#top" className="group flex items-center gap-3.5">
+              <span aria-hidden className="grid h-10 w-10 place-items-center rounded-[2px] border border-foreground/80">
+                <span className="font-serif text-[20px] leading-none">M</span>
               </span>
               <span className="leading-tight">
-                <span className="block font-serif text-[15px] tracking-tight">Dr. med. Maher Madi</span>
-                <span className="block text-[10.5px] uppercase tracking-[0.22em] text-muted-foreground">
+                <span className="block font-serif text-[18px] tracking-tight">Dr. med. Maher Madi</span>
+                <span className="block text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
                   Gastropraxis · Bad Segeberg
                 </span>
               </span>
@@ -214,7 +214,7 @@ export default function Landing() {
           className="fixed inset-0 z-50 bg-background"
         >
           <div className="flex h-14 items-center justify-between px-6 border-b border-border">
-            <span className="font-serif text-base">Dr. Maher Madi</span>
+            <span className="font-serif text-lg">Dr. med. Maher Madi</span>
             <button
               aria-label="Menü schließen"
               onClick={() => setOpen(false)}
@@ -252,18 +252,96 @@ export default function Landing() {
         style={{ y: heroY, opacity: heroOpacity }}
         className="relative"
       >
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-14 lg:pt-20 pb-16 lg:pb-24">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-10 lg:pt-14 pb-16 lg:pb-24">
+          {/* Editorial Cover — warm, inviting visual anchor */}
+          <motion.figure
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
+            className="relative mb-12 lg:mb-16"
+          >
+            <div className="relative aspect-[4/3] sm:aspect-[16/8] lg:aspect-[16/7] overflow-hidden rounded-[2px] border border-border">
+              {/* Warm radial backdrop */}
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 75% 60% at 78% 32%, color-mix(in oklch, var(--accent) 82%, var(--background) 18%) 0%, color-mix(in oklch, var(--muted) 55%, var(--background) 45%) 42%, var(--background) 100%)",
+                }}
+              />
+              {/* Subtle horizon stripe */}
+              <div
+                aria-hidden
+                className="absolute inset-x-0 bottom-0 h-1/3"
+                style={{
+                  background:
+                    "linear-gradient(to top, color-mix(in oklch, var(--foreground) 10%, transparent) 0%, transparent 100%)",
+                }}
+              />
+              {/* Abstract editorial composition */}
+              <svg
+                viewBox="0 0 1400 540"
+                preserveAspectRatio="xMidYMid slice"
+                className="absolute inset-0 h-full w-full"
+                aria-hidden
+              >
+                <g fill="none" stroke="currentColor" strokeWidth="0.8" className="text-foreground/35">
+                  {/* Sun motif */}
+                  <circle cx="1130" cy="160" r="92" />
+                  <circle cx="1130" cy="160" r="128" strokeWidth="0.4" className="text-foreground/20" />
+                  {/* Two abstract leaves */}
+                  <path d="M 220 250 C 270 220 340 230 360 290 C 340 340 270 340 220 320 Z" />
+                  <path d="M 380 210 C 430 180 500 190 520 250 C 500 300 430 300 380 280 Z" strokeWidth="0.6" className="text-foreground/25" />
+                  {/* Horizon line */}
+                  <path d="M -20 400 C 280 340 540 430 820 370 C 1040 325 1240 380 1440 340" strokeWidth="0.7" className="text-foreground/30" />
+                </g>
+              </svg>
+              {/* Editorial frame labels */}
+              <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] p-6 lg:p-10">
+                <div className="flex items-center justify-between">
+                <span className="label-eyebrow">Cover · Abb. I</span>
+                <span className="label-eyebrow">MM · 2025</span>
+                </div>
+                <div className="flex items-end">
+                  <div className="max-w-[40ch] lg:max-w-[46ch]">
+                    <p className="font-serif italic text-[15px] lg:text-[17px] text-foreground/75">
+                      Willkommen in einer Praxis,
+                    </p>
+                    <p className="font-serif text-[30px] sm:text-[42px] lg:text-[56px] leading-[1.04] tracking-[-0.01em] text-foreground mt-2 text-balance">
+                      in der Sie{" "}<br className="hidden sm:block" />als Mensch zählen.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-end justify-between gap-4">
+                  <div className="text-foreground/70">
+                    <span className="label-eyebrow">Dr. med. Maher Madi</span>
+                    <p className="font-serif text-[14px] mt-1">Gastropraxis · Bad Segeberg</p>
+                  </div>
+                  <div className="hidden lg:block text-right text-foreground/70">
+                    <span className="label-eyebrow">Innere Medizin</span>
+                    <p className="font-serif text-[14px] mt-1">&amp; Gastroenterologie</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
+              <span className="label-eyebrow">Editorial · Studio</span>
+              <span>Eine warme Komposition — kein Foto.</span>
+            </figcaption>
+          </motion.figure>
+
           <div className="grid grid-cols-12 gap-x-8 gap-y-10">
             {/* Editorial metadata column */}
             <div className="col-span-12 lg:col-span-3">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <span className="h-px w-8 bg-foreground/40" />
-                <Eyebrow>Ausgabe Nr. 01 · 2025</Eyebrow>
+                <Eyebrow>Innere Medizin &amp; Gastroenterologie</Eyebrow>
               </div>
               <p className="mt-6 font-serif text-[15px] italic text-muted-foreground leading-relaxed">
-                Eine Praxis für Innere Medizin<br />
-                und Gastroenterologie<br />
-                im Herzen Bad Segebergs.
+                Eine ruhige Praxis im Herzen<br />
+                von Bad Segeberg —<br />
+                mit Zeit für Ihre Anliegen.
               </p>
             </div>
 
