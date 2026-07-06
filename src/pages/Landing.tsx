@@ -255,10 +255,9 @@ export default function Landing() {
             className="relative mb-12 lg:mb-16"
           >
             <div className="relative aspect-[4/3] sm:aspect-[16/8] lg:aspect-[16/7] overflow-hidden rounded-[2px] border border-border bg-muted">
-              {/* Reception photo */}
-              {/* Place the file at /public/praxis-rezeption.jpg — object-cover handles the aspect */}
+              {/* Reception photo (uploaded asset) */}
               <img
-                src="/praxis-rezeption.jpg"
+                src="/assets/20190220203252_03.jpg"
                 alt="Empfangsbereich der Gastropraxis Bad Segeberg — eine ruhige, modern gestaltete Praxis mit beleuchteter Theke und natürlichem Licht."
                 className="absolute inset-0 h-full w-full object-cover"
                 loading="eager"
