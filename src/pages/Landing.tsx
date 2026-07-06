@@ -182,15 +182,9 @@ export default function Landing() {
               ))}
             </nav>
             <div className="flex items-center gap-3">
-              <a
-                href="tel:+49455100000"
-                className="hidden lg:inline-flex items-center gap-2 text-[12.5px] tracking-tight text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <Phone className="h-3.5 w-3.5" /> 04551 · 00 00 00
-              </a>
-              <Button asChild variant="outline" className="hidden md:inline-flex rounded-[2px] border-foreground/70 text-foreground hover:bg-foreground hover:text-background">
-                <a href="#termin">
-                  Termin vereinbaren <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
+              <Button asChild className="hidden md:inline-flex rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
+                <a href="tel:+49455100000">
+                  <Phone className="mr-2 h-3.5 w-3.5" /> Termin telefonisch
                 </a>
               </Button>
               <button
@@ -365,8 +359,8 @@ export default function Landing() {
                 </p>
                 <div className="lg:col-span-5 flex flex-wrap items-center gap-3">
                   <Button asChild className="rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
-                    <a href="#termin">
-                      Termin vereinbaren <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
+                    <a href="tel:+49455100000">
+                      <Phone className="mr-2 h-4 w-4" /> Termin telefonisch
                     </a>
                   </Button>
                   <Button asChild variant="ghost" className="rounded-[2px] hover:bg-foreground/5">
@@ -843,7 +837,7 @@ export default function Landing() {
             <div className="col-span-6 lg:col-span-3">
               <Eyebrow>Patient:innen</Eyebrow>
               <ul className="mt-5 space-y-2 text-[13.5px] text-foreground/85">
-                <li><a href="#kontakt-form" className="hover:text-foreground">Termin vereinbaren</a></li>
+                <li><a href="tel:+49455100000" className="hover:text-foreground">Anrufen: 04551 · 00 00 00</a></li>
                 <li><a href="#kontakt" className="hover:text-foreground">Kontakt & Anfahrt</a></li>
                 <li><a href="#impressum" className="hover:text-foreground">Impressum</a></li>
                 <li><a href="#datenschutz" className="hover:text-foreground">Datenschutz</a></li>
