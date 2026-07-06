@@ -8,7 +8,11 @@ import { StrictMode, useEffect, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import "./index.css";
-import "./types/global.d.ts";
+// Note: src/types/global.d.ts is picked up automatically by TypeScript via
+// tsconfig.app.json's "include": ["src", ...]. It MUST NOT be imported at
+// runtime — Vite serves index.html for any resolvable-but-non-JS module path,
+// and the browser then fails to parse the HTML as a module script.
+// import "./types/global.d.ts";
 
 // Lazy load route components for better code splitting
 const Landing = lazy(() => import("./pages/Landing.tsx"));
