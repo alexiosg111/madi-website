@@ -183,8 +183,8 @@ export default function Landing() {
             </nav>
             <div className="flex items-center gap-3">
               <Button asChild className="hidden md:inline-flex rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
-                <a href="tel:+49455100000">
-                  <Phone className="mr-2 h-3.5 w-3.5" /> Termin telefonisch
+                <a href="#kontakt">
+                  <ArrowUpRight className="mr-1.5 h-3.5 w-3.5" /> Zum Kontakt
                 </a>
               </Button>
               <button
@@ -247,72 +247,55 @@ export default function Landing() {
         className="relative"
       >
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-10 lg:pt-14 pb-16 lg:pb-24">
-          {/* Editorial Cover — warm, inviting visual anchor */}
+          {/* Editorial Cover — reception photo as the warm, inviting anchor */}
           <motion.figure
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
             className="relative mb-12 lg:mb-16"
           >
-            <div className="relative aspect-[4/3] sm:aspect-[16/8] lg:aspect-[16/7] overflow-hidden rounded-[2px] border border-border">
-              {/* Warm radial backdrop */}
+            <div className="relative aspect-[4/3] sm:aspect-[16/8] lg:aspect-[16/7] overflow-hidden rounded-[2px] border border-border bg-muted">
+              {/* Reception photo */}
+              {/* Place the file at /public/praxis-rezeption.jpg — object-cover handles the aspect */}
+              <img
+                src="/praxis-rezeption.jpg"
+                alt="Empfangsbereich der Gastropraxis Bad Segeberg — eine ruhige, modern gestaltete Praxis mit beleuchteter Theke und natürlichem Licht."
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="eager"
+                // @ts-expect-error — fetchpriority is valid in React 19+
+                fetchpriority="high"
+              />
+              {/* Soft bottom gradient for label legibility over the bright floor */}
               <div
                 aria-hidden
-                className="absolute inset-0"
+                className="absolute inset-x-0 bottom-0 h-2/5"
                 style={{
                   background:
-                    "radial-gradient(ellipse 75% 60% at 78% 32%, color-mix(in oklch, var(--accent) 82%, var(--background) 18%) 0%, color-mix(in oklch, var(--muted) 55%, var(--background) 45%) 42%, var(--background) 100%)",
+                    "linear-gradient(to top, color-mix(in oklch, var(--background) 88%, transparent) 0%, color-mix(in oklch, var(--background) 32%, transparent) 55%, transparent 100%)",
                 }}
               />
-              {/* Subtle horizon stripe */}
-              <div
-                aria-hidden
-                className="absolute inset-x-0 bottom-0 h-1/3"
-                style={{
-                  background:
-                    "linear-gradient(to top, color-mix(in oklch, var(--foreground) 10%, transparent) 0%, transparent 100%)",
-                }}
-              />
-              {/* Abstract editorial composition */}
-              <svg
-                viewBox="0 0 1400 540"
-                preserveAspectRatio="xMidYMid slice"
-                className="absolute inset-0 h-full w-full"
-                aria-hidden
-              >
-                <g fill="none" stroke="currentColor" strokeWidth="0.8" className="text-foreground/35">
-                  {/* Sun motif */}
-                  <circle cx="1130" cy="160" r="92" />
-                  <circle cx="1130" cy="160" r="128" strokeWidth="0.4" className="text-foreground/20" />
-                  {/* Two abstract leaves */}
-                  <path d="M 220 250 C 270 220 340 230 360 290 C 340 340 270 340 220 320 Z" />
-                  <path d="M 380 210 C 430 180 500 190 520 250 C 500 300 430 300 380 280 Z" strokeWidth="0.6" className="text-foreground/25" />
-                  {/* Horizon line */}
-                  <path d="M -20 400 C 280 340 540 430 820 370 C 1040 325 1240 380 1440 340" strokeWidth="0.7" className="text-foreground/30" />
-                </g>
-              </svg>
               {/* Editorial frame labels */}
               <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] p-6 lg:p-10">
                 <div className="flex items-center justify-between">
-                <span className="label-eyebrow">Cover · Abb. I</span>
-                <span className="label-eyebrow">MM · 2025</span>
+                  <span className="label-eyebrow text-foreground/80">Cover · Abb. I</span>
+                  <span className="label-eyebrow text-foreground/80">MM · 2024</span>
                 </div>
                 <div className="flex items-end">
                   <div className="max-w-[40ch] lg:max-w-[46ch]">
-                    <p className="font-serif italic text-[15px] lg:text-[17px] text-foreground/75">
+                    <p className="font-serif italic text-[15px] lg:text-[17px] text-foreground/85">
                       Willkommen in einer Praxis,
                     </p>
-                    <p className="font-serif text-[30px] sm:text-[42px] lg:text-[56px] leading-[1.04] tracking-[-0.01em] text-foreground mt-2 text-balance">
+                    <p className="font-serif text-[26px] sm:text-[36px] lg:text-[48px] leading-[1.05] tracking-[-0.01em] text-foreground mt-2 text-balance">
                       in der Sie{" "}<br className="hidden sm:block" />als Mensch zählen.
                     </p>
                   </div>
                 </div>
-                <div className="flex items-end justify-between gap-4">
-                  <div className="text-foreground/70">
+                <div className="flex items-end justify-between gap-4 text-foreground/85">
+                  <div>
                     <span className="label-eyebrow">Dr. med. Maher Madi</span>
                     <p className="font-serif text-[14px] mt-1">Gastropraxis · Bad Segeberg</p>
                   </div>
-                  <div className="hidden lg:block text-right text-foreground/70">
+                  <div className="hidden lg:block text-right">
                     <span className="label-eyebrow">Innere Medizin</span>
                     <p className="font-serif text-[14px] mt-1">&amp; Gastroenterologie</p>
                   </div>
@@ -321,7 +304,7 @@ export default function Landing() {
             </div>
             <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
               <span className="label-eyebrow">Editorial · Studio</span>
-              <span>Eine warme Komposition — kein Foto.</span>
+              <span>Aufnahme am Empfang — 2024.</span>
             </figcaption>
           </motion.figure>
 
@@ -359,8 +342,8 @@ export default function Landing() {
                 </p>
                 <div className="lg:col-span-5 flex flex-wrap items-center gap-3">
                   <Button asChild className="rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
-                    <a href="tel:+49455100000">
-                      <Phone className="mr-2 h-4 w-4" /> Termin telefonisch
+                    <a href="#kontakt">
+                      <ArrowUpRight className="mr-1.5 h-4 w-4" /> Zum Kontakt
                     </a>
                   </Button>
                   <Button asChild variant="ghost" className="rounded-[2px] hover:bg-foreground/5">
