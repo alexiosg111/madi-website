@@ -1,0 +1,17 @@
+{
+  "name": "Gastropraxis Bad Segeberg — Dr. med. Maher Madi",
+  "short_name": "Gastropraxis Bad Segeberg",
+  "description": "Gastropraxis Bad Segeberg — Dr. med. Maher Madi. Innere Medizin & Gastroenterologie.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F2EA",
+  "theme_color": "#F7F2EA",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
