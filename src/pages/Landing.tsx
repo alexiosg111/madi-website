@@ -277,15 +277,11 @@ export default function Landing() {
               <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] p-6 lg:p-10">
                 <div className="flex items-center justify-between">
                   <span className="label-eyebrow text-foreground/80">Cover · Abb. I</span>
-                  <span className="label-eyebrow text-foreground/80">MM · 2024</span>
                 </div>
                 <div className="flex items-end">
-                  <div className="max-w-[40ch] lg:max-w-[46ch]">
-                    <p className="font-serif italic text-[15px] lg:text-[17px] text-foreground/85">
-                      Willkommen in einer Praxis,
-                    </p>
-                    <p className="font-serif text-[26px] sm:text-[36px] lg:text-[48px] leading-[1.05] tracking-[-0.01em] text-foreground mt-2 text-balance">
-                      in der Sie{" "}<br className="hidden sm:block" />als Mensch zählen.
+                  <div className="max-w-[40ch] lg:max-w-[46ch]" style={{ textShadow: "0 1px 2px rgba(247, 242, 234, 0.75), 0 0 12px rgba(247, 242, 234, 0.35)" }}>
+                    <p className="font-serif italic text-[15px] lg:text-[17px] text-foreground">
+                      Willkommen in einer Praxis, in der Sie als Mensch zählen.
                     </p>
                   </div>
                 </div>
@@ -301,10 +297,6 @@ export default function Landing() {
                 </div>
               </div>
             </div>
-            <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
-              <span className="label-eyebrow">Editorial · Studio</span>
-              <span>Aufnahme am Empfang — 2024.</span>
-            </figcaption>
           </motion.figure>
 
           <div className="grid grid-cols-12 gap-x-8 gap-y-10">
@@ -315,8 +307,8 @@ export default function Landing() {
                 <Eyebrow>Innere Medizin &amp; Gastroenterologie</Eyebrow>
               </div>
               <p className="mt-6 font-serif text-[15px] italic text-muted-foreground leading-relaxed">
-                Eine ruhige Praxis im Herzen<br />
-                von Bad Segeberg —<br />
+                Eine ruhige Praxis<br />
+                in Bad Segeberg —<br />
                 mit Zeit für Ihre Anliegen.
               </p>
             </div>
@@ -412,8 +404,8 @@ export default function Landing() {
               </motion.h2>
               <div className="mt-8 max-w-[44ch] space-y-5 text-[15.5px] leading-relaxed text-foreground/85">
                 <p>
-                  Seit 2022 behandelt Dr.&nbsp;med.&nbsp;Maher Madi Patientinnen und Patienten
-                  in einer neu gestalteten Praxis im Zentrum von Bad Segeberg. Unser Anspruch:
+                  Dr.&nbsp;med.&nbsp;Maher Madi behandelt Patientinnen und Patienten
+                  in einer neu gestalteten Praxis in Bad Segeberg. Unser Anspruch:
                   ruhige Abläufe, ausführliche Gespräche und Befunde, die verständlich bleiben.
                 </p>
                 <p>
