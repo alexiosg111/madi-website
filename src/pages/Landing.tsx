@@ -69,7 +69,7 @@ const SERVICES = [
     title: "Sprechstunde",
     sub: "Innere Medizin & CED",
     body:
-      "Strukturierte Sprechstunden für Pankreas, CED, Reflux, Lebererkrankungen und Reizdarm — mit Zeit für Diagnostik und langfristige Begleitung.",
+      "Strukturierte Sprechstunden für Pankreas, CED, Reflux, Lebererkrankungen und Reizdarm.",
     icon: Stethoscope,
   },
   {
