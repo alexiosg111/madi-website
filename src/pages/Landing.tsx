@@ -91,11 +91,15 @@ const HOURS = [
 ] as const;
 
 const TIMELINE = [
-  { year: "1998", text: "Approbation & Promotion, Universität Hamburg." },
-  { year: "2004", text: "Facharztanerkennung Innere Medizin." },
-  { year: "2009", text: "Schwerpunkt Gastroenterologie, Marienkrankenhaus Lübeck." },
-  { year: "2015", text: "Oberärztliche Tätigkeit, Klinik für Viszeralmedizin." },
-  { year: "2022", text: "Niederlassung in eigener Praxis, Bad Segeberg." },
+  { year: "1999", text: "Abschluss Studium der Humanmedizin, Universität Latakia." },
+  { year: "2000 – 2004", text: "Facharzt-Weiterbildung Innere Medizin, Universitätsklinikum Damaskus." },
+  { year: "2005 – 2011", text: "Weiterbildung Gastroenterologie, Charité Berlin & Altmark Klinikum Salzwedel." },
+  { year: "Seit 05/2011", text: "Facharzt für Innere Medizin und Gastroenterologie." },
+  { year: "05/2011 – 02/2013", text: "Oberarzt für Innere Medizin und Gastroenterologie." },
+  { year: "03/2013 – 06/2014", text: "Chefarzt der gastroenterologischen Klinik, Bathildis Krankenhaus Bad Pyrmont & Median Kliniken Bad Mergentheim." },
+  { year: "08/2014 – 01/2022", text: "Leitender Arzt der Funktionsdiagnostik, Tichreen Universitätsklinikum, Latakia (Syrien)." },
+  { year: "03/2022 – 09/2025", text: "Oberarzt / Chefarzt, Abteilung Innere Medizin mit Schwerpunkt Gastroenterologie, KH Land Hadeln, Otterndorf." },
+  { year: "Seit 10/2025", text: "Niederlassung in eigener Praxis, Bad Segeberg." },
 ];
 
 const fadeUp = {
@@ -643,7 +647,7 @@ export default function Landing() {
                 Eine ärztliche Laufbahn in Stationen.
               </h2>
               <p className="mt-6 text-[14.5px] leading-relaxed text-foreground/80 max-w-[38ch]">
-                Von Hamburg über Lübeck bis nach Bad Segeberg — Dr.&nbsp;Madi bringt über
+                Von Damaskus über Berlin, Bad Pyrmont und Otterndorf bis nach Bad Segeberg — Dr.&nbsp;Madi bringt über
                 zwei Jahrzehnte klinische Erfahrung in die eigene Praxis mit.
               </p>
             </div>
@@ -658,14 +662,14 @@ export default function Landing() {
                   transition={{ duration: 0.5, delay: 0.05 * i }}
                   className="grid grid-cols-12 gap-4 border-t border-border py-6"
                 >
-                  <div className="col-span-3 lg:col-span-2 font-serif text-2xl tabular-nums">{t.year}</div>
-                  <div className="col-span-9 lg:col-span-9 text-[15px] leading-relaxed text-foreground/85 max-w-[60ch]">
+                  <div className="col-span-4 lg:col-span-3 font-serif text-base lg:text-2xl tabular-nums leading-tight">{t.year}</div>
+                  <div className="col-span-8 lg:col-span-9 text-[14.5px] lg:text-[15px] leading-relaxed text-foreground/85 max-w-[60ch]">
                     {t.text}
                   </div>
                 </motion.li>
               ))}
               <li className="border-t border-border py-3 text-[11.5px] text-muted-foreground">
-                Stand: 2024 · Auswahl; vollständiger Lebenslauf auf Anfrage.
+                Stand: 2025 · Auswahl; vollständiger Lebenslauf auf Anfrage.
               </li>
             </ol>
           </div>
