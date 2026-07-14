@@ -356,7 +356,7 @@ export default function Landing() {
               {
                 k: "Sprechstunde",
                 title: "Zeit für Ihre Anliegen",
-                body: "Diagnostik und langfristige Begleitung bei Reizdarm, Reflux, Lebererkrankungen, Zöliakie und chronisch-entzündlichen Darmerkrankungen.",
+                body: "Strukturierte Sprechstunden für Pankreas, CED, Reflux, Lebererkrankungen und Reizdarm.",
               },
               {
                 k: "Vorsorge",
