@@ -612,7 +612,8 @@ export default function Landing() {
               </div>
               <h3 className="mt-6 font-serif text-2xl">Wir sind für Sie da.</h3>
               <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground max-w-[36ch]">
-                Wir bitten um Terminvereinbarung. In akuten Fällen erreichen Sie uns telefonisch
+                Wir bitten um Terminvereinbarung. Praxisanschrift: Dahlienstr. 19b, 23795 Bad Segeberg.
+                In akuten Fällen erreichen Sie uns telefonisch
                 während der Sprechzeiten unter{" "}
                 <a href="tel:+494551882977" className="underline text-foreground/80 hover:text-foreground">04551-882977</a>
                 {" "}oder per E-Mail unter{" "}
