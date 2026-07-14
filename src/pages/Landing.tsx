@@ -83,11 +83,11 @@ const SERVICES = [
 ];
 
 const HOURS = [
-  { day: "Montag", open: "08:00 – 13:00", close: "15:00 – 18:00", note: "Vormittag & Spät" },
-  { day: "Dienstag", open: "08:00 – 13:00", close: "—", note: "Vormittag" },
-  { day: "Mittwoch", open: "08:00 – 13:00", close: "—", note: "Vormittag" },
-  { day: "Donnerstag", open: "08:00 – 13:00", close: "15:00 – 18:00", note: "Vormittag & Spät" },
-  { day: "Freitag", open: "08:00 – 13:00", close: "—", note: "Vormittag" },
+  { day: "Montag", open: "08:30 – 11:30", close: "—", note: "Vormittag" },
+  { day: "Dienstag", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
+  { day: "Mittwoch", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
+  { day: "Donnerstag", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
+  { day: "Freitag", open: "Nach Vereinbarung", close: "—", note: "" },
 ] as const;
 
 const TIMELINE = [
@@ -237,8 +237,8 @@ export default function Landing() {
               ))}
             </ul>
             <div className="mt-10 space-y-2 text-sm text-muted-foreground">
-              <p className="flex items-center gap-2"><Phone className="h-3.5 w-3.5" /> 04551 · 00 00 00</p>
-              <p className="flex items-center gap-2"><Mail className="h-3.5 w-3.5" /> praxis@gastropraxis-badsegeberg.de</p>
+              <p className="flex items-center gap-2"><Phone className="h-3.5 w-3.5" /> 04551-882977</p>
+              <p className="flex items-center gap-2"><Mail className="h-3.5 w-3.5" /> Gastroenterologie-Segeberg@web.de</p>
             </div>
           </div>
         </motion.div>
@@ -614,7 +614,9 @@ export default function Landing() {
               <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground max-w-[36ch]">
                 Wir bitten um Terminvereinbarung. In akuten Fällen erreichen Sie uns telefonisch
                 während der Sprechzeiten unter{" "}
-                <a href="tel:+49455100000" className="underline text-foreground/80 hover:text-foreground">04551 · 00 00 00</a>.
+                <a href="tel:+494551882977" className="underline text-foreground/80 hover:text-foreground">04551-882977</a>
+                {" "}oder per E-Mail unter{" "}
+                <a href="mailto:Gastroenterologie-Segeberg@web.de" className="underline text-foreground/80 hover:text-foreground">Gastroenterologie-Segeberg@web.de</a>.
               </p>
               <div id="sprechzeiten" className="mt-8 divide-y divide-border border-y border-border">
                 {HOURS.map((h) => (
@@ -748,22 +750,22 @@ export default function Landing() {
                 </h3>
                 <address className="mt-6 not-italic text-[14.5px] leading-relaxed text-foreground/85">
                   Dr. med. Maher Madi<br />
-                  Bahnhofstraße 12<br />
+                  Dahlienstr. 19b<br />
                   23795 Bad Segeberg
                 </address>
 
                 <div className="mt-8 grid grid-cols-1 gap-4">
-                  <a href="tel:+49455100000" className="group flex items-center justify-between border-t border-border pt-4">
+                  <a href="tel:+494551882977" className="group flex items-center justify-between border-t border-border pt-4">
                     <span className="flex items-center gap-2 text-[13.5px] text-muted-foreground"><Phone className="h-3.5 w-3.5" /> Telefon</span>
-                    <span className="text-[15px] tracking-tight group-hover:text-foreground">04551 · 00 00 00</span>
+                    <span className="text-[15px] tracking-tight group-hover:text-foreground">04551-882977</span>
                   </a>
                   <a href="fax:+49455100001" className="group flex items-center justify-between border-t border-border pt-4">
                     <span className="flex items-center gap-2 text-[13.5px] text-muted-foreground"><ClipboardList className="h-3.5 w-3.5" /> Telefax</span>
                     <span className="text-[15px] tracking-tight tabular-nums group-hover:text-foreground">04551 · 00 00 01</span>
                   </a>
-                  <a href="mailto:praxis@gastropraxis-badsegeberg.de" className="group flex items-center justify-between border-t border-border pt-4">
+                  <a href="mailto:Gastroenterologie-Segeberg@web.de" className="group flex items-center justify-between border-t border-border pt-4">
                     <span className="flex items-center gap-2 text-[13.5px] text-muted-foreground"><Mail className="h-3.5 w-3.5" /> E-Mail</span>
-                    <span className="text-[14px] tracking-tight group-hover:text-foreground truncate ml-2">praxis@gastropraxis-badsegeberg.de</span>
+                    <span className="text-[14px] tracking-tight group-hover:text-foreground truncate ml-2">Gastroenterologie-Segeberg@web.de</span>
                   </a>
                   <a href="#sprechzeiten" className="group flex items-center justify-between border-t border-b border-border py-4">
                     <span className="flex items-center gap-2 text-[13.5px] text-muted-foreground"><CalendarDays className="h-3.5 w-3.5" /> Sprechzeiten</span>
@@ -815,7 +817,7 @@ export default function Landing() {
             <div className="col-span-6 lg:col-span-3">
               <Eyebrow>Patient:innen</Eyebrow>
               <ul className="mt-5 space-y-2 text-[13.5px] text-foreground/85">
-                <li><a href="tel:+49455100000" className="hover:text-foreground">Anrufen: 04551 · 00 00 00</a></li>
+                <li><a href="tel:+494551882977" className="hover:text-foreground">Anrufen: 04551-882977</a></li>
                 <li><a href="#kontakt" className="hover:text-foreground">Kontakt & Anfahrt</a></li>
                 <li><a href="#impressum" className="hover:text-foreground">Impressum</a></li>
                 <li><a href="#datenschutz" className="hover:text-foreground">Datenschutz</a></li>
@@ -828,8 +830,8 @@ export default function Landing() {
             <div className="col-span-12 lg:col-span-6">
               <p className="font-serif text-foreground/80 text-[15px]">Impressum</p>
               <p className="mt-2 max-w-[56ch]">
-                Verantwortlich im Sinne des § 5 TMG: Dr. med. Maher Madi · Bahnhofstraße 12 ·
-                23795 Bad Segeberg · Telefon 04551 · 00 00 00 · E-Mail praxis@gastropraxis-badsegeberg.de.
+                Verantwortlich im Sinne des § 5 TMG: Dr. med. Maher Madi · Dahlienstr. 19b ·
+                23795 Bad Segeberg · Telefon 04551-882977 · E-Mail Gastroenterologie-Segeberg@web.de.
                 Berufsbezeichnung: Arzt (verliehen in der Bundesrepublik Deutschland). Zuständige
                 Ärztekammer: Ärztekammer Schleswig-Holstein.
               </p>
