@@ -15,9 +15,9 @@ import {
   Menu,
   Microscope,
   Phone,
+  Pill,
   ScanLine,
   Stethoscope,
-  Syringe,
   Sun,
   X,
 } from "lucide-react";
@@ -51,26 +51,26 @@ const SERVICES = [
   {
     n: "03",
     title: "Sonographie",
-    sub: "Abdomen & Schilddrüse",
+    sub: "Abdomen & Bauchgefäße",
     body:
-      "Hochauflösender Ultraschall der Oberbauchorgane, der Schilddrüse und der Weichteile — nicht-invasiv, ohne Strahlenbelastung.",
+      "Hochauflösender Ultraschall der Bauchgefäße, Oberbauchorgane und der Weichteile — nicht-invasiv, ohne Strahlenbelastung.",
     icon: Activity,
   },
   {
     n: "04",
-    title: "Sprechstunde",
-    sub: "Innere Medizin & CED",
+    title: "Kapselendoskopie",
+    sub: "Dünndarm-Diagnostik",
     body:
-      "Diagnostik und langfristige Begleitung bei Reizdarm, Reflux, Lebererkrankungen, Zöliakie und chronisch-entzündlichen Darmerkrankungen.",
-    icon: Stethoscope,
+      "Schluckbare Miniatursonde zur ambulanten Untersuchung des Dünndarms. Sinnvoll bei unklarer Anämie, Verdacht auf Morbus Crohn oder okkulter Blutung — schmerzfrei und ohne Sedierung.",
+    icon: Pill,
   },
   {
     n: "05",
-    title: "Atemtests",
-    sub: "Laktose · Fruktose · SIBO",
+    title: "Sprechstunde",
+    sub: "Innere Medizin & CED",
     body:
-      "Wasserstoff-Atemteste zur Abklärung von Kohlenhydrat-Unverträglichkeiten, bakterieller Fehlbesiedlung und Motilitätsstörungen.",
-    icon: Syringe,
+      "Strukturierte Sprechstunden für Pankreas, CED, Reflux, Lebererkrankungen und Reizdarm — mit Zeit für Diagnostik und langfristige Begleitung.",
+    icon: Stethoscope,
   },
   {
     n: "06",
