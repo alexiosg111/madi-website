@@ -83,7 +83,7 @@ const SERVICES = [
 ];
 
 const HOURS = [
-  { day: "Montag", open: "08:30 – 11:30", close: "—", note: "Vormittag" },
+  { day: "Montag", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
   { day: "Dienstag", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
   { day: "Mittwoch", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
   { day: "Donnerstag", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
@@ -611,14 +611,6 @@ export default function Landing() {
                 <Clock className="h-4 w-4 text-foreground/70" />
               </div>
               <h3 className="mt-6 font-serif text-2xl">Wir sind für Sie da.</h3>
-              <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground max-w-[36ch]">
-                Wir bitten um Terminvereinbarung. Praxisanschrift: Dahlienstr. 19b, 23795 Bad Segeberg.
-                In akuten Fällen erreichen Sie uns telefonisch
-                während der Sprechzeiten unter{" "}
-                <a href="tel:+494551882977" className="underline text-foreground/80 hover:text-foreground">04551-882977</a>
-                {" "}oder per E-Mail unter{" "}
-                <a href="mailto:Gastroenterologie-Segeberg@web.de" className="underline text-foreground/80 hover:text-foreground">Gastroenterologie-Segeberg@web.de</a>.
-              </p>
               <div id="sprechzeiten" className="mt-8 divide-y divide-border border-y border-border">
                 {HOURS.map((h) => (
                   <div key={h.day} className="grid grid-cols-12 gap-3 py-3.5 items-baseline">
