@@ -6,7 +6,6 @@ import {
   Activity,
   ArrowUpRight,
   CalendarDays,
-  ClipboardList,
   Clock,
   Compass,
   HeartPulse,
@@ -99,7 +98,7 @@ const TIMELINE = [
   { year: "03/2013 – 06/2014", text: "Chefarzt der gastroenterologischen Klinik, Bathildis Krankenhaus Bad Pyrmont & Median Kliniken Bad Mergentheim." },
   { year: "08/2014 – 01/2022", text: "Leitender Arzt der Funktionsdiagnostik, Tichreen Universitätsklinikum, Latakia (Syrien)." },
   { year: "03/2022 – 09/2025", text: "Oberarzt / Chefarzt, Abteilung Innere Medizin mit Schwerpunkt Gastroenterologie, KH Land Hadeln, Otterndorf." },
-  { year: "Seit 10/2025", text: "Niederlassung in eigener Praxis, Bad Segeberg." },
+  { year: "(aktuell:)", text: "Niederlassung in eigener Praxis, Bad Segeberg." },
 ];
 
 const fadeUp = {
@@ -574,10 +573,6 @@ export default function Landing() {
                 <Compass className="h-4 w-4 text-foreground/70" />
               </div>
               <h3 className="mt-6 font-serif text-2xl">So finden Sie uns.</h3>
-              <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground max-w-[36ch]">
-                Im Ärztehaus der Innenstadt, fünf Minuten Fußweg vom Bahnhof
-                und direkt an der Bushaltestelle „Marktplatz".
-              </p>
               <div className="mt-8 relative aspect-[16/10] overflow-hidden rounded-[2px] border border-border">
                 {/* Stylized map placeholder */}
                 <div className="absolute inset-0 bg-secondary/60">
@@ -611,6 +606,14 @@ export default function Landing() {
                 <Clock className="h-4 w-4 text-foreground/70" />
               </div>
               <h3 className="mt-6 font-serif text-2xl">Wir sind für Sie da.</h3>
+              <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground max-w-[36ch]">
+                Wir bitten um Terminvereinbarung. Praxisanschrift: Dahlienstr. 19b, 23795 Bad Segeberg.
+                In akuten Fällen erreichen Sie uns telefonisch
+                während der Sprechzeiten unter{" "}
+                <a href="tel:+494551882977" className="underline text-foreground/80 hover:text-foreground">04551-882977</a>
+                {" "}oder per E-Mail unter{" "}
+                <a href="mailto:Gastroenterologie-Segeberg@web.de" className="underline text-foreground/80 hover:text-foreground">Gastroenterologie-Segeberg@web.de</a>.
+              </p>
               <div id="sprechzeiten" className="mt-8 divide-y divide-border border-y border-border">
                 {HOURS.map((h) => (
                   <div key={h.day} className="grid grid-cols-12 gap-3 py-3.5 items-baseline">
@@ -683,55 +686,10 @@ export default function Landing() {
               </h2>
               <p className="mt-6 max-w-[52ch] text-[15.5px] leading-relaxed text-foreground/85">
                 Wir nehmen uns Zeit für Sie. Bitte vereinbaren Sie einen Termin —
-                telefonisch, per E-Mail oder über das untenstehende Formular.
-                Bei akuten Beschwerden melden Sie sich bitte direkt in der Praxis.
+                telefonisch oder per E-Mail.
               </p>
 
-              <div id="kontakt-form" className="mt-10 border border-border bg-background p-6 lg:p-8 rounded-[2px]">
-                <div className="flex items-center justify-between">
-                  <Eyebrow>Formular</Eyebrow>
-                  <span className="label-eyebrow text-muted-foreground/70">01 / 01</span>
-                </div>
-                <form className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="flex flex-col gap-1.5">
-                    <label className="label-eyebrow" htmlFor="name">Name</label>
-                    <input id="name" name="name" autoComplete="name" placeholder="Vor- und Nachname" className="h-11 border-b border-border bg-transparent px-0 text-[15px] outline-none focus:border-foreground transition-colors placeholder:text-muted-foreground/60" />
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    <label className="label-eyebrow" htmlFor="phone">Telefon</label>
-                    <input id="phone" name="phone" type="tel" autoComplete="tel" placeholder="z. B. 04551 …" className="h-11 border-b border-border bg-transparent px-0 text-[15px] outline-none focus:border-foreground transition-colors placeholder:text-muted-foreground/60" />
-                  </div>
-                  <div className="flex flex-col gap-1.5 sm:col-span-2">
-                    <label className="label-eyebrow" htmlFor="email">E-Mail</label>
-                    <input id="email" name="email" type="email" autoComplete="email" placeholder="name@example.de" className="h-11 border-b border-border bg-transparent px-0 text-[15px] outline-none focus:border-foreground transition-colors placeholder:text-muted-foreground/60" />
-                  </div>
-                  <div className="flex flex-col gap-1.5 sm:col-span-2">
-                    <label className="label-eyebrow" htmlFor="reason">Anliegen</label>
-                    <select id="reason" name="reason" defaultValue="Sprechstunde / Erstvorstellung" className="h-11 border-b border-border bg-card px-0 text-[15px] outline-none focus:border-foreground transition-colors">
-                      <option>Sprechstunde / Erstvorstellung</option>
-                      <option>Vorsorge-Koloskopie</option>
-                      <option>Gastroskopie</option>
-                      <option>Sonographie</option>
-                      <option>Atemtest</option>
-                      <option>CED-Sprechstunde</option>
-                    </select>
-                  </div>
-                  <div className="flex flex-col gap-1.5 sm:col-span-2">
-                    <label className="label-eyebrow" htmlFor="message">Nachricht (optional)</label>
-                    <textarea id="message" name="message" rows={3} placeholder="Beschwerden, Vorbefunde, Überweisung …" className="border-b border-border bg-transparent px-0 py-2 text-[15px] outline-none focus:border-foreground transition-colors resize-none placeholder:text-muted-foreground/60" />
-                  </div>
-                  <p className="sm:col-span-2 text-[11.5px] text-muted-foreground leading-relaxed">
-                    Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Daten zur Termin­koordination zu.
-                    Details in unserer Datenschutz­erklärung.
-                  </p>
-                  <div className="sm:col-span-2 flex items-center gap-3 pt-2">
-                    <Button type="submit" className="rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
-                      Anfrage senden <ArrowUpRight className="ml-1.5 h-3.5 w-3.5" />
-                    </Button>
-                    <span className="text-[12px] text-muted-foreground">Wir antworten innerhalb eines Werktages.</span>
-                  </div>
-                </form>
-              </div>
+
             </div>
 
             {/* Contact card */}
@@ -752,10 +710,6 @@ export default function Landing() {
                     <span className="flex items-center gap-2 text-[13.5px] text-muted-foreground"><Phone className="h-3.5 w-3.5" /> Telefon</span>
                     <span className="text-[15px] tracking-tight group-hover:text-foreground">04551-882977</span>
                   </a>
-                  <a href="fax:+49455100001" className="group flex items-center justify-between border-t border-border pt-4">
-                    <span className="flex items-center gap-2 text-[13.5px] text-muted-foreground"><ClipboardList className="h-3.5 w-3.5" /> Telefax</span>
-                    <span className="text-[15px] tracking-tight tabular-nums group-hover:text-foreground">04551 · 00 00 01</span>
-                  </a>
                   <a href="mailto:Gastroenterologie-Segeberg@web.de" className="group flex items-center justify-between border-t border-border pt-4">
                     <span className="flex items-center gap-2 text-[13.5px] text-muted-foreground"><Mail className="h-3.5 w-3.5" /> E-Mail</span>
                     <span className="text-[14px] tracking-tight group-hover:text-foreground truncate ml-2">Gastroenterologie-Segeberg@web.de</span>
@@ -769,8 +723,7 @@ export default function Landing() {
                 <div className="mt-8 pt-4 border-t border-border">
                   <p className="text-[11.5px] uppercase tracking-[0.18em] text-muted-foreground">Anfahrt</p>
                   <p className="mt-2 text-[13.5px] leading-relaxed text-foreground/85 max-w-[36ch]">
-                    Mit der Bahn: 5 Min. vom Bahnhof Bad Segeberg · Mit dem Auto:
-                    Parkplätze am Haus · Barrierefreier Zugang.
+                    Mit dem Bus: 9-11 Min · Mit dem Auto: Parkplätze am Haus · Barrierefreier Zugang.
                   </p>
                 </div>
               </div>
