@@ -354,7 +354,7 @@ export default function Landing() {
               {
                 k: "Diagnostik",
                 title: "Endoskopie mit Sorgfalt",
-                body: "Gastroskopie, Koloskopie und Sonographie ambulant und mit schonender Sedierung.",
+                body: "Gastroskopie, Koloskopie, Kapselendoskopie und Sonographie ambulant und mit schonender Sedierung.",
               },
               {
                 k: "Sprechstunde",
