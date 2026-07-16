@@ -98,7 +98,7 @@ const TIMELINE = [
   { year: "03/2013 – 06/2014", text: "Chefarzt der gastroenterologischen Klinik, Bathildis Krankenhaus Bad Pyrmont & Median Kliniken Bad Mergentheim." },
   { year: "08/2014 – 01/2022", text: "Leitender Arzt der Funktionsdiagnostik, Tichreen Universitätsklinikum, Latakia (Syrien)." },
   { year: "03/2022 – 09/2025", text: "Oberarzt / Chefarzt, Abteilung Innere Medizin mit Schwerpunkt Gastroenterologie, KH Land Hadeln, Otterndorf." },
-  { year: "(aktuell:)", text: "Niederlassung in eigener Praxis, Bad Segeberg." },
+  { year: "aktuell", text: "Niederlassung in eigener Praxis, Bad Segeberg." },
 ];
 
 const fadeUp = {
@@ -473,7 +473,6 @@ export default function Landing() {
                 </div>
                 <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
                   <span className="label-eyebrow">Abb. 01</span>
-                  <span>Aufnahme in der Praxis, 2024.</span>
                 </figcaption>
               </motion.figure>
 
@@ -483,7 +482,6 @@ export default function Landing() {
                   { v: "25+", l: "Jahre klinische Erfahrung" },
                   { v: "DGIM", l: "Deutsche Gesellschaft für Innere Medizin" },
                   { v: "DGVS", l: "Gastroenterologie" },
-                  { v: "DEGUM", l: "Sonographie-Zertifikat" },
                 ].map((c) => (
                   <div key={c.l} className="border-l border-border pl-4">
                     <div className="font-serif text-2xl">{c.v}</div>
@@ -723,7 +721,7 @@ export default function Landing() {
                 <div className="mt-8 pt-4 border-t border-border">
                   <p className="text-[11.5px] uppercase tracking-[0.18em] text-muted-foreground">Anfahrt</p>
                   <p className="mt-2 text-[13.5px] leading-relaxed text-foreground/85 max-w-[36ch]">
-                    Mit dem Bus: 9-11 Min · Mit dem Auto: Parkplätze am Haus · Barrierefreier Zugang.
+                    Mit dem Bus: 9-11 Min · Barrierefreier Zugang.
                   </p>
                 </div>
               </div>
