@@ -58,25 +58,19 @@ const SERVICES = [
   {
     n: "04",
     title: "Kapselendoskopie",
-    sub: "Dünndarm-Diagnostik",
-    body:
-      "Schluckbare Miniatursonde zur ambulanten Untersuchung des Dünndarms. Sinnvoll bei unklarer Anämie, Verdacht auf Morbus Crohn oder okkulter Blutung — schmerzfrei und ohne Sedierung.",
+    sub: "Dünndarm-Diagnostik",body: "Kapsel mit einer Miniatur-Kamera zur ambulanten Untersuchung des Dünndarms. Sinnvoll bei unklarer Anämie, Verdacht auf Morbus Crohn oder okkulter Blutung — schmerzfrei und ohne Sedierung.",
     icon: Pill,
   },
-  {
-    n: "05",
+  {    n: "05",
     title: "Sprechstunde",
     sub: "Innere Medizin & CED",
-    body:
-      "Strukturierte Sprechstunden für Pankreas, CED, Reflux, Lebererkrankungen und Reizdarm.",
+    body: "Strukturierte Sprechstunden für Pankreas, CED, Reflux und Reizdarm.",
     icon: Stethoscope,
   },
   {
     n: "06",
     title: "Vorsorge",
-    sub: "Darmkrebs & Check-up",
-    body:
-      "Strukturierte Vorsorgeprogramme ab dem 50. Lebensjahr, individuelle Check-up-Untersuchungen sowie Impf- und Reiseberatung.",
+    sub: "Darmkrebs & Check-up",body: "Strukturierte Vorsorgeprogramme ab dem 50. Lebensjahr, individuelle Check-up-Untersuchungen.",
     icon: HeartPulse,
   },
 ];
