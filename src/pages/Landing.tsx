@@ -267,7 +267,7 @@ export default function Landing() {
                 className="absolute inset-x-0 bottom-0 h-2/5"
                 style={{
                   background:
-                    "linear-gradient(to top, color-mix(in oklch, var(--background) 88%, transparent) 0%, color-mix(in oklch, var(--background) 32%, transparent) 55%, transparent 100%)",
+                    "linear-gradient(to top, var(--background) 0%, color-mix(in oklch, var(--background) 80%, transparent) 25%, transparent 100%)",
                 }}
               />
               {/* Editorial frame labels */}
@@ -276,7 +276,7 @@ export default function Landing() {
                   <span className="label-eyebrow text-foreground/80">Cover · Abb. I</span>
                 </div>
                 <div className="flex items-end">
-                  <div className="max-w-[40ch] lg:max-w-[46ch]" style={{ textShadow: "0 1px 2px rgba(247, 242, 234, 0.75), 0 0 12px rgba(247, 242, 234, 0.35)" }}>
+                  <div className="max-w-[40ch] lg:max-w-[46ch]" style={{ textShadow: "0 2px 4px rgba(15, 20, 35, 0.8), 0 0 16px rgba(15, 20, 35, 0.7), 0 0 32px rgba(15, 20, 35, 0.5)" }}>
                     <p className="font-serif italic text-[15px] lg:text-[17px] text-foreground">
                       Willkommen in einer Praxis, in der Sie als Mensch zählen.
                     </p>
@@ -432,16 +432,16 @@ export default function Landing() {
                     aria-hidden
                     className="absolute inset-0"
                     style={{
-                      background:
-                        "radial-gradient(120% 80% at 50% 35%, color-mix(in oklch, var(--accent) 90%, var(--background) 10%) 0%, color-mix(in oklch, var(--accent) 50%, var(--background) 50%) 45%, color-mix(in oklch, var(--muted) 80%, var(--background) 20%) 100%)",
+                  background:
+                    "radial-gradient(120% 80% at 50% 35%, oklch(0.32 0.04 260) 0%, color-mix(in oklch, var(--muted) 40%, var(--background) 60%) 45%, var(--background) 100%)",
                     }}
                   />
                   <div
                     aria-hidden
                     className="absolute inset-x-0 bottom-0 h-1/3"
                     style={{
-                      background:
-                        "linear-gradient(to top, color-mix(in oklch, var(--foreground) 12%, transparent) 0%, transparent 100%)",
+                  background:
+                    "linear-gradient(to top, var(--background) 0%, color-mix(in oklch, var(--background) 20%, transparent) 60%, transparent 100%)",
                     }}
                   />
                   <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] p-6 lg:p-8">
