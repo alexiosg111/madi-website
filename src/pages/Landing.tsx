@@ -6,6 +6,7 @@ import {
   Activity,
   ArrowUpRight,
   CalendarDays,
+  ChevronDown,
   Clock,
   Compass,
   HeartPulse,
@@ -39,6 +40,10 @@ const SERVICES = [
     body:
       "Diagnostische und therapeutische Spiegelung von Speiseröhre, Magen und Zwölffingerdarm — ambulant, mit schonender Sedierung und moderner HD-Technik.",
     icon: ScanLine,
+    more: [
+      { k: "Ablauf", v: "Sanfte Sedierung, ambulant, ca. 15–20 Minuten." },
+      { k: "Gut zu wissen", v: "Gewebeproben (Biopsien) sind in derselben Sitzung möglich." },
+    ],
   },
   {
     n: "02",
@@ -47,6 +52,10 @@ const SERVICES = [
     body:
       "Vorsorge- und Kontroll-Koloskopie mit Polypektomie. Abklärung von Beschwerden, CED-Verlaufskontrollen und Früherkennung kolorektaler Karzinome.",
     icon: Microscope,
+    more: [
+      { k: "Ablauf", v: "Ambulante Vorsorge- oder Kontrollspiegelung mit Sedierung." },
+      { k: "Gut zu wissen", v: "Polypen lassen sich meist direkt in der Sitzung entfernen." },
+    ],
   },
   {
     n: "03",
@@ -55,24 +64,40 @@ const SERVICES = [
     body:
       "Hochauflösender Ultraschall der Bauchgefäße, Oberbauchorgane und der Weichteile — nicht-invasiv, ohne Strahlenbelastung.",
     icon: Activity,
+    more: [
+      { k: "Ablauf", v: "Schmerzfrei und ohne Vorbereitung, Befund sofort." },
+      { k: "Gut zu wissen", v: "Keine Strahlenbelastung — ideal für Verlaufskontrollen." },
+    ],
   },
   {
     n: "04",
     title: "Kapselendoskopie",
     sub: "Dünndarm-Diagnostik",body: "Kapsel mit einer Miniatur-Kamera zur ambulanten Untersuchung des Dünndarms. Sinnvoll bei unklarer Anämie, Verdacht auf Morbus Crohn oder okkulter Blutung — schmerzfrei und ohne Sedierung.",
     icon: Pill,
+    more: [
+      { k: "Ablauf", v: "Kapsel schlucken, Alltag fortsetzen, Auswertung am Folgetag." },
+      { k: "Gut zu wissen", v: "Nicht invasiv — keine Sedierung nötig." },
+    ],
   },
   {    n: "05",
     title: "Sprechstunde",
     sub: "Innere Medizin & CED",
     body: "Strukturierte Sprechstunden für Pankreas, CED, Reflux und Reizdarm.",
     icon: Stethoscope,
+    more: [
+      { k: "Ablauf", v: "Ausführliches Gespräch mit ausreichend Zeit für Ihre Fragen." },
+      { k: "Gut zu wissen", v: "Bitte bringen Sie Vorbefunde und Medikamentenliste mit." },
+    ],
   },
   {
     n: "06",
     title: "Vorsorge",
     sub: "Darmkrebs & Check-up",body: "Strukturierte Vorsorgeprogramme ab dem 50. Lebensjahr, individuelle Check-up-Untersuchungen.",
     icon: HeartPulse,
+    more: [
+      { k: "Ablauf", v: "Individuelle Check-up-Programme ab dem 50. Lebensjahr." },
+      { k: "Gut zu wissen", v: "Kostenübernahme klären wir gern mit Ihrer Krankenkasse." },
+    ],
   },
 ];
 
@@ -120,6 +145,7 @@ export default function Landing() {
   const [open, setOpen] = useState(false);
   const [now, setNow] = useState<string>("");
   const [active, setActive] = useState("");
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [theme, setTheme] = useState<"light" | "dark">(() =>
     document.documentElement.classList.contains("dark") ? "dark" : "light",
   );
@@ -200,23 +226,6 @@ export default function Landing() {
                 </span>
               </span>
             </a>
-            <nav className="hidden md:flex items-center gap-7">
-              {NAV.map((item) => {
-                const isActive = active === item.href;
-                return (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className={`relative text-[13px] tracking-tight transition-colors ${
-                      isActive ? "text-foreground" : "text-foreground/60 hover:text-foreground"
-                    }`}
-                  >
-                    {item.label}
-                    {isActive && <span className="absolute -bottom-1.5 left-0 h-px w-full bg-foreground" />}
-                  </a>
-                );
-              })}
-            </nav>
             <div className="flex items-center gap-2.5">
               <button
                 aria-label={theme === "dark" ? "Hellen Modus aktivieren" : "Dunklen Modus aktivieren"}
@@ -233,7 +242,7 @@ export default function Landing() {
               <button
                 aria-label="Menü öffnen"
                 onClick={() => setOpen(true)}
-                className="md:hidden grid h-10 w-10 place-items-center rounded-[2px] border border-border hover:bg-foreground/5 transition-colors"
+                className="grid h-10 w-10 place-items-center rounded-[2px] border border-border hover:bg-foreground/5 transition-colors"
               >
                 <Menu className="h-4 w-4" />
               </button>
@@ -242,7 +251,7 @@ export default function Landing() {
         </div>
       </div>
 
-      {/* Mobile sidebar drawer */}
+      {/* Sidebar drawer — navigation on all devices */}
       <AnimatePresence>
         {open && (
           <>
@@ -253,7 +262,7 @@ export default function Landing() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 z-50 bg-background/70 backdrop-blur-[2px] md:hidden"
+              className="fixed inset-0 z-50 bg-background/70 backdrop-blur-[2px]"
             />
             <motion.aside
               key="drawer-panel"
@@ -264,7 +273,7 @@ export default function Landing() {
               role="dialog"
               aria-modal="true"
               aria-label="Navigation"
-              className="fixed inset-y-0 right-0 z-50 flex w-[320px] max-w-[86vw] flex-col border-l border-border bg-background md:hidden"
+              className="fixed inset-y-0 right-0 z-50 flex w-[320px] max-w-[86vw] flex-col border-l border-border bg-background"
             >
               <div className="flex h-14 items-center justify-between border-b border-border px-5">
                 <span className="flex items-center gap-2.5">
@@ -608,31 +617,78 @@ export default function Landing() {
           </div>
 
           <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-border">
-            {SERVICES.map((s, i) => (
-              <motion.article
-                key={s.title}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.55, delay: 0.05 * i, ease: [0.22, 0.61, 0.36, 1] }}
-                className="group relative border-b border-border md:border-r lg:border-r last:border-r-0 p-7 lg:p-9 hover:bg-card transition-colors duration-500"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-serif text-sm text-muted-foreground/80 tracking-tight">{s.n}</span>
-                  <s.icon className="h-4 w-4 text-foreground/70 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </div>
-                <h3 className="mt-10 font-serif text-[26px] lg:text-[30px] leading-tight">{s.title}</h3>
-                <p className="mt-2 text-[12.5px] uppercase tracking-[0.16em] text-muted-foreground">
-                  {s.sub}
-                </p>
-                <p className="mt-5 text-[14px] leading-relaxed text-foreground/80 max-w-[40ch]">
-                  {s.body}
-                </p>
-                <a href="#termin" className="mt-8 inline-flex items-center gap-1.5 text-[12.5px] tracking-tight text-foreground/70 hover:text-foreground">
-                  Sprechstunde anfragen <ArrowUpRight className="h-3.5 w-3.5" />
-                </a>
-              </motion.article>
-            ))}
+            {SERVICES.map((s, i) => {
+              const isOpen = openIndex === i;
+              return (
+                <motion.article
+                  key={s.title}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.55, delay: 0.05 * i, ease: [0.22, 0.61, 0.36, 1] }}
+                  className={`group relative border-b border-border md:border-r lg:border-r last:border-r-0 p-7 lg:p-9 transition-colors duration-500 ${
+                    isOpen ? "bg-card" : "hover:bg-card"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-serif text-sm text-muted-foreground/80 tracking-tight">{s.n}</span>
+                    <s.icon className="h-4 w-4 text-foreground/70 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </div>
+                  <button
+                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                    className="mt-6 w-full text-left"
+                    aria-expanded={isOpen}
+                  >
+                    <h3 className="font-serif text-[26px] lg:text-[30px] leading-tight">{s.title}</h3>
+                    <p className="mt-2 text-[12.5px] uppercase tracking-[0.16em] text-muted-foreground">
+                      {s.sub}
+                    </p>
+                    <p className="mt-5 text-[14px] leading-relaxed text-foreground/80 max-w-[40ch]">
+                      {s.body}
+                    </p>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        key="more"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mt-6 space-y-4 border-t border-border pt-5">
+                          {s.more.map((m) => (
+                            <div key={m.k} className="grid grid-cols-12 gap-3">
+                              <div className="col-span-4">
+                                <span className="label-eyebrow">{m.k}</span>
+                              </div>
+                              <div className="col-span-8 text-[13.5px] leading-relaxed text-foreground/85">
+                                {m.v}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  <div className="mt-7 flex flex-wrap items-center justify-between gap-3">
+                    <button
+                      onClick={() => setOpenIndex(isOpen ? null : i)}
+                      className="inline-flex items-center gap-1.5 text-[12.5px] tracking-tight text-foreground/70 hover:text-foreground transition-colors"
+                    >
+                      {isOpen ? "Weniger" : "Mehr erfahren"}
+                      <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    <a href="#termin" className="inline-flex items-center gap-1.5 text-[12.5px] tracking-tight text-foreground/70 hover:text-foreground">
+                      Sprechstunde anfragen <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </section>
