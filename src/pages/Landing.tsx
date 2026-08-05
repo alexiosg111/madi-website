@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -13,6 +13,7 @@ import {
   MapPin,
   Menu,
   Microscope,
+  Moon,
   Phone,
   Pill,
   ScanLine,
@@ -118,6 +119,20 @@ function Rule({ children }: { children?: React.ReactNode }) {
 export default function Landing() {
   const [open, setOpen] = useState(false);
   const [now, setNow] = useState<string>("");
+  const [active, setActive] = useState("");
+  const [theme, setTheme] = useState<"light" | "dark">(() =>
+    document.documentElement.classList.contains("dark") ? "dark" : "light",
+  );
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    document.documentElement.classList.toggle("dark", next === "dark");
+    try {
+      localStorage.setItem("gastro-theme", next);
+    } catch {
+      /* Storage nicht verfügbar */
+    }
+    setTheme(next);
+  };
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], [0, -60]);
@@ -150,6 +165,24 @@ export default function Landing() {
     };
   }, [open]);
 
+  // Scroll-Spy: aktive Sektion im Menü hervorheben
+  useEffect(() => {
+    const ids = ["praxis", "leistungen", "diagnostik", "sprechzeiten", "kontakt"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
+        }
+      },
+      { rootMargin: "-35% 0px -55% 0px", threshold: 0 },
+    );
+    for (const id of ids) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div ref={ref} className="min-h-screen bg-background text-foreground">
       {/* Hairline top border sensation — full-bleed editorial ribbon */}
@@ -167,18 +200,31 @@ export default function Landing() {
                 </span>
               </span>
             </a>
-            <nav className="hidden md:flex items-center gap-8">
-              {NAV.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-[13px] tracking-tight text-foreground/80 hover:text-foreground transition-colors"
-                >
-                  {item.label}
-                </a>
-              ))}
+            <nav className="hidden md:flex items-center gap-7">
+              {NAV.map((item) => {
+                const isActive = active === item.href;
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={`relative text-[13px] tracking-tight transition-colors ${
+                      isActive ? "text-foreground" : "text-foreground/60 hover:text-foreground"
+                    }`}
+                  >
+                    {item.label}
+                    {isActive && <span className="absolute -bottom-1.5 left-0 h-px w-full bg-foreground" />}
+                  </a>
+                );
+              })}
             </nav>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
+              <button
+                aria-label={theme === "dark" ? "Hellen Modus aktivieren" : "Dunklen Modus aktivieren"}
+                onClick={toggleTheme}
+                className="hidden sm:grid h-9 w-9 place-items-center rounded-[2px] border border-border hover:bg-foreground/5 transition-colors"
+              >
+                {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </button>
               <Button asChild className="hidden md:inline-flex rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
                 <a href="#kontakt">
                   <ArrowUpRight className="mr-1.5 h-3.5 w-3.5" /> Zum Kontakt
@@ -187,7 +233,7 @@ export default function Landing() {
               <button
                 aria-label="Menü öffnen"
                 onClick={() => setOpen(true)}
-                className="md:hidden grid h-8 w-8 place-items-center rounded-[2px] border border-border"
+                className="md:hidden grid h-10 w-10 place-items-center rounded-[2px] border border-border hover:bg-foreground/5 transition-colors"
               >
                 <Menu className="h-4 w-4" />
               </button>
@@ -196,46 +242,99 @@ export default function Landing() {
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {open && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.25 }}
-          className="fixed inset-0 z-50 bg-background"
-        >
-          <div className="flex h-14 items-center justify-between px-6 border-b border-border">
-            <span className="font-serif text-lg">Dr. med. Maher Madi</span>
-            <button
-              aria-label="Menü schließen"
+      {/* Mobile sidebar drawer */}
+      <AnimatePresence>
+        {open && (
+          <>
+            <motion.div
+              key="drawer-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setOpen(false)}
-              className="grid h-8 w-8 place-items-center rounded-[2px] border border-border"
+              className="fixed inset-0 z-50 bg-background/70 backdrop-blur-[2px] md:hidden"
+            />
+            <motion.aside
+              key="drawer-panel"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 32, stiffness: 320 }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation"
+              className="fixed inset-y-0 right-0 z-50 flex w-[320px] max-w-[86vw] flex-col border-l border-border bg-background md:hidden"
             >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
-          <div className="px-6 py-10">
-            <ul className="space-y-5">
-              {NAV.map((item, i) => (
-                <li key={item.href} className="flex items-baseline gap-4">
-                  <span className="label-eyebrow">{String(i + 1).padStart(2, "0")}</span>
-                  <a
-                    onClick={() => setOpen(false)}
-                    href={item.href}
-                    className="font-serif text-3xl"
+              <div className="flex h-14 items-center justify-between border-b border-border px-5">
+                <span className="flex items-center gap-2.5">
+                  <span aria-hidden className="grid h-8 w-8 place-items-center rounded-[2px] border border-foreground/80">
+                    <span className="font-serif text-[16px] leading-none">M</span>
+                  </span>
+                  <span className="font-serif text-[17px] tracking-tight">Dr. med. Maher Madi</span>
+                </span>
+                <button
+                  aria-label="Menü schließen"
+                  onClick={() => setOpen(false)}
+                  className="grid h-9 w-9 place-items-center rounded-[2px] border border-border"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+
+              <nav className="flex-1 overflow-y-auto px-5 py-6">
+                <p className="label-eyebrow">Navigation</p>
+                <ul className="mt-3">
+                  {NAV.map((item, i) => {
+                    const isActive = active === item.href;
+                    return (
+                      <li key={item.href} className="border-b border-border">
+                        <a
+                          href={item.href}
+                          onClick={() => setOpen(false)}
+                          className={`group flex items-center justify-between py-4 transition-colors ${
+                            isActive ? "text-foreground" : "text-foreground/55 hover:text-foreground"
+                          }`}
+                        >
+                          <span className="flex items-baseline gap-4">
+                            <span className="label-eyebrow">{String(i + 1).padStart(2, "0")}</span>
+                            <span className={`font-serif text-[22px] leading-none ${isActive ? "italic" : ""}`}>
+                              {item.label}
+                            </span>
+                          </span>
+                          {isActive && <ArrowUpRight className="h-4 w-4" />}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </nav>
+
+              <div className="border-t border-border px-5 py-5 space-y-4">
+                <div className="space-y-2.5 text-[13px] leading-relaxed text-muted-foreground">
+                  <p className="flex items-center gap-2"><Phone className="h-3.5 w-3.5 shrink-0" /> 04551-882977</p>
+                  <p className="flex items-center gap-2"><Mail className="h-3.5 w-3.5 shrink-0" /> Gastroenterologie-Segeberg@web.de</p>
+                  <p className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5 shrink-0" /> Dahlienstr. 19b, 23795 Bad Segeberg</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Button asChild className="flex-1 rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
+                    <a href="#kontakt" onClick={() => setOpen(false)}>
+                      <ArrowUpRight className="mr-1.5 h-3.5 w-3.5" /> Zum Kontakt
+                    </a>
+                  </Button>
+                  <button
+                    aria-label={theme === "dark" ? "Hellen Modus aktivieren" : "Dunklen Modus aktivieren"}
+                    onClick={toggleTheme}
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-[2px] border border-border hover:bg-foreground/5 transition-colors"
                   >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10 space-y-2 text-sm text-muted-foreground">
-              <p className="flex items-center gap-2"><Phone className="h-3.5 w-3.5" /> 04551-882977</p>
-              <p className="flex items-center gap-2"><Mail className="h-3.5 w-3.5" /> Gastroenterologie-Segeberg@web.de</p>
-            </div>
-          </div>
-        </motion.div>
-      )}
+                    {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                  </button>
+                </div>
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* HERO */}
       <motion.section
@@ -319,7 +418,7 @@ export default function Landing() {
                 className="font-serif text-[44px] sm:text-[64px] lg:text-[88px] leading-[0.96] tracking-[-0.012em] text-balance"
               >
                 <span className="block">Gastropraxis</span>
-                <span className="block text-muted-foreground">Bad Segeberg.</span>
+                <span className="block">Bad Segeberg.</span>
               </motion.h1>
 
               <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
@@ -397,7 +496,7 @@ export default function Landing() {
                 className="mt-5 font-serif text-[36px] lg:text-[52px] leading-[1.04] tracking-[-0.01em] text-balance"
               >
                 Eine ruhige Praxis,<br />
-                <span className="text-muted-foreground">in der Sie als Mensch zählen.</span>
+                in der Sie als Mensch zählen.
               </motion.h2>
               <div className="mt-8 max-w-[44ch] space-y-5 text-[15.5px] leading-relaxed text-foreground/85">
                 <p>
@@ -433,7 +532,7 @@ export default function Landing() {
                     className="absolute inset-0"
                     style={{
                   background:
-                    "radial-gradient(120% 80% at 50% 35%, oklch(0.32 0.04 260) 0%, color-mix(in oklch, var(--muted) 40%, var(--background) 60%) 45%, var(--background) 100%)",
+                    "radial-gradient(120% 80% at 50% 35%, color-mix(in oklch, var(--accent) 55%, transparent) 0%, color-mix(in oklch, var(--muted) 45%, var(--background) 55%) 45%, var(--background) 100%)",
                     }}
                   />
                   <div
@@ -499,7 +598,7 @@ export default function Landing() {
                 className="mt-4 font-serif text-[36px] lg:text-[52px] leading-[1.05] tracking-[-0.01em] max-w-[20ch] text-balance"
               >
                 Diagnostik und Therapie,<br />
-                <span className="text-muted-foreground">auf das Wesentliche gebracht.</span>
+                auf das Wesentliche gebracht.
               </motion.h2>
             </div>
             <p className="text-[14.5px] leading-relaxed text-muted-foreground max-w-[42ch]">
@@ -608,13 +707,13 @@ export default function Landing() {
               </p>
               <div id="sprechzeiten" className="mt-8 divide-y divide-border border-y border-border">
                 {HOURS.map((h) => (
-                  <div key={h.day} className="grid grid-cols-12 gap-3 py-3.5 items-baseline">
-                    <div className="col-span-4 font-serif text-[16px]">{h.day}</div>
-                    <div className="col-span-6 text-[13.5px] tabular-nums text-foreground/85">
+                  <div key={h.day} className="grid grid-cols-12 gap-x-3 gap-y-1 py-3.5 items-baseline">
+                    <div className="col-span-5 sm:col-span-4 font-serif text-[16px]">{h.day}</div>
+                    <div className="col-span-7 sm:col-span-6 text-[13.5px] tabular-nums text-foreground/85">
                       {h.open}{h.close !== "—" && <span className="text-muted-foreground">{" · "}</span>}
                       {h.close !== "—" && h.close}
                     </div>
-                    <div className="col-span-2 text-right text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{h.note}</div>
+                    <div className="col-span-12 sm:col-span-2 text-left sm:text-right text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{h.note}</div>
                   </div>
                 ))}
               </div>
@@ -674,7 +773,7 @@ export default function Landing() {
             <div className="col-span-12 lg:col-span-7">
               <h2 id="termin" className="font-serif text-[40px] lg:text-[60px] leading-[1.04] tracking-[-0.01em] text-balance">
                 Termin in der<br />
-                <span className="text-muted-foreground">Gastropraxis.</span>
+                Gastropraxis.
               </h2>
               <p className="mt-6 max-w-[52ch] text-[15.5px] leading-relaxed text-foreground/85">
                 Wir nehmen uns Zeit für Sie. Bitte vereinbaren Sie einen Termin —
