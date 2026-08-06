@@ -32,6 +32,7 @@ import {
 
 type NavItem = { label: string; href: string };
 const NAV: NavItem[] = [
+  { label: "Start", href: "#top" },
   { label: "Praxis", href: "#praxis" },
   { label: "Leistungen", href: "#leistungen" },
   { label: "Diagnostik", href: "#diagnostik" },
@@ -127,7 +128,7 @@ function Rule({ children }: { children?: React.ReactNode }) {
 export default function Landing() {
   const [open, setOpen] = useState(false);
   const [now, setNow] = useState<string>("");
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState("#top");
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [current, setCurrent] = useState(1);
   const [count, setCount] = useState(SERVICES.length);
@@ -180,7 +181,7 @@ export default function Landing() {
 
   // Scroll-Spy: aktive Sektion im Menü hervorheben
   useEffect(() => {
-    const ids = ["praxis", "leistungen", "diagnostik", "sprechzeiten", "kontakt"];
+    const ids = ["top", "praxis", "leistungen", "diagnostik", "sprechzeiten", "kontakt"];
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -410,49 +411,48 @@ export default function Landing() {
             </div>
           </motion.figure>
 
-          <div className="grid grid-cols-12 gap-x-8 gap-y-10">
-            {/* Editorial metadata column */}
-            <div className="col-span-12 lg:col-span-3">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <span className="h-px w-8 bg-foreground/40" />
-                <Eyebrow>Innere Medizin &amp; Gastroenterologie</Eyebrow>
-              </div>
-              <p className="mt-6 font-serif text-[15px] italic text-muted-foreground leading-relaxed">
-                Eine ruhige Praxis<br />
-                in Bad Segeberg —<br />
-                mit Zeit für Ihre Anliegen.
-              </p>
+          <div className="mt-12 lg:mt-16">
+            {/* Editorial eyebrow row */}
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <span className="h-px w-8 bg-foreground/40" />
+              <Eyebrow>Innere Medizin &amp; Gastroenterologie</Eyebrow>
             </div>
 
-            {/* Headline */}
-            <div className="col-span-12 lg:col-span-9">
-              <motion.h1
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
-                className="font-serif text-[44px] sm:text-[64px] lg:text-[88px] leading-[0.96] tracking-[-0.012em] text-balance"
-              >
-                <span className="block">Gastropraxis</span>
-                <span className="block">Bad Segeberg.</span>
-              </motion.h1>
+            {/* Headline — the brand statement, given room to breathe */}
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
+              className="mt-8 lg:mt-12 font-serif text-[46px] sm:text-[74px] lg:text-[106px] leading-[0.95] tracking-[-0.015em] text-balance"
+            >
+              <span className="block">Gastropraxis</span>
+              <span className="block">Bad Segeberg.</span>
+            </motion.h1>
 
-              <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
-                <p className="lg:col-span-7 text-[16.5px] leading-[1.55] text-pretty text-foreground/85 max-w-[58ch]">
-                  Dr.&nbsp;med.&nbsp;Maher Madi und das Praxis-Team begleiten Sie mit Ruhe, Sorgfalt
-                  und moderner Diagnostik — von der ersten Sprechstunde über Vorsorge und Endoskopie
-                  bis zur langfristigen Betreuung.
-                </p>
-                <div className="lg:col-span-5 flex flex-wrap items-center gap-3">
-                  <Button asChild className="rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
-                    <a href="#kontakt">
-                      <ArrowUpRight className="mr-1.5 h-4 w-4" /> Zum Kontakt
-                    </a>
-                  </Button>
-                  <Button asChild variant="ghost" className="rounded-[2px] hover:bg-foreground/5">
-                    <a href="#leistungen">Leistungen ansehen</a>
-                  </Button>
-                </div>
-              </div>
+            {/* Subline — same words, calm serif italic */}
+            <p className="mt-8 lg:mt-10 font-serif italic text-[17px] lg:text-[19px] leading-relaxed text-foreground/75">
+              Eine ruhige Praxis<br />
+              in Bad Segeberg —<br />
+              mit Zeit für Ihre Anliegen.
+            </p>
+
+            {/* Intro */}
+            <p className="mt-6 lg:mt-8 max-w-[58ch] text-[16px] leading-[1.65] text-pretty text-foreground/85">
+              Dr.&nbsp;med.&nbsp;Maher Madi und das Praxis-Team begleiten Sie mit Ruhe, Sorgfalt
+              und moderner Diagnostik — von der ersten Sprechstunde über Vorsorge und Endoskopie
+              bis zur langfristigen Betreuung.
+            </p>
+
+            {/* CTAs */}
+            <div className="mt-10 lg:mt-12 flex flex-wrap items-center gap-3">
+              <Button asChild className="rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
+                <a href="#kontakt">
+                  <ArrowUpRight className="mr-1.5 h-4 w-4" /> Zum Kontakt
+                </a>
+              </Button>
+              <Button asChild variant="ghost" className="rounded-[2px] hover:bg-foreground/5">
+                <a href="#leistungen">Leistungen ansehen</a>
+              </Button>
             </div>
           </div>
 

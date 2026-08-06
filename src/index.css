@@ -199,3 +199,8 @@ div[id] {
   background: color-mix(in oklch, var(--foreground) 12%, transparent);
   color: var(--foreground);
 }
+
+/* Horizontal swipe in the services carousel — vertical page scroll stays native */
+[data-slot="carousel-content"] {
+  touch-action: pan-y;
+}
