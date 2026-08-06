@@ -77,11 +77,8 @@ export default defineConfig({
       '@convex-dev/auth/react',
     ],
   },
-  // Performance hints
   server: {
-    // Keep HMR on, but disable full-screen error overlay
-    hmr: {
-      overlay: false,
-    },
+    // HMR must stay off in the managed Freebuff environment — every reload serves fresh modules
+    hmr: false,
   },
 });
