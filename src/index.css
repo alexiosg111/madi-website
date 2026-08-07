@@ -185,7 +185,7 @@ html {
 /* Sticky-header offset so anchored sections are never hidden */
 section[id],
 div[id] {
-  scroll-margin-top: 4.75rem;
+  scroll-margin-top: 6.75rem;
 }
 
 /* Focus ring: refined */

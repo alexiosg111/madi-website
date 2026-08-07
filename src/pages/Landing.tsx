@@ -216,6 +216,11 @@ export default function Landing() {
     };
   }, [api]);
 
+  // Aktuelle Sektion (Scroll-Spy) als Kapitel-Indikator — geteilt mit dem
+  // Sidebar-Drawer, damit Menü-Klick und Ticker im Header synchron sind.
+  const activeIndex = Math.max(0, NAV.findIndex((n) => n.href === active));
+  const activeLabel = NAV[activeIndex]?.label ?? "Start";
+
   return (
     <div ref={ref} className="min-h-screen bg-background text-foreground">
       {/* Hairline top border sensation — full-bleed editorial ribbon */}
@@ -253,6 +258,45 @@ export default function Landing() {
               >
                 <Menu className="h-4 w-4" />
               </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Location ticker — „Sie sind hier", synchron mit dem Hamburger-Menü */}
+        <div className="border-t border-border/60">
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+            <div className="flex h-8 items-center justify-between gap-4">
+              <div className="flex min-w-0 items-center gap-2.5">
+                <span className="label-eyebrow tabular-nums">{String(activeIndex + 1).padStart(2, "0")}</span>
+                <span aria-hidden className="h-px w-4 shrink-0 bg-foreground/30" />
+                <span className="relative block h-[14px] min-w-[7ch] overflow-hidden">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span
+                      key={active}
+                      initial={{ y: 12, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -12, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: [0.22, 0.61, 0.36, 1] }}
+                      className="absolute left-0 top-0 block whitespace-nowrap text-[10.5px] uppercase tracking-[0.18em] text-foreground/90"
+                    >
+                      {activeLabel}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
+                <span className="hidden text-[9.5px] uppercase tracking-[0.16em] text-muted-foreground/60 sm:inline">
+                  Sie sind hier
+                </span>
+              </div>
+              <span className="hidden text-[10px] uppercase tracking-[0.16em] text-muted-foreground/60 md:inline">
+                Gastropraxis · Bad Segeberg
+              </span>
+            </div>
+            {/* Scroll-Fortschritt als Haarlinie */}
+            <div aria-hidden className="relative h-[2px] w-full overflow-hidden bg-foreground/10">
+              <motion.div
+                style={{ scaleX: scrollYProgress }}
+                className="absolute inset-0 origin-left bg-foreground/70"
+              />
             </div>
           </div>
         </div>
@@ -624,10 +668,15 @@ export default function Landing() {
 
           <Carousel
             className="mt-14"
-            opts={{ align: "start", containScroll: "trimSnaps" }}
+            opts={{
+              align: "start",
+              containScroll: "trimSnaps",
+              watchDrag: true,
+              dragFree: false,
+            }}
             setApi={setApi}
           >
-            <CarouselContent className="-ml-3 md:-ml-4">
+            <CarouselContent className="-ml-3 md:-ml-4 cursor-grab active:cursor-grabbing">
               {SERVICES.map((s) => (
                 <CarouselItem key={s.title} className="pl-3 md:pl-4 md:basis-1/2 lg:basis-1/3">
                   <article className="group relative flex h-full flex-col border border-border bg-card p-7 lg:p-9 transition-colors duration-500 hover:bg-card/70">
@@ -654,11 +703,28 @@ export default function Landing() {
             </CarouselContent>
           </Carousel>
 
-          {/* Carousel controls — editorial slide counter + prev/next */}
-          <div className="mt-10 flex items-center justify-between border-t border-border pt-6">
-            <span className="label-eyebrow tabular-nums">
-              {String(current).padStart(2, "0")} / {String(count).padStart(2, "0")}
-            </span>
+          {/* Carousel controls — slide counter, snap dots + prev/next */}
+          <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
+            <div className="flex items-center gap-5">
+              <span className="label-eyebrow tabular-nums">
+                {String(current).padStart(2, "0")} / {String(count).padStart(2, "0")}
+              </span>
+              {/* Snap-Dots — durchklicken oder wischen */}
+              <div className="flex items-center gap-1.5" aria-hidden>
+                {Array.from({ length: count }).map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => api?.scrollTo(i)}
+                    aria-label={`Leistung ${i + 1} von ${count}`}
+                    className={`h-[3px] rounded-full transition-all duration-500 ${
+                      i === current - 1
+                        ? "w-8 bg-foreground"
+                        : "w-4 bg-foreground/20 hover:bg-foreground/50"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
             <div className="flex items-center gap-2.5">
               <button
                 onClick={() => api?.scrollPrev()}
