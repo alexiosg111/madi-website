@@ -68,10 +68,12 @@ const SERVICES = [
   {
     n: "04",
     title: "Kapselendoskopie",
-    sub: "Dünndarm-Diagnostik",body: "Kapsel mit einer Miniatur-Kamera zur ambulanten Untersuchung des Dünndarms. Sinnvoll bei unklarer Anämie, Verdacht auf Morbus Crohn oder okkulter Blutung — schmerzfrei und ohne Sedierung.",
+    sub: "Dünndarm-Diagnostik",
+    body: "Kapsel mit einer Miniatur-Kamera zur ambulanten Untersuchung des Dünndarms. Sinnvoll bei unklarer Anämie, Verdacht auf Morbus Crohn oder okkulter Blutung — schmerzfrei und ohne Sedierung.",
     icon: Pill,
   },
-  {    n: "05",
+  {
+    n: "05",
     title: "Sprechstunde",
     sub: "Innere Medizin & CED",
     body: "Strukturierte Sprechstunden für Pankreas, CED, Reflux und Reizdarm.",
@@ -80,7 +82,8 @@ const SERVICES = [
   {
     n: "06",
     title: "Vorsorge",
-    sub: "Darmkrebs & Check-up",body: "Strukturierte Vorsorgeprogramme ab dem 50. Lebensjahr, individuelle Check-up-Untersuchungen.",
+    sub: "Darmkrebs & Check-up",
+    body: "Strukturierte Vorsorgeprogramme ab dem 50. Lebensjahr, individuelle Check-up-Untersuchungen.",
     icon: HeartPulse,
   },
 ];
@@ -124,6 +127,8 @@ function Rule({ children }: { children?: React.ReactNode }) {
     </div>
   );
 }
+
+const CHAPTER_COUNT = NAV.length;
 
 export default function Landing() {
   const [open, setOpen] = useState(false);
@@ -217,9 +222,14 @@ export default function Landing() {
   }, [api]);
 
   // Aktuelle Sektion (Scroll-Spy) als Kapitel-Indikator — geteilt mit dem
-  // Sidebar-Drawer, damit Menü-Klick und Ticker im Header synchron sind.
+  // Sidebar-Drawer, dem Header-Ticker und der Kapitel-Leiste im Hero.
   const activeIndex = Math.max(0, NAV.findIndex((n) => n.href === active));
   const activeLabel = NAV[activeIndex]?.label ?? "Start";
+
+  const scrollToSection = (href: string) => {
+    setActive(href);
+    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div ref={ref} className="min-h-screen bg-background text-foreground">
@@ -344,6 +354,28 @@ export default function Landing() {
 
               <nav className="flex-1 overflow-y-auto px-5 py-6">
                 <p className="label-eyebrow">Navigation</p>
+                {/* Positions-Anzeige — synchron mit Hero & Header („double clutch") */}
+                <div className="mt-3 flex items-center gap-2.5 rounded-[2px] border border-border px-3 py-2.5">
+                  <span className="label-eyebrow tabular-nums">
+                    {String(activeIndex + 1).padStart(2, "0")} / {String(CHAPTER_COUNT).padStart(2, "0")}
+                  </span>
+                  <span aria-hidden className="h-px w-4 bg-foreground/30" />
+                  <span className="relative block h-[16px] min-w-[6ch] overflow-hidden">
+                    <AnimatePresence mode="wait" initial={false}>
+                      <motion.span
+                        key={active}
+                        initial={{ y: 12, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -12, opacity: 0 }}
+                        transition={{ duration: 0.22, ease: [0.22, 0.61, 0.36, 1] }}
+                        className="absolute left-0 top-0 block whitespace-nowrap font-serif italic text-[15px] leading-none"
+                      >
+                        {activeLabel}
+                      </motion.span>
+                    </AnimatePresence>
+                  </span>
+                  <span className="ml-auto label-eyebrow">Sie sind hier</span>
+                </div>
                 <ul className="mt-3">
                   {NAV.map((item, i) => {
                     const isActive = active === item.href;
@@ -402,144 +434,227 @@ export default function Landing() {
         style={{ y: heroY, opacity: heroOpacity }}
         className="relative"
       >
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-10 lg:pt-14 pb-16 lg:pb-24">
-          {/* Editorial Cover — reception photo as the warm, inviting anchor */}
-          <motion.figure
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
-            className="relative mb-12 lg:mb-16"
-          >
-            <div className="relative aspect-[4/3] sm:aspect-[16/8] lg:aspect-[16/7] overflow-hidden rounded-[2px] border border-border bg-muted">
-              {/* Reception photo (uploaded asset) */}
-              <img
-                src="/assets/20190220203252_03.jpg"
-                alt="Empfangsbereich der Gastropraxis Bad Segeberg — eine ruhige, modern gestaltete Praxis mit beleuchteter Theke und natürlichem Licht."
-                className="absolute inset-0 h-full w-full object-cover"
-                loading="eager"
-                // @ts-expect-error — fetchpriority is valid in React 19+
-                fetchpriority="high"
-              />
-              {/* Soft bottom gradient for label legibility over the bright floor */}
-              <div
-                aria-hidden
-                className="absolute inset-x-0 bottom-0 h-2/5"
-                style={{
-                  background:
-                    "linear-gradient(to top, var(--background) 0%, color-mix(in oklch, var(--background) 80%, transparent) 25%, transparent 100%)",
-                }}
-              />
-              {/* Editorial frame labels */}
-              <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] p-6 lg:p-10">
-                <div className="flex items-center justify-between">
-                  <span className="label-eyebrow text-foreground/80">Cover · Abb. I</span>
-                </div>
-                <div className="flex items-end">
-                  <div className="max-w-[40ch] lg:max-w-[46ch]" style={{ textShadow: "0 2px 4px rgba(15, 20, 35, 0.8), 0 0 16px rgba(15, 20, 35, 0.7), 0 0 32px rgba(15, 20, 35, 0.5)" }}>
-                    <p className="font-serif italic text-[15px] lg:text-[17px] text-foreground">
-                      Willkommen in einer Praxis, in der Sie als Mensch zählen.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-end justify-between gap-4 text-foreground/85">
-                  <div>
-                    <span className="label-eyebrow">Dr. med. Maher Madi</span>
-                    <p className="font-serif text-[14px] mt-1">Gastropraxis · Bad Segeberg</p>
-                  </div>
-                  <div className="hidden lg:block text-right">
-                    <span className="label-eyebrow">Innere Medizin</span>
-                    <p className="font-serif text-[14px] mt-1">&amp; Gastroenterologie</p>
-                  </div>
-                </div>
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-8 lg:pt-12 pb-16 lg:pb-24">
+          {/* Kapitel-Leiste — animierte „Sie sind hier"-Anzeige, synchron mit dem
+              Hamburger-Menü (Scroll-Spy), dem Ticker im Header und dem Drawer */}
+          <div className="border-y border-border">
+            <div className="flex items-center justify-between gap-6 py-3">
+              <div className="flex min-w-0 items-center gap-3">
+                <span className="label-eyebrow tabular-nums">
+                  {String(activeIndex + 1).padStart(2, "0")} / {String(CHAPTER_COUNT).padStart(2, "0")}
+                </span>
+                <span aria-hidden className="h-px w-6 shrink-0 bg-foreground/30" />
+                <span className="relative block h-[18px] min-w-[9ch] shrink-0 overflow-hidden">
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span
+                      key={active}
+                      initial={{ y: 16, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -16, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: [0.22, 0.61, 0.36, 1] }}
+                      className="absolute left-0 top-0 block whitespace-nowrap font-serif italic text-[16px] leading-none text-foreground"
+                    >
+                      {activeLabel}
+                    </motion.span>
+                  </AnimatePresence>
+                </span>
+                <span className="hidden sm:inline label-eyebrow">Sie sind hier</span>
               </div>
-            </div>
-          </motion.figure>
 
-          <div className="mt-12 lg:mt-16">
-            {/* Editorial eyebrow row */}
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <span className="h-px w-8 bg-foreground/40" />
-              <Eyebrow>Innere Medizin &amp; Gastroenterologie</Eyebrow>
-            </div>
-
-            {/* Headline — the brand statement, given room to breathe */}
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
-              className="mt-8 lg:mt-12 font-serif text-[46px] sm:text-[74px] lg:text-[106px] leading-[0.95] tracking-[-0.015em] text-balance"
-            >
-              <span className="block">Gastropraxis</span>
-              <span className="block">Bad Segeberg.</span>
-            </motion.h1>
-
-            {/* Subline — same words, calm serif italic */}
-            <p className="mt-8 lg:mt-10 font-serif italic text-[17px] lg:text-[19px] leading-relaxed text-foreground/75">
-              Eine ruhige Praxis<br />
-              in Bad Segeberg —<br />
-              mit Zeit für Ihre Anliegen.
-            </p>
-
-            {/* Intro */}
-            <p className="mt-6 lg:mt-8 max-w-[58ch] text-[16px] leading-[1.65] text-pretty text-foreground/85">
-              Dr.&nbsp;med.&nbsp;Maher Madi und das Praxis-Team begleiten Sie mit Ruhe, Sorgfalt
-              und moderner Diagnostik — von der ersten Sprechstunde über Vorsorge und Endoskopie
-              bis zur langfristigen Betreuung.
-            </p>
-
-            {/* CTAs */}
-            <div className="mt-10 lg:mt-12 flex flex-wrap items-center gap-3">
-              <Button asChild className="rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
-                <a href="#kontakt">
-                  <ArrowUpRight className="mr-1.5 h-4 w-4" /> Zum Kontakt
-                </a>
-              </Button>
-              <Button asChild variant="ghost" className="rounded-[2px] hover:bg-foreground/5">
-                <a href="#leistungen">Leistungen ansehen</a>
-              </Button>
+              {/* Kapitel-Segmente — durchklicken springt zur Sektion */}
+              <nav aria-label="Kapitel" className="flex items-center gap-2">
+                {NAV.map((item, i) => (
+                  <button
+                    key={item.href}
+                    onClick={() => scrollToSection(item.href)}
+                    aria-label={`Zu ${item.label}`}
+                    className="group flex h-8 items-end pb-2"
+                  >
+                    <span
+                      className={`block h-[3px] rounded-full transition-all duration-500 ${
+                        i === activeIndex
+                          ? "w-8 bg-foreground"
+                          : "w-3 bg-foreground/25 group-hover:bg-foreground/50"
+                      }`}
+                    />
+                  </button>
+                ))}
+              </nav>
             </div>
           </div>
 
-          {/* Hero lower register — three editorial cards */}
-          <div className="mt-16 lg:mt-24 grid grid-cols-1 md:grid-cols-3 border-t border-border">
-            {[
-              {
-                k: "Diagnostik",
-                title: "Endoskopie mit Sorgfalt",
-                body: "Gastroskopie, Koloskopie, Kapselendoskopie und Sonographie ambulant und mit schonender Sedierung.",
-              },
-              {
-                k: "Sprechstunde",
-                title: "Zeit für Ihre Anliegen",
-                body: "Strukturierte Sprechstunden für Pankreas, CED, Reflux, Lebererkrankungen und Reizdarm.",
-              },
-              {
-                k: "Vorsorge",
-                title: "Früh erkannt, gut begleitet",
-                body: "Darmkrebsvorsorge, Check-up und individuelle Gesundheitsprogramme.",
-              },
-            ].map((c, i) => (
-              <motion.div
-                key={c.k}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: 0.1 * i, ease: [0.22, 0.61, 0.36, 1] }}
-                className="relative p-8 lg:p-10 border-b md:border-b-0 md:border-r border-border last:border-r-0"
+          {/* Editorialer Doppelspalt — Text links, Cover rechts */}
+          <div className="mt-10 lg:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-12">
+            {/* Textspalte */}
+            <div className="order-2 lg:order-1 lg:col-span-6 flex flex-col justify-end">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <span className="h-px w-8 bg-foreground/40" />
+                <Eyebrow>Innere Medizin &amp; Gastroenterologie</Eyebrow>
+              </div>
+
+              {/* Headline — der Markenname, mit Luft zum Atmen */}
+              <motion.h1
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
+                className="mt-7 lg:mt-9 font-serif text-[52px] sm:text-[68px] lg:text-[84px] xl:text-[96px] leading-[0.98] tracking-[-0.015em] text-balance"
               >
-                <div className="flex items-center justify-between">
-                  <Eyebrow>{c.k}</Eyebrow>
-                  <span className="font-serif text-muted-foreground/70 text-sm">{String(i + 1).padStart(2, "0")} / 03</span>
+                <span className="block">Gastropraxis</span>
+                <span className="block">Bad Segeberg.</span>
+              </motion.h1>
+
+              {/* Subline — gleiche Worte, ruhige Serifen-Kursive */}
+              <p className="mt-7 lg:mt-8 font-serif italic text-[17px] lg:text-[19px] leading-relaxed text-foreground/75 max-w-[36ch]">
+                Eine ruhige Praxis<br />
+                in Bad Segeberg —<br />
+                mit Zeit für Ihre Anliegen.
+              </p>
+
+              {/* Intro */}
+              <p className="mt-6 max-w-[52ch] text-[16px] leading-[1.65] text-pretty text-foreground/85">
+                Dr.&nbsp;med.&nbsp;Maher Madi und das Praxis-Team begleiten Sie mit Ruhe,
+                Sorgfalt und moderner Diagnostik — von der ersten Sprechstunde über Vorsorge
+                und Endoskopie bis zur langfristigen Betreuung.
+              </p>
+
+              {/* CTAs */}
+              <div className="mt-9 lg:mt-10 flex flex-wrap items-center gap-3">
+                <Button asChild className="rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
+                  <a href="#kontakt">
+                    <ArrowUpRight className="mr-1.5 h-4 w-4" /> Zum Kontakt
+                  </a>
+                </Button>
+                <Button asChild variant="ghost" className="rounded-[2px] hover:bg-foreground/5">
+                  <a href="#leistungen">Leistungen ansehen</a>
+                </Button>
+              </div>
+            </div>
+
+            {/* Cover-Spalte — Empfangsfoto als gerahmter Anker */}
+            <div className="order-1 lg:order-2 lg:col-span-6">
+              <motion.figure
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
+                className="relative"
+              >
+                <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[5/6] overflow-hidden rounded-[2px] border border-border bg-muted">
+                  {/* Empfangsbereich (hochgeladenes Bild) */}
+                  <img
+                    src="/assets/20190220203252_03.jpg"
+                    alt="Empfangsbereich der Gastropraxis Bad Segeberg — eine ruhige, modern gestaltete Praxis mit beleuchteter Theke und natürlichem Licht."
+                    className="absolute inset-0 h-full w-full object-cover"
+                    loading="eager"
+                    // @ts-expect-error — fetchpriority is valid in React 19+
+                    fetchpriority="high"
+                  />
+                  {/* Weicher Verlauf unten für gut lesbare Beschriftung */}
+                  <div
+                    aria-hidden
+                    className="absolute inset-x-0 bottom-0 h-2/5"
+                    style={{
+                      background:
+                        "linear-gradient(to top, var(--background) 0%, color-mix(in oklch, var(--background) 80%, transparent) 25%, transparent 100%)",
+                    }}
+                  />
+                  {/* Editoriale Rahmenbeschriftung */}
+                  <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] p-6 lg:p-8">
+                    <div className="flex items-center justify-between">
+                      <span className="label-eyebrow text-foreground/80">Cover · Abb. I</span>
+                      <span className="hidden sm:inline label-eyebrow text-foreground/60">Rezeption</span>
+                    </div>
+                    <div />
+                    <div className="flex items-end justify-between gap-4 text-foreground/90">
+                      <div>
+                        <span className="label-eyebrow">Dr. med. Maher Madi</span>
+                        <p
+                          className="font-serif text-[15px] mt-1"
+                          style={{ textShadow: "0 1px 3px rgba(15, 20, 35, 0.6)" }}
+                        >
+                          Gastropraxis · Bad Segeberg
+                        </p>
+                      </div>
+                      <div className="hidden md:block text-right">
+                        <span className="label-eyebrow">Innere Medizin</span>
+                        <p className="font-serif text-[15px] mt-1">&amp; Gastroenterologie</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="mt-6 font-serif text-2xl leading-tight">{c.title}</h3>
-                <p className="mt-3 text-[14.5px] leading-relaxed text-muted-foreground max-w-[36ch]">
-                  {c.body}
-                </p>
-                <a href="#leistungen" className="mt-6 inline-flex items-center gap-1.5 text-[12.5px] tracking-tight text-foreground/70 hover:text-foreground">
-                  Mehr erfahren <ArrowUpRight className="h-3.5 w-3.5" />
-                </a>
-              </motion.div>
-            ))}
+                <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
+                  <span className="label-eyebrow">Abb. 01 · Empfang</span>
+                  <span className="label-eyebrow">2024</span>
+                </figcaption>
+              </motion.figure>
+            </div>
+          </div>
+
+          {/* Einstiegs-Blöcke — wischbar auf Touch, ruhige Dreierreihe auf Desktop */}
+          <div className="mt-16 lg:mt-24">
+            <div className="flex items-center justify-between gap-4 border-t border-border pt-5">
+              <div className="flex items-center gap-3">
+                <span className="label-eyebrow">Einstieg</span>
+                <span aria-hidden className="h-px w-6 bg-foreground/30" />
+                <span className="label-eyebrow md:hidden">Zum Wischen</span>
+              </div>
+              <span className="hidden md:inline-flex items-center gap-2 label-eyebrow">
+                <ArrowLeft className="h-3.5 w-3.5" /> <ArrowRight className="h-3.5 w-3.5" />
+              </span>
+            </div>
+
+            <div className="no-scrollbar -mx-6 lg:mx-0 mt-4 flex snap-x snap-mandatory overflow-x-auto lg:snap-none">
+              {[
+                {
+                  k: "Diagnostik",
+                  href: "#diagnostik",
+                  title: "Endoskopie mit Sorgfalt",
+                  body: "Gastroskopie, Koloskopie, Kapselendoskopie und Sonographie ambulant und mit schonender Sedierung.",
+                },
+                {
+                  k: "Sprechstunde",
+                  href: "#sprechzeiten",
+                  title: "Zeit für Ihre Anliegen",
+                  body: "Strukturierte Sprechstunden für Pankreas, CED, Reflux, Lebererkrankungen und Reizdarm.",
+                },
+                {
+                  k: "Vorsorge",
+                  href: "#leistungen",
+                  title: "Früh erkannt, gut begleitet",
+                  body: "Darmkrebsvorsorge, Check-up und individuelle Gesundheitsprogramme.",
+                },
+              ].map((c, i) => (
+                <motion.a
+                  key={c.k}
+                  href={c.href}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.6, delay: 0.08 * i, ease: [0.22, 0.61, 0.36, 1] }}
+                  className="group relative w-[82vw] max-w-[360px] snap-start shrink-0 border-r border-b border-border p-7 lg:p-10 lg:w-1/3 lg:max-w-none lg:border-b-0 last:border-r-0 transition-colors duration-500 hover:bg-card/60"
+                >
+                  <div className="flex items-center justify-between">
+                    <Eyebrow>{c.k}</Eyebrow>
+                    <span className="font-serif text-muted-foreground/70 text-sm">{String(i + 1).padStart(2, "0")} / 03</span>
+                  </div>
+                  <h3 className="mt-6 font-serif text-2xl leading-tight transition-colors group-hover:text-foreground/80">
+                    {c.title}
+                  </h3>
+                  <p className="mt-3 text-[14.5px] leading-relaxed text-muted-foreground max-w-[36ch]">
+                    {c.body}
+                  </p>
+                  <span className="mt-8 inline-flex items-center gap-1.5 text-foreground/70 group-hover:text-foreground">
+                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
+                </motion.a>
+              ))}
+              {/* Wisch-Hinweis — nur sichtbar, solange die Reihe scrollbar ist */}
+              <div
+                className="flex w-16 shrink-0 items-center justify-center border-b border-border text-muted-foreground lg:hidden"
+                aria-hidden
+              >
+                <ArrowRight className="h-4 w-4 animate-pulse" />
+              </div>
+            </div>
           </div>
         </div>
       </motion.section>
