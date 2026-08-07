@@ -241,9 +241,9 @@ export default function Landing() {
               <span aria-hidden className="grid h-10 w-10 place-items-center rounded-[2px] border border-foreground/80">
                 <span className="font-serif text-[20px] leading-none">M</span>
               </span>
-              <span className="leading-tight">
-                <span className="block font-serif text-[18px] tracking-tight">Dr. med. Maher Madi</span>
-                <span className="block text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+              <span className="min-w-0 leading-tight">
+                <span className="block truncate font-serif text-[18px] tracking-tight">Dr. med. Maher Madi</span>
+                <span className="hidden sm:block text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
                   Gastropraxis · Bad Segeberg
                 </span>
               </span>
@@ -374,7 +374,7 @@ export default function Landing() {
                       </motion.span>
                     </AnimatePresence>
                   </span>
-                  <span className="ml-auto label-eyebrow">Sie sind hier</span>
+                  <span className="ml-auto hidden min-[380px]:inline label-eyebrow">Sie sind hier</span>
                 </div>
                 <ul className="mt-3">
                   {NAV.map((item, i) => {
@@ -438,13 +438,13 @@ export default function Landing() {
           {/* Kapitel-Leiste — animierte „Sie sind hier"-Anzeige, synchron mit dem
               Hamburger-Menü (Scroll-Spy), dem Ticker im Header und dem Drawer */}
           <div className="border-y border-border">
-            <div className="flex items-center justify-between gap-6 py-3">
+            <div className="flex items-center justify-between gap-4 py-3 sm:gap-6">
               <div className="flex min-w-0 items-center gap-3">
                 <span className="label-eyebrow tabular-nums">
                   {String(activeIndex + 1).padStart(2, "0")} / {String(CHAPTER_COUNT).padStart(2, "0")}
                 </span>
                 <span aria-hidden className="h-px w-6 shrink-0 bg-foreground/30" />
-                <span className="relative block h-[18px] min-w-[9ch] shrink-0 overflow-hidden">
+                <span className="relative block h-[18px] min-w-[7ch] shrink-0 overflow-hidden">
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span
                       key={active}
@@ -462,19 +462,19 @@ export default function Landing() {
               </div>
 
               {/* Kapitel-Segmente — durchklicken springt zur Sektion */}
-              <nav aria-label="Kapitel" className="flex items-center gap-2">
+              <nav aria-label="Kapitel" className="flex items-center gap-1.5 sm:gap-2">
                 {NAV.map((item, i) => (
                   <button
                     key={item.href}
                     onClick={() => scrollToSection(item.href)}
                     aria-label={`Zu ${item.label}`}
-                    className="group flex h-8 items-end pb-2"
+                    className="group flex h-10 items-end pb-3 sm:h-8 sm:pb-2"
                   >
                     <span
                       className={`block h-[3px] rounded-full transition-all duration-500 ${
                         i === activeIndex
-                          ? "w-8 bg-foreground"
-                          : "w-3 bg-foreground/25 group-hover:bg-foreground/50"
+                          ? "w-6 bg-foreground sm:w-8"
+                          : "w-2.5 bg-foreground/25 group-hover:bg-foreground/50 sm:w-3"
                       }`}
                     />
                   </button>
@@ -486,7 +486,7 @@ export default function Landing() {
           {/* Editorialer Doppelspalt — Text links, Cover rechts */}
           <div className="mt-10 lg:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-12">
             {/* Textspalte */}
-            <div className="order-2 lg:order-1 lg:col-span-6 flex flex-col justify-end">
+            <div className="lg:col-span-6 flex flex-col justify-end">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <span className="h-px w-8 bg-foreground/40" />
                 <Eyebrow>Innere Medizin &amp; Gastroenterologie</Eyebrow>
@@ -497,7 +497,7 @@ export default function Landing() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
-                className="mt-7 lg:mt-9 font-serif text-[52px] sm:text-[68px] lg:text-[84px] xl:text-[96px] leading-[0.98] tracking-[-0.015em] text-balance"
+                className="mt-7 lg:mt-9 font-serif text-[44px] min-[420px]:text-[52px] sm:text-[68px] lg:text-[84px] xl:text-[96px] leading-[1.03] sm:leading-[0.98] tracking-[-0.015em] text-balance"
               >
                 <span className="block">Gastropraxis</span>
                 <span className="block">Bad Segeberg.</span>
@@ -519,7 +519,7 @@ export default function Landing() {
 
               {/* CTAs */}
               <div className="mt-9 lg:mt-10 flex flex-wrap items-center gap-3">
-                <Button asChild className="rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
+                <Button asChild className="w-full sm:w-auto rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
                   <a href="#kontakt">
                     <ArrowUpRight className="mr-1.5 h-4 w-4" /> Zum Kontakt
                   </a>
@@ -531,7 +531,7 @@ export default function Landing() {
             </div>
 
             {/* Cover-Spalte — Empfangsfoto als gerahmter Anker */}
-            <div className="order-1 lg:order-2 lg:col-span-6">
+            <div className="lg:col-span-6">
               <motion.figure
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -661,7 +661,7 @@ export default function Landing() {
 
       {/* PRAXIS / DOCTOR */}
       <section id="praxis" className="border-t border-border bg-card">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24 lg:py-32">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
           <div className="grid grid-cols-12 gap-x-8 gap-y-12">
             <div className="col-span-12 lg:col-span-5">
               <Eyebrow>Über die Praxis</Eyebrow>
@@ -763,7 +763,7 @@ export default function Landing() {
 
       {/* LEISTUNGEN */}
       <section id="leistungen" className="border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24 lg:py-32">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
           <div className="flex items-end justify-between gap-6 flex-wrap">
             <div>
               <Eyebrow>Leistungen · Kapitel I</Eyebrow>
@@ -864,7 +864,7 @@ export default function Landing() {
 
       {/* DIAGNOSTIK SPREAD */}
       <section id="diagnostik" className="border-t border-border bg-card">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24 lg:py-32">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
           <Rule>Kapitel II · Perspektive</Rule>
           <div className="mt-10 grid grid-cols-12 gap-x-8 gap-y-10">
             <div className="col-span-12 lg:col-span-7">
@@ -953,7 +953,7 @@ export default function Landing() {
 
       {/* WERDEGANG / Editorial narrative */}
       <section className="border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24 lg:py-32">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
           <div className="grid grid-cols-12 gap-x-8 gap-y-10">
             <div className="col-span-12 lg:col-span-4">
               <Eyebrow>Werdegang</Eyebrow>
@@ -992,7 +992,7 @@ export default function Landing() {
 
       {/* KONTAKT / Termin */}
       <section id="kontakt" className="border-t border-border bg-card">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-24 lg:py-32">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
           <Rule>Kapitel III · Kontakt</Rule>
           <div className="mt-10 grid grid-cols-12 gap-x-8 gap-y-12">
             <div className="col-span-12 lg:col-span-7">
@@ -1067,7 +1067,7 @@ export default function Landing() {
                 und Therapie — in einer ruhigen Praxis im Herzen Bad Segebergs.
               </p>
             </div>
-            <div className="col-span-6 lg:col-span-3">
+            <div className="col-span-12 min-[430px]:col-span-6 lg:col-span-3">
               <Eyebrow>Praxis</Eyebrow>
               <ul className="mt-5 space-y-2 text-[13.5px] text-foreground/85">
                 <li><a href="#praxis" className="hover:text-foreground">Über die Praxis</a></li>
@@ -1076,7 +1076,7 @@ export default function Landing() {
                 <li><a href="#sprechzeiten" className="hover:text-foreground">Sprechzeiten</a></li>
               </ul>
             </div>
-            <div className="col-span-6 lg:col-span-3">
+            <div className="col-span-12 min-[430px]:col-span-6 lg:col-span-3">
               <Eyebrow>Patient:innen</Eyebrow>
               <ul className="mt-5 space-y-2 text-[13.5px] text-foreground/85">
                 <li><a href="tel:+494551882977" className="hover:text-foreground">Anrufen: 04551-882977</a></li>
