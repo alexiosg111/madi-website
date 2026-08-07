@@ -256,7 +256,14 @@ export default function Landing() {
               >
                 {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </button>
-              <Button asChild className="hidden md:inline-flex rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
+              <a
+                href="#kontakt"
+                aria-label="Zum Kontakt"
+                className="grid h-10 w-10 place-items-center rounded-[2px] border border-border text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground sm:hidden"
+              >
+                <Phone className="h-4 w-4" />
+              </a>
+              <Button asChild className="hidden sm:inline-flex rounded-[2px] bg-foreground text-background hover:bg-foreground/90">
                 <a href="#kontakt">
                   <ArrowUpRight className="mr-1.5 h-3.5 w-3.5" /> Zum Kontakt
                 </a>
@@ -293,7 +300,7 @@ export default function Landing() {
                     </motion.span>
                   </AnimatePresence>
                 </span>
-                <span className="hidden text-[9.5px] uppercase tracking-[0.16em] text-muted-foreground/60 sm:inline">
+                <span className="shrink-0 text-[9.5px] uppercase tracking-[0.16em] text-muted-foreground/60">
                   Sie sind hier
                 </span>
               </div>
@@ -561,7 +568,7 @@ export default function Landing() {
                   <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] p-6 lg:p-8">
                     <div className="flex items-center justify-between">
                       <span className="label-eyebrow text-foreground/80">Cover · Abb. I</span>
-                      <span className="hidden sm:inline label-eyebrow text-foreground/60">Rezeption</span>
+                      <span className="label-eyebrow text-foreground/60">Rezeption</span>
                     </div>
                     <div />
                     <div className="flex items-end justify-between gap-4 text-foreground/90">
@@ -574,7 +581,7 @@ export default function Landing() {
                           Gastropraxis · Bad Segeberg
                         </p>
                       </div>
-                      <div className="hidden md:block text-right">
+                      <div className="hidden min-[430px]:block text-right">
                         <span className="label-eyebrow">Innere Medizin</span>
                         <p className="font-serif text-[15px] mt-1">&amp; Gastroenterologie</p>
                       </div>
@@ -793,7 +800,7 @@ export default function Landing() {
           >
             <CarouselContent className="-ml-3 md:-ml-4 cursor-grab active:cursor-grabbing">
               {SERVICES.map((s) => (
-                <CarouselItem key={s.title} className="pl-3 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={s.title} className="pl-3 md:pl-4 basis-[85%] md:basis-1/2 lg:basis-1/3">
                   <article className="group relative flex h-full flex-col border border-border bg-card p-7 lg:p-9 transition-colors duration-500 hover:bg-card/70">
                     <div className="flex items-center justify-between">
                       <span className="font-serif text-sm text-muted-foreground/80 tracking-tight">{s.n}</span>
