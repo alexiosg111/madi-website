@@ -211,4 +211,5 @@ div[id] {
 /* Horizontal swipe in the services carousel — vertical page scroll stays native */
 [data-slot="carousel-content"] {
   touch-action: pan-y;
+  overscroll-behavior-x: contain;
 }

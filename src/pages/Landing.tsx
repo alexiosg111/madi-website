@@ -446,12 +446,12 @@ export default function Landing() {
               Hamburger-Menü (Scroll-Spy), dem Ticker im Header und dem Drawer */}
           <div className="border-y border-border">
             <div className="flex items-center justify-between gap-4 py-3 sm:gap-6">
-              <div className="flex min-w-0 items-center gap-3">
+              <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
                 <span className="label-eyebrow tabular-nums">
                   {String(activeIndex + 1).padStart(2, "0")} / {String(CHAPTER_COUNT).padStart(2, "0")}
                 </span>
-                <span aria-hidden className="h-px w-6 shrink-0 bg-foreground/30" />
-                <span className="relative block h-[18px] min-w-[7ch] shrink-0 overflow-hidden">
+                <span aria-hidden className="hidden h-px w-5 shrink-0 bg-foreground/30 sm:block" />
+                <span className="relative block h-[18px] min-w-[6ch] shrink-0 overflow-hidden">
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span
                       key={active}
@@ -465,11 +465,11 @@ export default function Landing() {
                     </motion.span>
                   </AnimatePresence>
                 </span>
-                <span className="hidden sm:inline label-eyebrow">Sie sind hier</span>
+                <span className="hidden min-[370px]:inline label-eyebrow">Sie sind hier</span>
               </div>
 
               {/* Kapitel-Segmente — durchklicken springt zur Sektion */}
-              <nav aria-label="Kapitel" className="flex items-center gap-1.5 sm:gap-2">
+              <nav aria-label="Kapitel" className="flex items-center gap-1 sm:gap-2">
                 {NAV.map((item, i) => (
                   <button
                     key={item.href}
@@ -480,8 +480,8 @@ export default function Landing() {
                     <span
                       className={`block h-[3px] rounded-full transition-all duration-500 ${
                         i === activeIndex
-                          ? "w-6 bg-foreground sm:w-8"
-                          : "w-2.5 bg-foreground/25 group-hover:bg-foreground/50 sm:w-3"
+                          ? "w-5 bg-foreground sm:w-8"
+                          : "w-2 bg-foreground/25 group-hover:bg-foreground/50 sm:w-3"
                       }`}
                     />
                   </button>
@@ -609,7 +609,7 @@ export default function Landing() {
               </span>
             </div>
 
-            <div className="no-scrollbar -mx-6 lg:mx-0 mt-4 flex snap-x snap-mandatory overflow-x-auto lg:snap-none">
+            <div className="no-scrollbar -mx-6 lg:mx-0 mt-4 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] lg:snap-none">
               {[
                 {
                   k: "Diagnostik",
@@ -656,10 +656,14 @@ export default function Landing() {
               ))}
               {/* Wisch-Hinweis — nur sichtbar, solange die Reihe scrollbar ist */}
               <div
-                className="flex w-16 shrink-0 items-center justify-center border-b border-border text-muted-foreground lg:hidden"
+                className="flex w-20 shrink-0 flex-col items-center justify-center gap-1.5 border-b border-border text-muted-foreground lg:hidden"
                 aria-hidden
               >
-                <ArrowRight className="h-4 w-4 animate-pulse" />
+                <span className="flex items-center gap-1">
+                  <ArrowLeft className="h-3.5 w-3.5 opacity-50" />
+                  <ArrowRight className="h-3.5 w-3.5 animate-pulse" />
+                </span>
+                <span className="label-eyebrow">Wischen</span>
               </div>
             </div>
           </div>
