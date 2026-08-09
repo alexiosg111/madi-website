@@ -548,7 +548,7 @@ export default function Landing() {
                 <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[5/6] overflow-hidden rounded-[2px] border border-border bg-muted">
                   {/* Empfangsbereich (hochgeladenes Bild) */}
                   <img
-                    src="/assets/20190220203252_03.jpg"
+                    src="/assets/praxis_1.jpeg"
                     alt="Empfangsbereich der Gastropraxis Bad Segeberg — eine ruhige, modern gestaltete Praxis mit beleuchteter Theke und natürlichem Licht."
                     className="absolute inset-0 h-full w-full object-cover"
                     loading="eager"
@@ -589,7 +589,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
-                  <span className="label-eyebrow">Abb. 01 · Empfang</span>
+                  <span className="label-eyebrow">Abb. I · Empfang</span>
                   <span className="label-eyebrow">2024</span>
                 </figcaption>
               </motion.figure>
@@ -708,54 +708,70 @@ export default function Landing() {
             <div className="col-span-12 lg:col-span-7">
               <motion.figure
                 {...fadeUp}
-                className="relative"
+                className="grid grid-cols-1 sm:grid-cols-12 gap-x-5 gap-y-8 sm:gap-y-0 items-start"
               >
-                <div className="relative aspect-[5/4] overflow-hidden rounded-[2px] border border-border bg-secondary/40">
-                  {/* Editorial portrait placeholder — abstract warm composition */}
-                  <div
-                    aria-hidden
-                    className="absolute inset-0"
-                    style={{
-                  background:
-                    "radial-gradient(120% 80% at 50% 35%, color-mix(in oklch, var(--accent) 55%, transparent) 0%, color-mix(in oklch, var(--muted) 45%, var(--background) 55%) 45%, var(--background) 100%)",
-                    }}
-                  />
-                  <div
-                    aria-hidden
-                    className="absolute inset-x-0 bottom-0 h-1/3"
-                    style={{
-                  background:
-                    "linear-gradient(to top, var(--background) 0%, color-mix(in oklch, var(--background) 20%, transparent) 60%, transparent 100%)",
-                    }}
-                  />
-                  <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] p-6 lg:p-8">
-                    <div className="flex items-center justify-between">
-                      <Eyebrow>Portrait</Eyebrow>
-                      <span className="label-eyebrow text-foreground/60">MM · 2024</span>
-                    </div>
-                    <div className="flex items-end">
-                      <div className="font-serif text-[120px] lg:text-[180px] leading-[0.85] text-foreground/15 select-none">
-                        M
+                {/* Porträt Dr. med. Maher Madi */}
+                <div className="relative sm:col-span-7">
+                  <div className="relative aspect-[5/4] overflow-hidden rounded-[2px] border border-border bg-secondary/40">
+                    <img
+                      src="/assets/maher_portrait.jpeg"
+                      alt="Porträt von Dr. med. Maher Madi, Facharzt für Innere Medizin und Gastroenterologie in Bad Segeberg."
+                      className="absolute inset-0 h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                    {/* Sanfte Vignette für gut lesbare Beschriftung */}
+                    <div
+                      aria-hidden
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          "linear-gradient(to top, rgba(12,16,28,0.82) 0%, rgba(12,16,28,0.26) 42%, rgba(12,16,28,0.42) 100%)",
+                      }}
+                    />
+                    <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] p-6 lg:p-8">
+                      <div className="flex items-center justify-between">
+                        <span className="label-eyebrow text-white/80">Portrait</span>
+                        <span className="label-eyebrow text-white/60">MM · 2024</span>
                       </div>
-                    </div>
-                    <div className="flex items-end justify-between gap-4">
-                      <div className="font-serif text-[22px] lg:text-[26px] leading-tight text-foreground/90">
-                        Dr. med.<br />Maher Madi
-                      </div>
-                      <div className="text-right text-[12px] leading-snug text-foreground/70 max-w-[26ch]">
-                        Innere Medizin<br />
-                        & Gastroenterologie
+                      <div />
+                      <div className="flex items-end justify-between gap-4">
+                        <div>
+                          <span className="label-eyebrow text-white/70">Facharzt</span>
+                          <div className="mt-1 font-serif text-[22px] lg:text-[26px] leading-tight text-white">
+                            Dr. med.<br />Maher Madi
+                          </div>
+                        </div>
+                        <div className="text-right text-[12px] leading-snug text-white/85 max-w-[24ch]">
+                          Innere Medizin<br />& Gastroenterologie
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
+                    <span className="label-eyebrow">Abb. 01 · Porträt</span>
+                    <span className="label-eyebrow">Dr. med. Madi</span>
+                  </figcaption>
                 </div>
-                <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
-                  <span className="label-eyebrow">Abb. 01</span>
-                </figcaption>
+
+                {/* Praxis — versetztes Editorial-Frame */}
+                <div className="relative sm:col-span-5 sm:pt-14">
+                  <div className="relative aspect-[5/4] overflow-hidden rounded-[2px] border border-border bg-secondary/40">
+                    <img
+                      src="/assets/praxis_2.jpeg"
+                      alt="Behandlungsraum der Gastropraxis Bad Segeberg — moderne, ruhige Ausstattung."
+                      className="absolute inset-0 h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
+                    <span className="label-eyebrow">Abb. 02 · Praxis</span>
+                    <span className="label-eyebrow">Bad Segeberg</span>
+                  </figcaption>
+                </div>
               </motion.figure>
 
               {/* Credentials strip */}
-              <div className="mt-8 border-t border-border pt-6 grid grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-4">
+              <div className="mt-8 border-t border-border pt-6 grid grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-4">
                 {[
                   { v: "25+", l: "Jahre klinische Erfahrung" },
                   { v: "DGIM", l: "Deutsche Gesellschaft für Innere Medizin" },
