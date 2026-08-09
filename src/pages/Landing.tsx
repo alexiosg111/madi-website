@@ -552,6 +552,7 @@ export default function Landing() {
                     alt="Empfangsbereich der Gastropraxis Bad Segeberg — eine ruhige, modern gestaltete Praxis mit beleuchteter Theke und natürlichem Licht."
                     className="absolute inset-0 h-full w-full object-cover"
                     loading="eager"
+                    decoding="async"
                     // @ts-expect-error — fetchpriority is valid in React 19+
                     fetchpriority="high"
                   />
@@ -609,7 +610,7 @@ export default function Landing() {
               </span>
             </div>
 
-            <div className="no-scrollbar -mx-6 lg:mx-0 mt-4 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] lg:snap-none">
+            <div className="no-scrollbar -mx-6 lg:mx-0 mt-4 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [will-change:scroll-position] lg:snap-none">
               {[
                 {
                   k: "Diagnostik",
@@ -671,7 +672,7 @@ export default function Landing() {
       </motion.section>
 
       {/* PRAXIS / DOCTOR */}
-      <section id="praxis" className="border-t border-border bg-card">
+      <section id="praxis" className="cv-auto border-t border-border bg-card">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
           <div className="grid grid-cols-12 gap-x-8 gap-y-12">
             <div className="col-span-12 lg:col-span-5">
@@ -718,6 +719,7 @@ export default function Landing() {
                       alt="Porträt von Dr. med. Maher Madi, Facharzt für Innere Medizin und Gastroenterologie in Bad Segeberg."
                       className="absolute inset-0 h-full w-full object-cover"
                       loading="lazy"
+                      decoding="async"
                     />
                     {/* Sanfte Vignette für gut lesbare Beschriftung */}
                     <div
@@ -761,6 +763,7 @@ export default function Landing() {
                       alt="Behandlungsraum der Gastropraxis Bad Segeberg — moderne, ruhige Ausstattung."
                       className="absolute inset-0 h-full w-full object-cover"
                       loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
@@ -789,7 +792,7 @@ export default function Landing() {
       </section>
 
       {/* LEISTUNGEN */}
-      <section id="leistungen" className="border-t border-border">
+      <section id="leistungen" className="cv-auto border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
           <div className="flex items-end justify-between gap-6 flex-wrap">
             <div>
@@ -818,7 +821,7 @@ export default function Landing() {
             }}
             setApi={setApi}
           >
-            <CarouselContent className="-ml-3 md:-ml-4 cursor-grab active:cursor-grabbing">
+            <CarouselContent className="-ml-3 md:-ml-4 cursor-grab active:cursor-grabbing will-change-transform">
               {SERVICES.map((s) => (
                 <CarouselItem key={s.title} className="pl-3 md:pl-4 basis-[85%] md:basis-1/2 lg:basis-1/3">
                   <article className="group relative flex h-full flex-col border border-border bg-card p-7 lg:p-9 transition-colors duration-500 hover:bg-card/70">
@@ -890,7 +893,7 @@ export default function Landing() {
       </section>
 
       {/* DIAGNOSTIK SPREAD */}
-      <section id="diagnostik" className="border-t border-border bg-card">
+      <section id="diagnostik" className="cv-auto border-t border-border bg-card">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
           <Rule>Kapitel II · Perspektive</Rule>
           <div className="mt-10 grid grid-cols-12 gap-x-8 gap-y-10">
@@ -979,7 +982,7 @@ export default function Landing() {
       </section>
 
       {/* WERDEGANG / Editorial narrative */}
-      <section className="border-t border-border">
+      <section className="cv-auto border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
           <div className="grid grid-cols-12 gap-x-8 gap-y-10">
             <div className="col-span-12 lg:col-span-4">
@@ -1018,7 +1021,7 @@ export default function Landing() {
       </section>
 
       {/* KONTAKT / Termin */}
-      <section id="kontakt" className="border-t border-border bg-card">
+      <section id="kontakt" className="cv-auto border-t border-border bg-card">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
           <Rule>Kapitel III · Kontakt</Rule>
           <div className="mt-10 grid grid-cols-12 gap-x-8 gap-y-12">
@@ -1076,7 +1079,7 @@ export default function Landing() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border">
+      <footer className="cv-auto border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <div className="grid grid-cols-12 gap-x-8 gap-y-10 py-16 lg:py-20">
             <div className="col-span-12 lg:col-span-6">

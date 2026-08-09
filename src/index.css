@@ -183,6 +183,12 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+  /* Off-screen sections skip rendering entirely — the single biggest win
+     for smooth scroll FPS on a long landing page. */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1200px;
+  }
 }
 
 /* Sleek smooth scroll, restrained */
