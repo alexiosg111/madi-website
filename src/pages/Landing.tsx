@@ -238,8 +238,14 @@ export default function Landing() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <div className="flex h-14 items-center justify-between">
             <a href="#top" className="group flex items-center gap-3.5">
-              <span aria-hidden className="grid h-10 w-10 place-items-center rounded-[2px] border border-foreground/80">
-                <span className="font-serif text-[20px] leading-none">M</span>
+              <span aria-hidden className="grid h-10 w-10 place-items-center overflow-hidden rounded-[2px] bg-white shadow-sm">
+                <img
+                  src="/assets/IMG-20260809-WA0019-1.png"
+                  alt="Logo der Gastropraxis Bad Segeberg"
+                  className="h-full w-full object-contain"
+                  loading="eager"
+                  decoding="async"
+                />
               </span>
               <span className="min-w-0 leading-tight">
                 <span className="block truncate font-serif text-[18px] tracking-tight">Dr. med. Maher Madi</span>
@@ -345,8 +351,14 @@ export default function Landing() {
             >
               <div className="flex h-14 items-center justify-between border-b border-border px-5">
                 <span className="flex items-center gap-2.5">
-                  <span aria-hidden className="grid h-8 w-8 place-items-center rounded-[2px] border border-foreground/80">
-                    <span className="font-serif text-[16px] leading-none">M</span>
+                  <span aria-hidden className="grid h-8 w-8 place-items-center overflow-hidden rounded-[2px] bg-white shadow-sm">
+                    <img
+                      src="/assets/IMG-20260809-WA0019-1.png"
+                      alt="Logo der Gastropraxis Bad Segeberg"
+                      className="h-full w-full object-contain"
+                      loading="eager"
+                      decoding="async"
+                    />
                   </span>
                   <span className="font-serif text-[17px] tracking-tight">Dr. med. Maher Madi</span>
                 </span>
@@ -568,8 +580,18 @@ export default function Landing() {
                   {/* Editoriale Rahmenbeschriftung */}
                   <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] p-6 lg:p-8">
                     <div className="flex items-center justify-between">
-                      <span className="label-eyebrow text-foreground/80">Cover · Abb. I</span>
-                      <span className="label-eyebrow text-foreground/60">Rezeption</span>
+                      <span
+                        className="label-eyebrow text-foreground/90"
+                        style={{ textShadow: "0 1px 3px rgba(10, 20, 45, 0.65)" }}
+                      >
+                        Cover · Abb. I
+                      </span>
+                      <span
+                        className="label-eyebrow text-foreground/80"
+                        style={{ textShadow: "0 1px 3px rgba(10, 20, 45, 0.65)" }}
+                      >
+                        Rezeption
+                      </span>
                     </div>
                     <div />
                     <div className="flex items-end justify-between gap-4 text-foreground/90">
@@ -1084,8 +1106,14 @@ export default function Landing() {
           <div className="grid grid-cols-12 gap-x-8 gap-y-10 py-16 lg:py-20">
             <div className="col-span-12 lg:col-span-6">
               <div className="flex items-center gap-3">
-                <span aria-hidden className="grid h-8 w-8 place-items-center rounded-[2px] border border-foreground/70">
-                  <span className="font-serif text-[16px] leading-none">M</span>
+                <span aria-hidden className="grid h-9 w-9 place-items-center overflow-hidden rounded-[2px] bg-white shadow-sm">
+                  <img
+                    src="/assets/IMG-20260809-WA0019-1.png"
+                    alt="Logo der Gastropraxis Bad Segeberg"
+                    className="h-full w-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </span>
                 <span>
                   <span className="block font-serif text-lg">Dr. med. Maher Madi</span>
