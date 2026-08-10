@@ -136,7 +136,7 @@ function Rule({ children }: { children?: React.ReactNode }) {
 function SwipeRow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <div
-      className={`no-scrollbar -mx-6 lg:mx-0 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [will-change:scroll-position] lg:snap-none ${className}`}
+      className={`no-scrollbar -mx-6 px-6 lg:mx-0 lg:px-0 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [will-change:scroll-position] lg:snap-none ${className}`}
     >
       {children}
     </div>
@@ -269,16 +269,14 @@ export default function Landing() {
       <div className="border-b border-border/70 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 sticky top-0 z-40">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <div className="flex h-14 items-center justify-between">
-            <a href="#top" className="group flex items-center gap-3.5">
-              <span aria-hidden className="grid h-10 w-10 place-items-center overflow-hidden rounded-[2px] bg-white shadow-sm">
-                <img
-                  src="/assets/IMG-20260809-WA0019-1.png"
-                  alt="Logo der Gastropraxis Bad Segeberg"
-                  className="h-full w-full object-contain"
-                  loading="eager"
-                  decoding="async"
-                />
-              </span>
+            <a href="#top" className="group flex items-center gap-3">
+              <img
+                src="/assets/IMG-20260809-WA0019-1.png"
+                alt="Logo der Gastropraxis Bad Segeberg"
+                className="h-11 w-auto object-contain sm:h-12"
+                loading="eager"
+                decoding="async"
+              />
               <span className="min-w-0 leading-tight">
                 <span className="block truncate font-serif text-[18px] tracking-tight">Dr. med. Maher Madi</span>
                 <span className="hidden sm:block text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
@@ -383,15 +381,13 @@ export default function Landing() {
             >
               <div className="flex h-14 items-center justify-between border-b border-border px-5">
                 <span className="flex items-center gap-2.5">
-                  <span aria-hidden className="grid h-8 w-8 place-items-center overflow-hidden rounded-[2px] bg-white shadow-sm">
-                    <img
-                      src="/assets/IMG-20260809-WA0019-1.png"
-                      alt="Logo der Gastropraxis Bad Segeberg"
-                      className="h-full w-full object-contain"
-                      loading="eager"
-                      decoding="async"
-                    />
-                  </span>
+                  <img
+                    src="/assets/IMG-20260809-WA0019-1.png"
+                    alt="Logo der Gastropraxis Bad Segeberg"
+                    className="h-9 w-auto object-contain"
+                    loading="eager"
+                    decoding="async"
+                  />
                   <span className="font-serif text-[17px] tracking-tight">Dr. med. Maher Madi</span>
                 </span>
                 <button
@@ -692,7 +688,7 @@ export default function Landing() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.6, delay: 0.08 * i, ease: [0.22, 0.61, 0.36, 1] }}
-                  className="group relative w-[82vw] max-w-[360px] snap-start shrink-0 border-r border-b border-border p-7 lg:p-10 lg:w-1/3 lg:max-w-none lg:border-b-0 last:border-r-0 transition-colors duration-500 hover:bg-card/60"
+                  className="group relative w-[85vw] max-w-[400px] snap-start shrink-0 border-r border-b border-border p-7 lg:p-10 lg:w-1/3 lg:max-w-none lg:border-b-0 last:border-r-0 transition-colors duration-500 hover:bg-card/60"
                 >
                   <div className="flex items-center justify-between">
                     <Eyebrow>{c.k}</Eyebrow>
@@ -756,9 +752,9 @@ export default function Landing() {
                 <span className="label-eyebrow">Zum Wischen</span>
               </div>
               <motion.figure {...fadeUp} className="relative">
-                <SwipeRow className="sm:grid sm:grid-cols-12 sm:items-start sm:gap-x-5 sm:mx-0 sm:overflow-visible sm:snap-none">
+                <SwipeRow className="sm:grid sm:grid-cols-12 sm:items-start sm:gap-x-5 sm:mx-0 sm:px-0 sm:overflow-visible sm:snap-none">
                 {/* Porträt Dr. med. Maher Madi */}
-                <div className="relative w-[86vw] max-w-[420px] snap-start shrink-0 sm:w-auto sm:max-w-none sm:col-span-7">
+                <div className="relative w-[85vw] max-w-[400px] snap-start shrink-0 sm:w-auto sm:max-w-none sm:col-span-7">
                   <div className="relative aspect-[5/4] overflow-hidden rounded-[2px] border border-border bg-secondary/40">
                     <img
                       src="/assets/maher_portrait.jpeg"
@@ -802,7 +798,7 @@ export default function Landing() {
                 </div>
 
                 {/* Praxis — versetztes Editorial-Frame */}
-                <div className="relative w-[86vw] max-w-[420px] snap-start shrink-0 sm:w-auto sm:max-w-none sm:col-span-5 sm:pt-14">
+                <div className="relative w-[85vw] max-w-[400px] snap-start shrink-0 sm:w-auto sm:max-w-none sm:col-span-5 sm:pt-14">
                   <div className="relative aspect-[5/4] overflow-hidden rounded-[2px] border border-border bg-secondary/40">
                     <img
                       src="/assets/praxis_2.jpeg"
@@ -965,13 +961,13 @@ export default function Landing() {
             </div>
             <SwipeRow className="lg:grid lg:grid-cols-2 lg:gap-px lg:bg-border">
             {/* Map / Lage card */}
-            <motion.div {...fadeUp} className="w-[88vw] max-w-[440px] snap-start shrink-0 border border-border bg-card p-7 lg:w-auto lg:max-w-none lg:border-0 lg:p-10">
+            <motion.div {...fadeUp} className="w-[85vw] max-w-[400px] snap-start shrink-0 border border-border bg-card p-7 lg:w-auto lg:max-w-none lg:border-0 lg:p-10">
               <div className="flex items-center justify-between">
                 <Eyebrow>Lage · Karte</Eyebrow>
                 <Compass className="h-4 w-4 text-foreground/70" />
               </div>
               <h3 className="mt-6 font-serif text-2xl">So finden Sie uns.</h3>
-              <div className="mt-8 relative aspect-[16/10] overflow-hidden rounded-[2px] border border-border bg-secondary/60">
+              <div className="mt-6 sm:mt-8 relative aspect-[4/3] sm:aspect-[16/10] overflow-hidden rounded-[2px] border border-border bg-secondary/60">
                 {/* Eingebettete Google-Maps-Karte (ohne API-Key) */}
                 <iframe
                   title="Google Maps – Gastropraxis Bad Segeberg, Dahlienstr. 19b"
@@ -1009,7 +1005,7 @@ export default function Landing() {
             </motion.div>
 
             {/* Sprechzeiten */}
-            <motion.div {...fadeUp} className="w-[88vw] max-w-[440px] snap-start shrink-0 border border-border bg-card p-7 lg:w-auto lg:max-w-none lg:border-0 lg:p-10">
+            <motion.div {...fadeUp} className="w-[85vw] max-w-[400px] snap-start shrink-0 border border-border bg-card p-7 lg:w-auto lg:max-w-none lg:border-0 lg:p-10">
               <div className="flex items-center justify-between">
                 <Eyebrow>Sprechzeiten</Eyebrow>
                 <Clock className="h-4 w-4 text-foreground/70" />
@@ -1069,7 +1065,7 @@ export default function Landing() {
                 <span className="label-eyebrow">Laufbahn</span>
                 <span className="label-eyebrow">Zum Wischen</span>
               </div>
-              <ol className="no-scrollbar -mx-6 lg:mx-0 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [will-change:scroll-position] lg:block lg:overflow-visible">
+              <ol className="no-scrollbar -mx-6 px-6 lg:mx-0 lg:px-0 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [will-change:scroll-position] lg:block lg:overflow-visible">
               {TIMELINE.map((t, i) => (
                 <motion.li
                   key={t.year}
@@ -1077,7 +1073,7 @@ export default function Landing() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: 0.05 * i }}
-                  className="relative w-[82vw] max-w-[420px] snap-start shrink-0 border border-border bg-card p-6 lg:w-auto lg:max-w-none lg:bg-transparent lg:p-0 lg:grid lg:grid-cols-12 lg:gap-4 lg:border-x-0 lg:border-b-0 lg:border-t lg:py-6"
+                  className="relative w-[85vw] max-w-[400px] snap-start shrink-0 border border-border bg-card p-6 lg:w-auto lg:max-w-none lg:bg-transparent lg:p-0 lg:grid lg:grid-cols-12 lg:gap-4 lg:border-x-0 lg:border-b-0 lg:border-t lg:py-6"
                 >
                   <div className="flex items-center gap-3 lg:col-span-3">
                     <span className="font-serif text-[22px] tabular-nums leading-tight lg:text-2xl">{t.year}</span>
@@ -1182,15 +1178,13 @@ export default function Landing() {
           <div className="grid grid-cols-12 gap-x-8 gap-y-10 py-12 lg:py-20">
             <div className="col-span-12 lg:col-span-6">
               <div className="flex items-center gap-3">
-                <span aria-hidden className="grid h-9 w-9 place-items-center overflow-hidden rounded-[2px] bg-white shadow-sm">
-                  <img
-                    src="/assets/IMG-20260809-WA0019-1.png"
-                    alt="Logo der Gastropraxis Bad Segeberg"
-                    className="h-full w-full object-contain"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </span>
+                <img
+                  src="/assets/IMG-20260809-WA0019-1.png"
+                  alt="Logo der Gastropraxis Bad Segeberg"
+                  className="h-11 w-auto object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <span>
                   <span className="block font-serif text-lg">Dr. med. Maher Madi</span>
                   <span className="block label-eyebrow">Gastropraxis Bad Segeberg</span>
