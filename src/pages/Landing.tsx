@@ -96,16 +96,20 @@ const HOURS = [
   { day: "Freitag", open: "Nach Vereinbarung", close: "—", note: "" },
 ] as const;
 
-const TIMELINE = [
-  { year: "1999", text: "Abschluss Studium der Humanmedizin, Universität Latakia." },
-  { year: "2000 – 2004", text: "Facharzt-Weiterbildung Innere Medizin, Universitätsklinikum Damaskus." },
-  { year: "2005 – 2011", text: "Weiterbildung Gastroenterologie, Charité Berlin & Altmark Klinikum Salzwedel." },
-  { year: "Seit 05/2011", text: "Facharzt für Innere Medizin und Gastroenterologie." },
-  { year: "05/2011 – 02/2013", text: "Oberarzt für Innere Medizin und Gastroenterologie." },
-  { year: "03/2013 – 06/2014", text: "Chefarzt der gastroenterologischen Klinik, Bathildis Krankenhaus Bad Pyrmont & Median Kliniken Bad Mergentheim." },
-  { year: "08/2014 – 01/2022", text: "Leitender Arzt der Funktionsdiagnostik, Tichreen Universitätsklinikum, Latakia (Syrien)." },
-  { year: "03/2022 – 09/2025", text: "Oberarzt / Chefarzt, Abteilung Innere Medizin mit Schwerpunkt Gastroenterologie, KH Land Hadeln, Otterndorf." },
-  { year: "aktuell", text: "Niederlassung in eigener Praxis, Bad Segeberg." },
+type TimelineEntry = { year: string; title: string; place?: string; current?: boolean };
+
+const TIMELINE: TimelineEntry[] = [
+  { year: "1993 – 1999", title: "Studium der Humanmedizin", place: "Universität Latakia, Syrien" },
+  { year: "2000 – 2004", title: "Facharztweiterbildung Innere Medizin", place: "Universitätsklinikum Damaskus, Syrien" },
+  { year: "2005 – 2009", title: "Weiterbildung im Schwerpunkt Gastroenterologie", place: "Charité – Universitätsmedizin Berlin" },
+  { year: "2009 – 2011", title: "Weiterbildung im Schwerpunkt Gastroenterologie", place: "Altmark-Klinikum Salzwedel" },
+  { year: "Seit 05/2011", title: "Facharzt für Innere Medizin und Gastroenterologie" },
+  { year: "05/2011 – 02/2013", title: "Oberarzt für Innere Medizin und Gastroenterologie" },
+  { year: "03/2013 – 06/2014", title: "Chefarzt der Gastroenterologischen Klinik", place: "Bathildis Krankenhaus Bad Pyrmont & MEDIAN Kliniken Bad Mergentheim" },
+  { year: "08/2014 – 01/2022", title: "Leitender Arzt der Funktionsdiagnostik", place: "Tichreen Universitätsklinikum, Latakia, Syrien" },
+  { year: "02/2022 – 09/2023", title: "Oberarzt für Innere Medizin und Gastroenterologie", place: "Krankenhaus Land Hadeln, Otterndorf" },
+  { year: "10/2023 – 09/2025", title: "Chefarzt der Abteilung für Innere Medizin mit Schwerpunkt Gastroenterologie", place: "Krankenhaus Land Hadeln, Otterndorf" },
+  { year: "Seit 08/2026", title: "Niedergelassener Facharzt für Innere Medizin und Gastroenterologie", place: "GASTROPRAXIS · Bad Segeberg", current: true },
 ];
 
 const fadeUp = {
@@ -726,7 +730,7 @@ export default function Landing() {
               <div className="mt-8 max-w-[44ch] space-y-5 text-[15.5px] leading-relaxed text-foreground/85">
                 <p>
                   Dr.&nbsp;med.&nbsp;Maher Madi behandelt Patientinnen und Patienten
-                  in einer neu gestalteten Praxis in Bad Segeberg. Unser Anspruch:
+                  seit August 2026 in seiner eigenen Praxis in Bad Segeberg. Unser Anspruch:
                   ruhige Abläufe, ausführliche Gespräche und Befunde, die verständlich bleiben.
                 </p>
                 <p>
@@ -1034,19 +1038,23 @@ export default function Landing() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12 sm:py-24 lg:py-32">
           <div className="grid grid-cols-12 gap-x-8 gap-y-10">
             <div className="col-span-12 lg:col-span-4">
-              <Eyebrow>Werdegang</Eyebrow>
-              <h2 className="mt-4 font-serif text-[32px] lg:text-[42px] leading-[1.08] tracking-[-0.01em] max-w-[16ch] text-balance">
-                Eine ärztliche Laufbahn in Stationen.
+              <Eyebrow>Ärztliche Laufbahn</Eyebrow>
+              <h2 className="mt-4 font-serif text-[32px] lg:text-[42px] leading-[1.08] tracking-[-0.01em] max-w-[18ch] text-balance">
+                Erfahrung, die Vertrauen schafft.
               </h2>
-              <p className="mt-6 text-[14.5px] leading-relaxed text-foreground/80 max-w-[38ch]">
-                Von Damaskus über Berlin, Bad Pyrmont und Otterndorf bis nach Bad Segeberg — Dr.&nbsp;Madi bringt über
-                zwei Jahrzehnte klinische Erfahrung in die eigene Praxis mit.
+              <p className="mt-6 text-[14.5px] leading-relaxed text-foreground/80 max-w-[46ch]">
+                Von Latakia über Berlin, Bad Pyrmont und Otterndorf bis nach Bad Segeberg: Dr.&nbsp;med.&nbsp;Maher Madi
+                blickt auf mehr als 25 Jahre ärztliche Tätigkeit und umfassende klinische Erfahrung in der Inneren
+                Medizin und Gastroenterologie zurück. Seine Laufbahn führte ihn durch Kliniken in Deutschland und
+                Syrien – von der fachärztlichen Weiterbildung über oberärztliche und chefärztliche Positionen bis zur
+                Leitung der Funktionsdiagnostik. Seit August 2026 bringt er diese langjährige Erfahrung in seine
+                eigene gastroenterologische Praxis in Bad Segeberg ein.
               </p>
             </div>
 
             <div className="col-span-12 lg:col-span-8">
               <div className="mb-3 flex items-center justify-between lg:hidden" aria-hidden>
-                <span className="label-eyebrow">Stationen</span>
+                <span className="label-eyebrow">Laufbahn</span>
                 <span className="label-eyebrow">Zum Wischen</span>
               </div>
               <ol className="no-scrollbar -mx-6 lg:mx-0 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [will-change:scroll-position] lg:block lg:overflow-visible">
@@ -1057,11 +1065,25 @@ export default function Landing() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: 0.05 * i }}
-                  className="w-[82vw] max-w-[420px] snap-start shrink-0 border border-border bg-card p-6 lg:w-auto lg:max-w-none lg:bg-transparent lg:p-0 lg:grid lg:grid-cols-12 lg:gap-4 lg:border-x-0 lg:border-b-0 lg:border-t lg:py-6"
+                  className="relative w-[82vw] max-w-[420px] snap-start shrink-0 border border-border bg-card p-6 lg:w-auto lg:max-w-none lg:bg-transparent lg:p-0 lg:grid lg:grid-cols-12 lg:gap-4 lg:border-x-0 lg:border-b-0 lg:border-t lg:py-6"
                 >
-                  <div className="font-serif text-[22px] tabular-nums leading-tight lg:col-span-3 lg:text-2xl">{t.year}</div>
-                  <div className="mt-2 text-[14px] leading-relaxed text-foreground/85 lg:col-span-9 lg:mt-0 lg:text-[15px] max-w-[60ch]">
-                    {t.text}
+                  <div className="flex items-center gap-3 lg:col-span-3">
+                    <span className="font-serif text-[22px] tabular-nums leading-tight lg:text-2xl">{t.year}</span>
+                    {t.current && (
+                      <span className="label-eyebrow text-foreground/80">Aktuell</span>
+                    )}
+                  </div>
+                  <div className="mt-2 lg:mt-0 lg:col-span-9 max-w-[60ch]">
+                    <div
+                      className={`text-[14px] lg:text-[15px] leading-relaxed ${t.current ? "text-foreground" : "text-foreground/85"}`}
+                    >
+                      {t.title}
+                    </div>
+                    {t.place && (
+                      <div className="mt-1.5 text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+                        {t.place}
+                      </div>
+                    )}
                   </div>
                 </motion.li>
               ))}
@@ -1077,7 +1099,7 @@ export default function Landing() {
                 </li>
               </ol>
               <p className="mt-4 lg:mt-0 lg:border-t lg:border-border lg:pt-3 text-[11.5px] text-muted-foreground">
-                Stand: 2025 · Auswahl; vollständiger Lebenslauf auf Anfrage.
+                Stand: August 2026 · Vollständiger Lebenslauf auf Anfrage.
               </p>
             </div>
           </div>
