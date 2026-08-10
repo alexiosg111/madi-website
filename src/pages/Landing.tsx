@@ -166,6 +166,7 @@ export default function Landing() {
   const [now, setNow] = useState<string>("");
   const [active, setActive] = useState("#top");
   const [api, setApi] = useState<CarouselApi | null>(null);
+  const [mapActive, setMapActive] = useState(false);
   const [current, setCurrent] = useState(1);
   const [count, setCount] = useState(SERVICES.length);
   const [canPrev, setCanPrev] = useState(false);
@@ -970,29 +971,40 @@ export default function Landing() {
                 <Compass className="h-4 w-4 text-foreground/70" />
               </div>
               <h3 className="mt-6 font-serif text-2xl">So finden Sie uns.</h3>
-              <div className="mt-8 relative aspect-[16/10] overflow-hidden rounded-[2px] border border-border">
-                {/* Stylized map placeholder */}
-                <div className="absolute inset-0 bg-secondary/60">
-                  <svg viewBox="0 0 600 380" className="absolute inset-0 h-full w-full">
-                    <defs>
-                      <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
-                        <path d="M 24 0 L 0 0 0 24" fill="none" stroke="currentColor" strokeWidth="0.3" className="text-border" />
-                      </pattern>
-                    </defs>
-                    <rect width="600" height="380" fill="url(#grid)" />
-                    <path d="M0,220 C120,180 240,260 360,200 C460,150 540,180 600,160" stroke="currentColor" strokeWidth="1.2" fill="none" className="text-foreground/60" />
-                    <path d="M120,0 C140,80 160,180 200,260 C240,340 280,360 320,380" stroke="currentColor" strokeWidth="1" fill="none" className="text-foreground/40" />
-                    <circle cx="370" cy="200" r="7" fill="currentColor" className="text-foreground" />
-                    <circle cx="370" cy="200" r="14" fill="none" stroke="currentColor" strokeWidth="0.6" className="text-foreground/60" />
-                  </svg>
-                </div>
-                <div className="absolute left-6 top-6">
-                  <div className="font-serif text-sm">Standort</div>
-                  <div className="mt-1 text-[12px] text-muted-foreground">53.94° N · 10.31° O</div>
-                </div>
-                <div className="absolute right-6 bottom-6 flex items-center gap-2 text-[11.5px] text-muted-foreground">
-                  <MapPin className="h-3.5 w-3.5" /> Marktplatz, Bad Segeberg
-                </div>
+              <div className="mt-8 relative aspect-[16/10] overflow-hidden rounded-[2px] border border-border bg-secondary/60">
+                {/* Eingebettete Google-Maps-Karte (ohne API-Key) */}
+                <iframe
+                  title="Google Maps – Gastropraxis Bad Segeberg, Dahlienstr. 19b"
+                  src="https://www.google.com/maps?q=Dahlienstr.+19b%2C+23795+Bad+Segeberg&z=16&hl=de&output=embed"
+                  className={`absolute inset-0 h-full w-full border-0 transition-opacity duration-500 ${mapActive ? "opacity-100" : "opacity-0"}`}
+                  style={{ filter: "grayscale(0.15) contrast(1.05)" }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+                {/* Aktivieren-Overlay: verhindert, dass die Karte auf Touch das Scrollen blockiert */}
+                {!mapActive && (
+                  <button
+                    type="button"
+                    onClick={() => setMapActive(true)}
+                    aria-label="Interaktive Google-Maps-Karte laden"
+                    className="absolute inset-0 z-10 flex w-full flex-col items-center justify-center gap-2 bg-card/95 p-6 text-center transition-colors duration-300 hover:bg-card"
+                  >
+                    <MapPin className="h-5 w-5 text-foreground/70" />
+                    <span className="font-serif text-lg leading-tight">Standort anzeigen</span>
+                    <span className="text-[12px] text-muted-foreground">Dahlienstr. 19b · 23795 Bad Segeberg</span>
+                    <span className="mt-2 label-eyebrow">Tippen zum Aktivieren</span>
+                  </button>
+                )}
+                {/* Direkt in Google Maps öffnen */}
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Dahlienstr.+19b%2C+23795+Bad+Segeberg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 rounded-[2px] border border-border bg-background/90 px-3 py-1.5 text-[11px] text-foreground/90 backdrop-blur transition-colors hover:bg-foreground hover:text-background"
+                >
+                  <MapPin className="h-3 w-3" /> In Google Maps öffnen <ArrowUpRight className="h-3 w-3" />
+                </a>
               </div>
             </motion.div>
 
