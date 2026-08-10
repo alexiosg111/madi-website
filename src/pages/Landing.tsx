@@ -128,6 +128,33 @@ function Rule({ children }: { children?: React.ReactNode }) {
   );
 }
 
+/* Horizontale Wisch-Reihe: auf Touch scrollbar mit Snap, ab lg statisches Grid/Block */
+function SwipeRow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div
+      className={`no-scrollbar -mx-6 lg:mx-0 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [will-change:scroll-position] lg:snap-none ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+/* „Wischen"-Hinweis am Ende einer Wisch-Reihe — nur mobil sichtbar */
+function SwipeHint() {
+  return (
+    <div
+      aria-hidden
+      className="flex w-20 shrink-0 flex-col items-center justify-center gap-1.5 border-b border-border text-muted-foreground lg:hidden"
+    >
+      <span className="flex items-center gap-1">
+        <ArrowLeft className="h-3.5 w-3.5 opacity-50" />
+        <ArrowRight className="h-3.5 w-3.5 animate-pulse" />
+      </span>
+      <span className="label-eyebrow">Wischen</span>
+    </div>
+  );
+}
+
 const CHAPTER_COUNT = NAV.length;
 
 export default function Landing() {
@@ -453,7 +480,7 @@ export default function Landing() {
         style={{ y: heroY, opacity: heroOpacity }}
         className="relative"
       >
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-8 lg:pt-12 pb-16 lg:pb-24">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-8 lg:pt-12 pb-12 lg:pb-24">
           {/* Kapitel-Leiste — animierte „Sie sind hier"-Anzeige, synchron mit dem
               Hamburger-Menü (Scroll-Spy), dem Ticker im Header und dem Drawer */}
           <div className="border-y border-border">
@@ -620,7 +647,7 @@ export default function Landing() {
           </div>
 
           {/* Einstiegs-Blöcke — wischbar auf Touch, ruhige Dreierreihe auf Desktop */}
-          <div className="mt-16 lg:mt-24">
+          <div className="mt-12 lg:mt-24">
             <div className="flex items-center justify-between gap-4 border-t border-border pt-5">
               <div className="flex items-center gap-3">
                 <span className="label-eyebrow">Einstieg</span>
@@ -632,7 +659,7 @@ export default function Landing() {
               </span>
             </div>
 
-            <div className="no-scrollbar -mx-6 lg:mx-0 mt-4 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [will-change:scroll-position] lg:snap-none">
+            <SwipeRow className="mt-4">
               {[
                 {
                   k: "Diagnostik",
@@ -677,25 +704,15 @@ export default function Landing() {
                   </span>
                 </motion.a>
               ))}
-              {/* Wisch-Hinweis — nur sichtbar, solange die Reihe scrollbar ist */}
-              <div
-                className="flex w-20 shrink-0 flex-col items-center justify-center gap-1.5 border-b border-border text-muted-foreground lg:hidden"
-                aria-hidden
-              >
-                <span className="flex items-center gap-1">
-                  <ArrowLeft className="h-3.5 w-3.5 opacity-50" />
-                  <ArrowRight className="h-3.5 w-3.5 animate-pulse" />
-                </span>
-                <span className="label-eyebrow">Wischen</span>
-              </div>
-            </div>
+              <SwipeHint />
+            </SwipeRow>
           </div>
         </div>
       </motion.section>
 
       {/* PRAXIS / DOCTOR */}
       <section id="praxis" className="cv-auto border-t border-border bg-card">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12 sm:py-24 lg:py-32">
           <div className="grid grid-cols-12 gap-x-8 gap-y-12">
             <div className="col-span-12 lg:col-span-5">
               <Eyebrow>Über die Praxis</Eyebrow>
@@ -729,12 +746,14 @@ export default function Landing() {
 
             {/* Doctor portrait card */}
             <div className="col-span-12 lg:col-span-7">
-              <motion.figure
-                {...fadeUp}
-                className="grid grid-cols-1 sm:grid-cols-12 gap-x-5 gap-y-8 sm:gap-y-0 items-start"
-              >
+              <div className="mb-3 flex items-center justify-between lg:hidden">
+                <span className="label-eyebrow">Porträt &amp; Praxis</span>
+                <span className="label-eyebrow">Zum Wischen</span>
+              </div>
+              <motion.figure {...fadeUp} className="relative">
+                <SwipeRow className="sm:grid sm:grid-cols-12 sm:items-start sm:gap-x-5 sm:mx-0 sm:overflow-visible sm:snap-none">
                 {/* Porträt Dr. med. Maher Madi */}
-                <div className="relative sm:col-span-7">
+                <div className="relative w-[86vw] max-w-[420px] snap-start shrink-0 sm:w-auto sm:max-w-none sm:col-span-7">
                   <div className="relative aspect-[5/4] overflow-hidden rounded-[2px] border border-border bg-secondary/40">
                     <img
                       src="/assets/maher_portrait.jpeg"
@@ -778,7 +797,7 @@ export default function Landing() {
                 </div>
 
                 {/* Praxis — versetztes Editorial-Frame */}
-                <div className="relative sm:col-span-5 sm:pt-14">
+                <div className="relative w-[86vw] max-w-[420px] snap-start shrink-0 sm:w-auto sm:max-w-none sm:col-span-5 sm:pt-14">
                   <div className="relative aspect-[5/4] overflow-hidden rounded-[2px] border border-border bg-secondary/40">
                     <img
                       src="/assets/praxis_2.jpeg"
@@ -793,6 +812,7 @@ export default function Landing() {
                     <span className="label-eyebrow">Bad Segeberg</span>
                   </figcaption>
                 </div>
+                </SwipeRow>
               </motion.figure>
 
               {/* Credentials strip */}
@@ -815,7 +835,7 @@ export default function Landing() {
 
       {/* LEISTUNGEN */}
       <section id="leistungen" className="cv-auto border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12 sm:py-24 lg:py-32">
           <div className="flex items-end justify-between gap-6 flex-wrap">
             <div>
               <Eyebrow>Leistungen · Kapitel I</Eyebrow>
@@ -916,7 +936,7 @@ export default function Landing() {
 
       {/* DIAGNOSTIK SPREAD */}
       <section id="diagnostik" className="cv-auto border-t border-border bg-card">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12 sm:py-24 lg:py-32">
           <Rule>Kapitel II · Perspektive</Rule>
           <div className="mt-10 grid grid-cols-12 gap-x-8 gap-y-10">
             <div className="col-span-12 lg:col-span-7">
@@ -933,9 +953,14 @@ export default function Landing() {
             </div>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-px bg-border">
+          <div className="mt-10 lg:mt-16">
+            <div className="mb-3 flex items-center justify-between lg:hidden">
+              <span className="label-eyebrow">Lage &amp; Sprechzeiten</span>
+              <span className="label-eyebrow">Zum Wischen</span>
+            </div>
+            <SwipeRow className="lg:grid lg:grid-cols-2 lg:gap-px lg:bg-border">
             {/* Map / Lage card */}
-            <motion.div {...fadeUp} className="bg-card p-8 lg:p-10">
+            <motion.div {...fadeUp} className="w-[88vw] max-w-[440px] snap-start shrink-0 border border-border bg-card p-7 lg:w-auto lg:max-w-none lg:border-0 lg:p-10">
               <div className="flex items-center justify-between">
                 <Eyebrow>Lage · Karte</Eyebrow>
                 <Compass className="h-4 w-4 text-foreground/70" />
@@ -968,7 +993,7 @@ export default function Landing() {
             </motion.div>
 
             {/* Sprechzeiten */}
-            <motion.div {...fadeUp} className="bg-card p-8 lg:p-10">
+            <motion.div {...fadeUp} className="w-[88vw] max-w-[440px] snap-start shrink-0 border border-border bg-card p-7 lg:w-auto lg:max-w-none lg:border-0 lg:p-10">
               <div className="flex items-center justify-between">
                 <Eyebrow>Sprechzeiten</Eyebrow>
                 <Clock className="h-4 w-4 text-foreground/70" />
@@ -999,13 +1024,14 @@ export default function Landing() {
                 <span>und nach Vereinbarung.</span>
               </div>
             </motion.div>
+            </SwipeRow>
           </div>
         </div>
       </section>
 
       {/* WERDEGANG / Editorial narrative */}
       <section className="cv-auto border-t border-border">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12 sm:py-24 lg:py-32">
           <div className="grid grid-cols-12 gap-x-8 gap-y-10">
             <div className="col-span-12 lg:col-span-4">
               <Eyebrow>Werdegang</Eyebrow>
@@ -1018,7 +1044,12 @@ export default function Landing() {
               </p>
             </div>
 
-            <ol className="col-span-12 lg:col-span-8">
+            <div className="col-span-12 lg:col-span-8">
+              <div className="mb-3 flex items-center justify-between lg:hidden" aria-hidden>
+                <span className="label-eyebrow">Stationen</span>
+                <span className="label-eyebrow">Zum Wischen</span>
+              </div>
+              <ol className="no-scrollbar -mx-6 lg:mx-0 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [will-change:scroll-position] lg:block lg:overflow-visible">
               {TIMELINE.map((t, i) => (
                 <motion.li
                   key={t.year}
@@ -1026,25 +1057,36 @@ export default function Landing() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, delay: 0.05 * i }}
-                  className="grid grid-cols-12 gap-4 border-t border-border py-6"
+                  className="w-[82vw] max-w-[420px] snap-start shrink-0 border border-border bg-card p-6 lg:w-auto lg:max-w-none lg:bg-transparent lg:p-0 lg:grid lg:grid-cols-12 lg:gap-4 lg:border-x-0 lg:border-b-0 lg:border-t lg:py-6"
                 >
-                  <div className="col-span-4 lg:col-span-3 font-serif text-base lg:text-2xl tabular-nums leading-tight">{t.year}</div>
-                  <div className="col-span-8 lg:col-span-9 text-[14.5px] lg:text-[15px] leading-relaxed text-foreground/85 max-w-[60ch]">
+                  <div className="font-serif text-[22px] tabular-nums leading-tight lg:col-span-3 lg:text-2xl">{t.year}</div>
+                  <div className="mt-2 text-[14px] leading-relaxed text-foreground/85 lg:col-span-9 lg:mt-0 lg:text-[15px] max-w-[60ch]">
                     {t.text}
                   </div>
                 </motion.li>
               ))}
-              <li className="border-t border-border py-3 text-[11.5px] text-muted-foreground">
+                <li
+                  aria-hidden
+                  className="flex w-20 shrink-0 flex-col items-center justify-center gap-1.5 border-b border-border text-muted-foreground lg:hidden"
+                >
+                  <span className="flex items-center gap-1">
+                    <ArrowLeft className="h-3.5 w-3.5 opacity-50" />
+                    <ArrowRight className="h-3.5 w-3.5 animate-pulse" />
+                  </span>
+                  <span className="label-eyebrow">Wischen</span>
+                </li>
+              </ol>
+              <p className="mt-4 lg:mt-0 lg:border-t lg:border-border lg:pt-3 text-[11.5px] text-muted-foreground">
                 Stand: 2025 · Auswahl; vollständiger Lebenslauf auf Anfrage.
-              </li>
-            </ol>
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* KONTAKT / Termin */}
       <section id="kontakt" className="cv-auto border-t border-border bg-card">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16 sm:py-24 lg:py-32">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12 sm:py-24 lg:py-32">
           <Rule>Kapitel III · Kontakt</Rule>
           <div className="mt-10 grid grid-cols-12 gap-x-8 gap-y-12">
             <div className="col-span-12 lg:col-span-7">
@@ -1103,7 +1145,7 @@ export default function Landing() {
       {/* FOOTER */}
       <footer className="cv-auto border-t border-border">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="grid grid-cols-12 gap-x-8 gap-y-10 py-16 lg:py-20">
+          <div className="grid grid-cols-12 gap-x-8 gap-y-10 py-12 lg:py-20">
             <div className="col-span-12 lg:col-span-6">
               <div className="flex items-center gap-3">
                 <span aria-hidden className="grid h-9 w-9 place-items-center overflow-hidden rounded-[2px] bg-white shadow-sm">
