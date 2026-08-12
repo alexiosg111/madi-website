@@ -273,12 +273,12 @@ export default function Landing() {
               <img
                 src="/assets/IMG-20260809-WA0019-1.png"
                 alt="Logo der Gastropraxis Bad Segeberg"
-                className="h-11 w-auto object-contain sm:h-12"
+                className="h-12 w-auto object-contain sm:h-14"
                 loading="eager"
                 decoding="async"
               />
               <span className="min-w-0 leading-tight">
-                <span className="block truncate font-serif text-[18px] tracking-tight">Dr. med. Maher Madi</span>
+                <span className="block truncate font-serif text-[19px] font-semibold tracking-tight sm:text-[20px]">Dr. med. Maher Madi</span>
                 <span className="hidden sm:block text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
                   Gastropraxis · Bad Segeberg
                 </span>
@@ -380,15 +380,15 @@ export default function Landing() {
               className="fixed inset-y-0 right-0 z-50 flex w-[320px] max-w-[86vw] flex-col border-l border-border bg-background"
             >
               <div className="flex h-14 items-center justify-between border-b border-border px-5">
-                <span className="flex items-center gap-2.5">
+                <span className="flex items-center gap-3">
                   <img
                     src="/assets/IMG-20260809-WA0019-1.png"
                     alt="Logo der Gastropraxis Bad Segeberg"
-                    className="h-9 w-auto object-contain"
+                    className="h-14 w-auto object-contain"
                     loading="eager"
                     decoding="async"
                   />
-                  <span className="font-serif text-[17px] tracking-tight">Dr. med. Maher Madi</span>
+                  <span className="font-serif text-[22px] font-bold leading-tight tracking-tight">Dr. med. Maher Madi</span>
                 </span>
                 <button
                   aria-label="Menü schließen"
@@ -781,7 +781,7 @@ export default function Landing() {
                       <div className="flex items-end justify-between gap-4">
                         <div>
                           <span className="label-eyebrow text-white/70">Facharzt</span>
-                          <div className="mt-1 font-serif text-[22px] lg:text-[26px] leading-tight text-white">
+                          <div className="mt-1 font-serif text-[26px] font-bold lg:text-[28px] leading-tight text-white">
                             Dr. med.<br />Maher Madi
                           </div>
                         </div>
@@ -1181,12 +1181,12 @@ export default function Landing() {
                 <img
                   src="/assets/IMG-20260809-WA0019-1.png"
                   alt="Logo der Gastropraxis Bad Segeberg"
-                  className="h-11 w-auto object-contain"
+                  className="h-12 w-auto object-contain sm:h-14"
                   loading="lazy"
                   decoding="async"
                 />
                 <span>
-                  <span className="block font-serif text-lg">Dr. med. Maher Madi</span>
+                  <span className="block font-serif text-xl font-semibold">Dr. med. Maher Madi</span>
                   <span className="block label-eyebrow">Gastropraxis Bad Segeberg</span>
                 </span>
               </div>
