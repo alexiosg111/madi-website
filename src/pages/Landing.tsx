@@ -278,7 +278,7 @@ export default function Landing() {
                 decoding="async"
               />
               <span className="min-w-0 leading-tight">
-                <span className="block truncate font-serif text-[19px] font-semibold tracking-tight sm:text-[20px]">Dr. med. Maher Madi</span>
+                <span className="block truncate font-serif text-[19px] font-bold tracking-tight sm:text-[22px]">Dr. med. Maher Madi</span>
                 <span className="hidden sm:block text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
                   Gastropraxis · Bad Segeberg
                 </span>
@@ -763,37 +763,14 @@ export default function Landing() {
                       loading="lazy"
                       decoding="async"
                     />
-                    {/* Sanfte Vignette für gut lesbare Beschriftung */}
-                    <div
-                      aria-hidden
-                      className="absolute inset-0"
-                      style={{
-                        background:
-                          "linear-gradient(to top, rgba(12,16,28,0.82) 0%, rgba(12,16,28,0.26) 42%, rgba(12,16,28,0.42) 100%)",
-                      }}
-                    />
-                    <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] p-6 lg:p-8">
-                      <div className="flex items-center justify-between">
-                        <span className="label-eyebrow text-white/80">Portrait</span>
-                        <span className="label-eyebrow text-white/60">MM · 2024</span>
-                      </div>
-                      <div />
-                      <div className="flex items-end justify-between gap-4">
-                        <div>
-                          <span className="label-eyebrow text-white/70">Facharzt</span>
-                          <div className="mt-1 font-serif text-[26px] font-bold lg:text-[28px] leading-tight text-white">
-                            Dr. med.<br />Maher Madi
-                          </div>
-                        </div>
-                        <div className="text-right text-[12px] leading-snug text-white/85 max-w-[24ch]">
-                          Innere Medizin<br />& Gastroenterologie
-                        </div>
-                      </div>
-                    </div>
                   </div>
-                  <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
-                    <span className="label-eyebrow">Abb. 01 · Porträt</span>
-                    <span className="label-eyebrow">Dr. med. Madi</span>
+                  <figcaption className="mt-3 flex items-end justify-between gap-4 text-[11.5px] text-muted-foreground">
+                    <div>
+                      <span className="label-eyebrow">Abb. 01 · Porträt</span>
+                      <p className="mt-1 font-serif text-[16px] leading-tight text-foreground/90">Dr. med. Maher Madi</p>
+                      <p className="mt-1 text-[11px] leading-snug">Facharzt für Innere Medizin &amp; Gastroenterologie</p>
+                    </div>
+                    <span className="label-eyebrow">MM · 2024</span>
                   </figcaption>
                 </div>
 
@@ -1050,14 +1027,21 @@ export default function Landing() {
               <h2 className="mt-4 font-serif text-[32px] lg:text-[42px] leading-[1.08] tracking-[-0.01em] max-w-[18ch] text-balance">
                 Erfahrung, die Vertrauen schafft.
               </h2>
-              <p className="mt-6 text-[14.5px] leading-relaxed text-foreground/80 max-w-[46ch]">
-                Von Latakia über Berlin, Bad Pyrmont und Otterndorf bis nach Bad Segeberg: Dr.&nbsp;med.&nbsp;Maher Madi
-                blickt auf mehr als 25 Jahre ärztliche Tätigkeit und umfassende klinische Erfahrung in der Inneren
-                Medizin und Gastroenterologie zurück. Seine Laufbahn führte ihn durch Kliniken in Deutschland und
-                Syrien – von der fachärztlichen Weiterbildung über oberärztliche und chefärztliche Positionen bis zur
-                Leitung der Funktionsdiagnostik. Seit August 2026 bringt er diese langjährige Erfahrung in seine
-                eigene gastroenterologische Praxis in Bad Segeberg ein.
-              </p>
+              <div className="mt-6 space-y-4 max-w-[46ch]">
+                <p className="font-serif text-[17px] italic leading-relaxed text-foreground/90">
+                  Von Latakia über Berlin, Bad Pyrmont und Otterndorf bis nach Bad Segeberg — eine Laufbahn
+                  durch Kliniken in Deutschland und Syrien.
+                </p>
+                <p className="text-[14.5px] leading-relaxed text-foreground/80">
+                  Dr.&nbsp;med.&nbsp;Maher Madi blickt auf mehr als 25 Jahre ärztliche Tätigkeit und umfassende
+                  klinische Erfahrung in der Inneren Medizin und Gastroenterologie zurück — von der fachärztlichen
+                  Weiterbildung über oberärztliche und chefärztliche Positionen bis zur Leitung der Funktionsdiagnostik.
+                </p>
+                <p className="text-[14.5px] leading-relaxed text-foreground/80">
+                  Seit August 2026 bringt er diese langjährige Erfahrung in seine eigene gastroenterologische
+                  Praxis in Bad Segeberg ein.
+                </p>
+              </div>
             </div>
 
             <div className="col-span-12 lg:col-span-8">
@@ -1186,7 +1170,7 @@ export default function Landing() {
                   decoding="async"
                 />
                 <span>
-                  <span className="block font-serif text-xl font-semibold">Dr. med. Maher Madi</span>
+                  <span className="block font-serif text-xl font-bold sm:text-2xl">Dr. med. Maher Madi</span>
                   <span className="block label-eyebrow">Gastropraxis Bad Segeberg</span>
                 </span>
               </div>
