@@ -268,17 +268,17 @@ export default function Landing() {
       {/* Hairline top border sensation — full-bleed editorial ribbon */}
       <div className="border-b border-border/70 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 sticky top-0 z-40">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="flex h-16 items-center justify-between sm:h-20">
+          <div className="flex h-16 items-center justify-between sm:h-[152px]">
             <a href="#top" className="group flex items-center gap-3">
               <img
                 src="/assets/IMG-20260809-WA0019-1.png"
                 alt="Logo der Gastropraxis Bad Segeberg"
-                className="h-14 w-auto object-contain sm:h-[72px]"
+                className="h-14 w-auto object-contain sm:h-[144px]"
                 loading="eager"
                 decoding="async"
               />
               <span className="min-w-0 leading-tight">
-                <span className="block truncate font-serif text-[19px] font-bold tracking-tight sm:text-[26px]">Dr. med. Maher Madi</span>
+                <span className="block truncate font-serif text-[19px] font-bold tracking-tight sm:text-[34px]">Dr. med. Maher Madi</span>
                 <span className="hidden sm:block text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
                   Gastropraxis · Bad Segeberg
                 </span>
@@ -1165,12 +1165,12 @@ export default function Landing() {
                 <img
                   src="/assets/IMG-20260809-WA0019-1.png"
                   alt="Logo der Gastropraxis Bad Segeberg"
-                  className="h-14 w-auto object-contain sm:h-[72px]"
+                  className="h-14 w-auto object-contain sm:h-[144px]"
                   loading="lazy"
                   decoding="async"
                 />
                 <span>
-                  <span className="block font-serif text-xl font-bold sm:text-[28px]">Dr. med. Maher Madi</span>
+                  <span className="block font-serif text-xl font-bold sm:text-[34px]">Dr. med. Maher Madi</span>
                   <span className="block label-eyebrow">Gastropraxis Bad Segeberg</span>
                 </span>
               </div>
