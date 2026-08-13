@@ -1,0 +1,13 @@
+# Gastropraxis Bad Segeberg — React Router v7 (SPA) Fallback
+# Dieser Fallback sorgt dafür, dass Direktaufrufe von Routen wie /auth
+# die index.html ausliefern (Single Page Application).
+# Wichtig: Die Datei liegt im Webroot (z. B. /httpdocs oder /www).
+# Liegt die Seite in einem Unterordner (z. B. /praxis/), muss
+# RewriteBase angepasst werden: RewriteBase /praxis/
+
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
