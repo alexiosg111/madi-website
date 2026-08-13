@@ -268,17 +268,17 @@ export default function Landing() {
       {/* Hairline top border sensation — full-bleed editorial ribbon */}
       <div className="border-b border-border/70 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 sticky top-0 z-40">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="flex h-14 items-center justify-between">
+          <div className="flex h-16 items-center justify-between">
             <a href="#top" className="group flex items-center gap-3">
               <img
                 src="/assets/IMG-20260809-WA0019-1.png"
                 alt="Logo der Gastropraxis Bad Segeberg"
-                className="h-12 w-auto object-contain sm:h-14"
+                className="h-14 w-auto object-contain sm:h-16"
                 loading="eager"
                 decoding="async"
               />
               <span className="min-w-0 leading-tight">
-                <span className="block truncate font-serif text-[19px] font-bold tracking-tight sm:text-[22px]">Dr. med. Maher Madi</span>
+                <span className="block truncate font-serif text-[19px] font-bold tracking-tight sm:text-[24px]">Dr. med. Maher Madi</span>
                 <span className="hidden sm:block text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
                   Gastropraxis · Bad Segeberg
                 </span>
@@ -379,16 +379,16 @@ export default function Landing() {
               aria-label="Navigation"
               className="fixed inset-y-0 right-0 z-50 flex w-[320px] max-w-[86vw] flex-col border-l border-border bg-background"
             >
-              <div className="flex h-14 items-center justify-between border-b border-border px-5">
-                <span className="flex items-center gap-3">
+              <div className="flex h-16 items-center justify-between gap-3 border-b border-border px-5">
+                <span className="flex min-w-0 items-center gap-3">
                   <img
                     src="/assets/IMG-20260809-WA0019-1.png"
                     alt="Logo der Gastropraxis Bad Segeberg"
-                    className="h-14 w-auto object-contain"
+                    className="h-16 w-auto shrink-0 object-contain"
                     loading="eager"
                     decoding="async"
                   />
-                  <span className="font-serif text-[22px] font-bold leading-tight tracking-tight">Dr. med. Maher Madi</span>
+                  <span className="truncate font-serif text-[22px] font-bold leading-tight tracking-tight">Dr. med. Maher Madi</span>
                 </span>
                 <button
                   aria-label="Menü schließen"
@@ -1165,7 +1165,7 @@ export default function Landing() {
                 <img
                   src="/assets/IMG-20260809-WA0019-1.png"
                   alt="Logo der Gastropraxis Bad Segeberg"
-                  className="h-12 w-auto object-contain sm:h-14"
+                  className="h-14 w-auto object-contain sm:h-16"
                   loading="lazy"
                   decoding="async"
                 />
