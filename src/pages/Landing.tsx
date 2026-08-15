@@ -13,7 +13,6 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  CalendarDays,
   Clock,
   Compass,
   HeartPulse,
@@ -278,7 +277,7 @@ export default function Landing() {
                 decoding="async"
               />
               <span className="min-w-0 leading-tight">
-                <span className="block truncate font-serif text-[19px] font-bold tracking-tight sm:text-[34px]">Dr. med. Maher Madi</span>
+                <span className="block font-serif text-[19px] font-bold leading-tight tracking-tight sm:text-[34px]">Dr. med.<br className="sm:hidden" />Maher Madi</span>
                 <span className="hidden sm:block text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
                   Gastropraxis · Bad Segeberg
                 </span>
@@ -388,7 +387,7 @@ export default function Landing() {
                     loading="eager"
                     decoding="async"
                   />
-                  <span className="truncate font-serif text-[22px] font-bold leading-tight tracking-tight">Dr. med. Maher Madi</span>
+                  <span className="font-serif text-[22px] font-bold leading-tight tracking-tight">Dr. med.<br />Maher Madi</span>
                 </span>
                 <button
                   aria-label="Menü schließen"
@@ -589,7 +588,7 @@ export default function Landing() {
                   {/* Empfangsbereich (hochgeladenes Bild) */}
                   <img
                     src="/assets/praxis_1.jpeg"
-                    alt="Empfangsbereich der Gastropraxis Bad Segeberg — eine ruhige, modern gestaltete Praxis mit beleuchteter Theke und natürlichem Licht."
+                    alt="Praxis der Gastropraxis Bad Segeberg — eine ruhige, modern gestaltete Praxis mit beleuchteter Theke und natürlichem Licht."
                     className="absolute inset-0 h-full w-full object-cover"
                     loading="eager"
                     decoding="async"
@@ -605,42 +604,18 @@ export default function Landing() {
                         "linear-gradient(to top, var(--background) 0%, color-mix(in oklch, var(--background) 80%, transparent) 25%, transparent 100%)",
                     }}
                   />
-                  {/* Editoriale Rahmenbeschriftung */}
-                  <div className="absolute inset-0 grid grid-rows-[auto_1fr_auto] p-6 lg:p-8">
-                    <div className="flex items-center justify-between">
-                      <span
-                        className="label-eyebrow text-foreground/90"
-                        style={{ textShadow: "0 1px 3px rgba(10, 20, 45, 0.65)" }}
-                      >
-                        Cover · Abb. I
-                      </span>
-                      <span
-                        className="label-eyebrow text-foreground/80"
-                        style={{ textShadow: "0 1px 3px rgba(10, 20, 45, 0.65)" }}
-                      >
-                        Rezeption
-                      </span>
-                    </div>
-                    <div />
-                    <div className="flex items-end justify-between gap-4 text-foreground/90">
-                      <div>
-                        <span className="label-eyebrow">Dr. med. Maher Madi</span>
-                        <p
-                          className="font-serif text-[15px] mt-1"
-                          style={{ textShadow: "0 1px 3px rgba(15, 20, 35, 0.6)" }}
-                        >
-                          Gastropraxis · Bad Segeberg
-                        </p>
-                      </div>
-                      <div className="hidden min-[430px]:block text-right">
-                        <span className="label-eyebrow">Innere Medizin</span>
-                        <p className="font-serif text-[15px] mt-1">&amp; Gastroenterologie</p>
-                      </div>
-                    </div>
+                  {/* Name am unteren Foto-Rand */}
+                  <div className="absolute inset-x-0 bottom-0 flex items-end p-6 lg:p-8">
+                    <span
+                      className="font-serif text-[18px] lg:text-[20px] leading-tight text-foreground"
+                      style={{ textShadow: "0 1px 3px rgba(10, 20, 45, 0.65)" }}
+                    >
+                      Dr. med. Maher Madi
+                    </span>
                   </div>
                 </div>
                 <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
-                  <span className="label-eyebrow">Abb. I · Empfang</span>
+                  <span className="label-eyebrow">Abb. I · Praxis</span>
                   <span className="label-eyebrow">2024</span>
                 </figcaption>
               </motion.figure>
@@ -787,7 +762,6 @@ export default function Landing() {
                   </div>
                   <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
                     <span className="label-eyebrow">Abb. 02 · Praxis</span>
-                    <span className="label-eyebrow">Bad Segeberg</span>
                   </figcaption>
                 </div>
                 </SwipeRow>
@@ -857,7 +831,6 @@ export default function Landing() {
                       {s.body}
                     </p>
                     <div className="mt-auto flex items-center justify-between gap-3 border-t border-border pt-6">
-                      <span className="label-eyebrow">Kapitel I</span>
                       <a href="#termin" className="inline-flex items-center gap-1.5 text-[12.5px] tracking-tight text-foreground/70 hover:text-foreground transition-colors">
                         Sprechstunde anfragen <ArrowUpRight className="h-3.5 w-3.5" />
                       </a>
@@ -1136,11 +1109,7 @@ export default function Landing() {
                   </a>
                   <a href="mailto:Gastroenterologie-Segeberg@web.de" className="group flex items-center justify-between border-t border-border pt-4">
                     <span className="flex items-center gap-2 text-[13.5px] text-muted-foreground"><Mail className="h-3.5 w-3.5" /> E-Mail</span>
-                    <span className="text-[14px] tracking-tight group-hover:text-foreground truncate ml-2">Gastroenterologie-Segeberg@web.de</span>
-                  </a>
-                  <a href="#sprechzeiten" className="group flex items-center justify-between border-t border-b border-border py-4">
-                    <span className="flex items-center gap-2 text-[13.5px] text-muted-foreground"><CalendarDays className="h-3.5 w-3.5" /> Sprechzeiten</span>
-                    <span className="text-[13.5px] tracking-tight text-foreground/80 group-hover:text-foreground">Mo – Fr · ab 08:00</span>
+                    <span className="ml-2 min-w-0 break-words text-[14px] tracking-tight group-hover:text-foreground">Gastroenterologie-Segeberg@web.de</span>
                   </a>
                 </div>
 
@@ -1176,7 +1145,7 @@ export default function Landing() {
               </div>
               <p className="mt-6 text-[13.5px] leading-relaxed text-muted-foreground max-w-[44ch]">
                 Facharzt für Innere Medizin und Gastroenterologie. Diagnostik, Vorsorge
-                und Therapie — in einer ruhigen Praxis im Herzen Bad Segebergs.
+                und Therapie — in einer ruhigen Praxis in Bad Segeberg.
               </p>
             </div>
             <div className="col-span-12 min-[430px]:col-span-6 lg:col-span-3">
