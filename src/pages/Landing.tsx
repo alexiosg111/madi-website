@@ -88,11 +88,11 @@ const SERVICES = [
 ];
 
 const HOURS = [
-  { day: "Montag", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
-  { day: "Dienstag", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
-  { day: "Mittwoch", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
-  { day: "Donnerstag", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
-  { day: "Freitag", open: "08:30 – 11:30", close: "—", note: "" },
+  { day: "Montag", open: "08:30 – 11:30", close: "15:00 – 15:30" },
+  { day: "Dienstag", open: "08:30 – 11:30", close: "15:00 – 15:30" },
+  { day: "Mittwoch", open: "08:30 – 11:30", close: "15:00 – 15:30" },
+  { day: "Donnerstag", open: "08:30 – 11:30", close: "15:00 – 15:30" },
+  { day: "Freitag", open: "08:30 – 11:30", close: "—" },
 ] as const;
 
 type TimelineEntry = { year: string; title: string; place?: string; current?: boolean };
@@ -147,13 +147,13 @@ function SwipeHint() {
   return (
     <div
       aria-hidden
-      className="flex w-20 shrink-0 flex-col items-center justify-center gap-1.5 border-b border-border text-muted-foreground lg:hidden"
+      className="flex w-28 shrink-0 flex-col items-center justify-center gap-2 border-b border-border bg-foreground/[0.04] text-foreground lg:hidden"
     >
-      <span className="flex items-center gap-1">
-        <ArrowLeft className="h-3.5 w-3.5 opacity-50" />
-        <ArrowRight className="h-3.5 w-3.5 animate-pulse" />
+      <span className="flex items-center gap-1.5 text-foreground/80">
+        <ArrowLeft className="h-4 w-4 opacity-40" />
+        <ArrowRight className="h-4 w-4 animate-pulse" />
       </span>
-      <span className="label-eyebrow">Wischen</span>
+      <span className="label-eyebrow text-foreground/85">Wischen</span>
     </div>
   );
 }
@@ -278,9 +278,6 @@ export default function Landing() {
               />
               <span className="min-w-0 leading-tight">
                 <span className="block font-serif text-[19px] font-bold leading-tight tracking-tight sm:text-[34px]">Dr. med.<br className="sm:hidden" />Maher Madi</span>
-                <span className="hidden sm:block text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-                  Gastropraxis · Bad Segeberg
-                </span>
               </span>
             </a>
             <div className="flex items-center gap-2.5">
@@ -536,17 +533,12 @@ export default function Landing() {
           <div className="mt-10 lg:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-12">
             {/* Textspalte */}
             <div className="lg:col-span-6 flex flex-col justify-end">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <span className="h-px w-8 bg-foreground/40" />
-                <Eyebrow>Innere Medizin &amp; Gastroenterologie</Eyebrow>
-              </div>
-
               {/* Headline — der Markenname, mit Luft zum Atmen */}
               <motion.h1
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
-                className="mt-7 lg:mt-9 font-serif text-[44px] min-[420px]:text-[52px] sm:text-[68px] lg:text-[84px] xl:text-[96px] leading-[1.08] sm:leading-[1.04] tracking-[-0.015em] text-balance"
+                className="font-serif text-[34px] min-[420px]:text-[46px] sm:text-[68px] lg:text-[84px] xl:text-[96px] leading-[1.08] sm:leading-[1.04] tracking-[-0.015em] text-balance"
               >
                 <span className="block">Gastropraxis</span>
                 <span className="block">Bad Segeberg.</span>
@@ -763,7 +755,7 @@ export default function Landing() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12 sm:py-24 lg:py-32">
           <div className="flex items-end justify-between gap-6 flex-wrap">
             <div>
-              <Eyebrow>Leistungen · Kapitel I</Eyebrow>
+              <Eyebrow>Leistungen</Eyebrow>
               <motion.h2
                 {...fadeUp}
                 className="mt-4 font-serif text-[36px] lg:text-[52px] leading-[1.05] tracking-[-0.01em] max-w-[20ch] text-balance"
@@ -861,7 +853,7 @@ export default function Landing() {
       {/* DIAGNOSTIK SPREAD */}
       <section id="diagnostik" className="cv-auto border-t border-border bg-card">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12 sm:py-24 lg:py-32">
-          <Rule>Kapitel II · Perspektive</Rule>
+          <Rule>Perspektive</Rule>
           <div className="mt-10 grid grid-cols-12 gap-x-8 gap-y-10">
             <div className="col-span-12 lg:col-span-7">
               <h2 className="font-serif text-[34px] lg:text-[46px] leading-[1.06] tracking-[-0.01em] max-w-[22ch] text-balance">
@@ -878,12 +870,11 @@ export default function Landing() {
           </div>
 
           <div className="mt-10 lg:mt-16">
-            <div className="mb-3 flex items-center justify-between lg:hidden">
-              <span className="label-eyebrow">Sprechzeiten &amp; Lage</span>
-              <span className="inline-flex items-center gap-1 label-eyebrow">
-                <ArrowLeft className="h-3.5 w-3.5 opacity-50" />
+            <div className="mb-3 flex items-center justify-between gap-3 lg:hidden">
+              <span className="label-eyebrow">Sprechzeiten → Lage</span>
+              <span className="inline-flex shrink-0 items-center gap-1.5 rounded-[2px] border border-border bg-foreground/[0.04] px-2.5 py-1.5 label-eyebrow text-foreground/85">
                 <ArrowRight className="h-3.5 w-3.5 animate-pulse" />
-                Zum Wischen
+                Wischen
               </span>
             </div>
             <SwipeRow className="lg:grid lg:grid-cols-2 lg:gap-px lg:bg-border">
@@ -906,11 +897,10 @@ export default function Landing() {
                 {HOURS.map((h) => (
                   <div key={h.day} className="grid grid-cols-12 gap-x-3 gap-y-1 py-3.5 items-baseline">
                     <div className="col-span-5 sm:col-span-4 font-serif text-[16px]">{h.day}</div>
-                    <div className="col-span-7 sm:col-span-6 text-[13.5px] tabular-nums text-foreground/85">
+                    <div className="col-span-7 sm:col-span-8 text-[13.5px] tabular-nums text-foreground/85">
                       {h.open}{h.close !== "—" && <span className="text-muted-foreground">{" · "}</span>}
                       {h.close !== "—" && h.close}
                     </div>
-                    <div className="col-span-12 sm:col-span-2 text-left sm:text-right text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{h.note}</div>
                   </div>
                 ))}
               </div>
@@ -1051,7 +1041,7 @@ export default function Landing() {
       {/* KONTAKT / Termin */}
       <section id="kontakt" className="cv-auto border-t border-border bg-card">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12 sm:py-24 lg:py-32">
-          <Rule>Kapitel III · Kontakt</Rule>
+          <Rule>Kontakt</Rule>
           <div className="mt-10 grid grid-cols-12 gap-x-8 gap-y-12">
             <div className="col-span-12 lg:col-span-7">
               <h2 id="termin" className="font-serif text-[40px] lg:text-[60px] leading-[1.04] tracking-[-0.01em] text-balance">
