@@ -92,7 +92,7 @@ const HOURS = [
   { day: "Dienstag", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
   { day: "Mittwoch", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
   { day: "Donnerstag", open: "08:30 – 11:30", close: "15:00 – 15:30", note: "Vormittag & Spät" },
-  { day: "Freitag", open: "Nach Vereinbarung", close: "—", note: "" },
+  { day: "Freitag", open: "08:30 – 11:30", close: "—", note: "" },
 ] as const;
 
 type TimelineEntry = { year: string; title: string; place?: string; current?: boolean };
@@ -546,7 +546,7 @@ export default function Landing() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
-                className="mt-7 lg:mt-9 font-serif text-[44px] min-[420px]:text-[52px] sm:text-[68px] lg:text-[84px] xl:text-[96px] leading-[1.03] sm:leading-[0.98] tracking-[-0.015em] text-balance"
+                className="mt-7 lg:mt-9 font-serif text-[44px] min-[420px]:text-[52px] sm:text-[68px] lg:text-[84px] xl:text-[96px] leading-[1.08] sm:leading-[1.04] tracking-[-0.015em] text-balance"
               >
                 <span className="block">Gastropraxis</span>
                 <span className="block">Bad Segeberg.</span>
@@ -579,7 +579,7 @@ export default function Landing() {
               </div>
             </div>
 
-            {/* Cover-Spalte — Empfangsfoto als gerahmter Anker */}
+            {/* Cover-Spalte — Praxis-Foto als gerahmter Anker */}
             <div className="lg:col-span-6">
               <motion.figure
                 initial={{ opacity: 0, y: 16 }}
@@ -588,35 +588,19 @@ export default function Landing() {
                 className="relative"
               >
                 <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[5/6] overflow-hidden rounded-[2px] border border-border bg-muted">
-                  {/* Empfangsbereich (hochgeladenes Bild) */}
                   <img
                     src="/assets/praxis_1.jpeg"
-                    alt="Praxis der Gastropraxis Bad Segeberg — eine ruhige, modern gestaltete Praxis mit beleuchteter Theke und natürlichem Licht."
+                    alt="Praxis der Gastropraxis Bad Segeberg — eine ruhige, modern gestaltete Praxis mit natürlichem Licht."
                     className="absolute inset-0 h-full w-full object-cover"
                     loading="eager"
                     decoding="async"
                     // @ts-expect-error — fetchpriority is valid in React 19+
                     fetchpriority="high"
                   />
-                  {/* Weicher Verlauf unten für gut lesbare Beschriftung */}
-                  <div
-                    aria-hidden
-                    className="absolute inset-x-0 bottom-0 h-2/5"
-                    style={{
-                      background:
-                        "linear-gradient(to top, var(--background) 0%, color-mix(in oklch, var(--background) 80%, transparent) 25%, transparent 100%)",
-                    }}
-                  />
-                  {/* Name am unteren Foto-Rand */}
-                  <div className="absolute inset-x-0 bottom-0 flex items-end p-6 lg:p-8">
-                    <span
-                      className="font-serif text-[18px] lg:text-[20px] leading-tight text-foreground"
-                      style={{ textShadow: "0 1px 3px rgba(10, 20, 45, 0.65)" }}
-                    >
-                      Dr. med. Maher Madi
-                    </span>
-                  </div>
                 </div>
+                <figcaption className="mt-3 text-[11.5px] text-muted-foreground">
+                  <span className="font-serif text-[16px] leading-tight text-foreground/90">Dr. med. Maher Madi</span>
+                </figcaption>
               </motion.figure>
             </div>
           </div>
@@ -705,9 +689,8 @@ export default function Landing() {
                   ruhige Abläufe, ausführliche Gespräche und Befunde, die verständlich bleiben.
                 </p>
                 <p>
-                  Wir arbeiten nach den Leitlinien der Deutschen Gesellschaft für Gastroenterologie,
-                  Verdauungs- und Stoffwechselkrankheiten (DGVS) und stimmen uns eng mit Hausärzten
-                  und Kliniken der Region ab.
+                  Wir arbeiten nach den aktuellen Leitlinien der Fachgesellschaften und stimmen uns
+                  eng mit Hausärzten und Kliniken der Region ab.
                 </p>
               </div>
               <div className="mt-10 flex flex-wrap gap-3">
@@ -740,8 +723,7 @@ export default function Landing() {
                   </div>
                   <figcaption className="mt-3 flex items-end justify-between gap-4 text-[11.5px] text-muted-foreground">
                     <div>
-                      <span className="label-eyebrow">Abb. 01 · Porträt</span>
-                      <p className="mt-1 font-serif text-[16px] leading-tight text-foreground/90">Dr. med. Maher Madi</p>
+                      <p className="font-serif text-[16px] leading-tight text-foreground/90">Dr. med. Maher Madi</p>
                       <p className="mt-1 text-[11px] leading-snug">Facharzt für Innere Medizin &amp; Gastroenterologie</p>
                     </div>
                     <span className="label-eyebrow">MM · 2024</span>
@@ -759,24 +741,17 @@ export default function Landing() {
                       decoding="async"
                     />
                   </div>
-                  <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
-                    <span className="label-eyebrow">Abb. 02 · Praxis</span>
-                  </figcaption>
+
                 </div>
                 </SwipeRow>
               </motion.figure>
 
               {/* Credentials strip */}
-              <div className="mt-8 border-t border-border pt-6 grid grid-cols-2 gap-y-6 gap-x-4">
-                {[
-                  { v: "25+", l: "Jahre klinische Erfahrung" },
-                  { v: "DGVS", l: "Gastroenterologie" },
-                ].map((c) => (
-                  <div key={c.l} className="border-l border-border pl-4">
-                    <div className="font-serif text-2xl">{c.v}</div>
-                    <div className="mt-1 text-[12px] leading-snug text-muted-foreground">{c.l}</div>
-                  </div>
-                ))}
+              <div className="mt-8 border-t border-border pt-6">
+                <div className="border-l border-border pl-4">
+                  <div className="font-serif text-2xl">25+</div>
+                  <div className="mt-1 text-[12px] leading-snug text-muted-foreground">Jahre klinische Erfahrung</div>
+                </div>
               </div>
             </div>
           </div>
@@ -925,7 +900,7 @@ export default function Landing() {
                 während der Sprechzeiten unter{" "}
                 <a href="tel:+494551882977" className="underline text-foreground/80 hover:text-foreground">04551-882977</a>
                 {" "}oder per E-Mail unter{" "}
-                <a href="mailto:Gastroenterologie-Segeberg@web.de" className="underline text-foreground/80 hover:text-foreground">Gastroenterologie-Segeberg@web.de</a>.
+                <a href="mailto:Gastroenterologie-Segeberg@web.de" className="underline break-words text-foreground/80 hover:text-foreground">Gastroenterologie-Segeberg@web.de</a>.
               </p>
               <div id="sprechzeiten" className="mt-8 divide-y divide-border border-y border-border">
                 {HOURS.map((h) => (
