@@ -906,10 +906,46 @@ export default function Landing() {
 
           <div className="mt-10 lg:mt-16">
             <div className="mb-3 flex items-center justify-between lg:hidden">
-              <span className="label-eyebrow">Lage &amp; Sprechzeiten</span>
-              <span className="label-eyebrow">Zum Wischen</span>
+              <span className="label-eyebrow">Sprechzeiten &amp; Lage</span>
+              <span className="inline-flex items-center gap-1 label-eyebrow">
+                <ArrowLeft className="h-3.5 w-3.5 opacity-50" />
+                <ArrowRight className="h-3.5 w-3.5 animate-pulse" />
+                Zum Wischen
+              </span>
             </div>
             <SwipeRow className="lg:grid lg:grid-cols-2 lg:gap-px lg:bg-border">
+            {/* Sprechzeiten */}
+            <motion.div {...fadeUp} className="w-[85vw] max-w-[400px] snap-start shrink-0 border border-border bg-card p-7 lg:w-auto lg:max-w-none lg:border-0 lg:p-10">
+              <div className="flex items-center justify-between">
+                <Eyebrow>Sprechzeiten</Eyebrow>
+                <Clock className="h-4 w-4 text-foreground/70" />
+              </div>
+              <h3 className="mt-6 font-serif text-2xl">Wir sind für Sie da.</h3>
+              <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground max-w-[36ch]">
+                Wir bitten um Terminvereinbarung. Praxisanschrift: Dahlienstr. 19b, 23795 Bad Segeberg.
+                In akuten Fällen erreichen Sie uns telefonisch
+                während der Sprechzeiten unter{" "}
+                <a href="tel:+494551882977" className="underline text-foreground/80 hover:text-foreground">04551-882977</a>
+                {" "}oder per E-Mail unter{" "}
+                <a href="mailto:Gastroenterologie-Segeberg@web.de" className="underline text-foreground/80 hover:text-foreground">Gastroenterologie-Segeberg@web.de</a>.
+              </p>
+              <div id="sprechzeiten" className="mt-8 divide-y divide-border border-y border-border">
+                {HOURS.map((h) => (
+                  <div key={h.day} className="grid grid-cols-12 gap-x-3 gap-y-1 py-3.5 items-baseline">
+                    <div className="col-span-5 sm:col-span-4 font-serif text-[16px]">{h.day}</div>
+                    <div className="col-span-7 sm:col-span-6 text-[13.5px] tabular-nums text-foreground/85">
+                      {h.open}{h.close !== "—" && <span className="text-muted-foreground">{" · "}</span>}
+                      {h.close !== "—" && h.close}
+                    </div>
+                    <div className="col-span-12 sm:col-span-2 text-left sm:text-right text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{h.note}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 flex items-center justify-between text-[12px] text-muted-foreground">
+                <span className="flex items-center gap-2"><Sun className="h-3.5 w-3.5" /> Jetzt: <span className="tabular-nums text-foreground">{now || "—"}</span> Uhr</span>
+                <span>und nach Vereinbarung.</span>
+              </div>
+            </motion.div>
             {/* Map / Lage card */}
             <motion.div {...fadeUp} className="w-[85vw] max-w-[400px] snap-start shrink-0 border border-border bg-card p-5 lg:w-auto lg:max-w-none lg:border-0 lg:p-10">
               <div className="flex items-center justify-between">
@@ -954,38 +990,7 @@ export default function Landing() {
               </div>
             </motion.div>
 
-            {/* Sprechzeiten */}
-            <motion.div {...fadeUp} className="w-[85vw] max-w-[400px] snap-start shrink-0 border border-border bg-card p-7 lg:w-auto lg:max-w-none lg:border-0 lg:p-10">
-              <div className="flex items-center justify-between">
-                <Eyebrow>Sprechzeiten</Eyebrow>
-                <Clock className="h-4 w-4 text-foreground/70" />
-              </div>
-              <h3 className="mt-6 font-serif text-2xl">Wir sind für Sie da.</h3>
-              <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground max-w-[36ch]">
-                Wir bitten um Terminvereinbarung. Praxisanschrift: Dahlienstr. 19b, 23795 Bad Segeberg.
-                In akuten Fällen erreichen Sie uns telefonisch
-                während der Sprechzeiten unter{" "}
-                <a href="tel:+494551882977" className="underline text-foreground/80 hover:text-foreground">04551-882977</a>
-                {" "}oder per E-Mail unter{" "}
-                <a href="mailto:Gastroenterologie-Segeberg@web.de" className="underline text-foreground/80 hover:text-foreground">Gastroenterologie-Segeberg@web.de</a>.
-              </p>
-              <div id="sprechzeiten" className="mt-8 divide-y divide-border border-y border-border">
-                {HOURS.map((h) => (
-                  <div key={h.day} className="grid grid-cols-12 gap-x-3 gap-y-1 py-3.5 items-baseline">
-                    <div className="col-span-5 sm:col-span-4 font-serif text-[16px]">{h.day}</div>
-                    <div className="col-span-7 sm:col-span-6 text-[13.5px] tabular-nums text-foreground/85">
-                      {h.open}{h.close !== "—" && <span className="text-muted-foreground">{" · "}</span>}
-                      {h.close !== "—" && h.close}
-                    </div>
-                    <div className="col-span-12 sm:col-span-2 text-left sm:text-right text-[11px] uppercase tracking-[0.14em] text-muted-foreground">{h.note}</div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 flex items-center justify-between text-[12px] text-muted-foreground">
-                <span className="flex items-center gap-2"><Sun className="h-3.5 w-3.5" /> Jetzt: <span className="tabular-nums text-foreground">{now || "—"}</span> Uhr</span>
-                <span>und nach Vereinbarung.</span>
-              </div>
-            </motion.div>
+            <SwipeHint />
             </SwipeRow>
           </div>
         </div>
