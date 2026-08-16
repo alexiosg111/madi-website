@@ -184,10 +184,14 @@
     display: none;
   }
   /* Off-screen sections skip rendering entirely — the single biggest win
-     for smooth scroll FPS on a long landing page. */
-  .cv-auto {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 1200px;
+     for smooth scroll FPS on a long landing page. Only active on desktop:
+     on Android Chrome, content-visibility can clip/cut off section text at
+     small viewports, so mobile keeps plain rendering. */
+  @media (min-width: 1024px) {
+    .cv-auto {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 1200px;
+    }
   }
 }
 

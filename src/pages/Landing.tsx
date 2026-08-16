@@ -135,7 +135,7 @@ function Rule({ children }: { children?: React.ReactNode }) {
 function SwipeRow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <div
-      className={`no-scrollbar -mx-6 px-6 lg:mx-0 lg:px-0 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [will-change:scroll-position] lg:snap-none ${className}`}
+      className={`no-scrollbar -mx-6 px-6 lg:mx-0 lg:px-0 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] lg:snap-none ${className}`}
     >
       {children}
     </div>
@@ -867,13 +867,17 @@ export default function Landing() {
 
           <div className="mt-10 lg:mt-16">
             <div className="mb-4 flex items-center justify-between gap-3 lg:hidden">
-              <span className="label-eyebrow">Sprechzeiten</span>
-              <span className="inline-flex shrink-0 items-center gap-2 rounded-[2px] border border-foreground/25 bg-foreground/10 px-3 py-2 label-eyebrow text-foreground">
+              <span className="inline-flex items-center gap-2 label-eyebrow">
+                <ArrowLeft className="h-4 w-4 opacity-50" />
                 <ArrowRight className="h-4 w-4 animate-pulse" />
-                Wischen → Karte
+              </span>
+              <span className="inline-flex shrink-0 items-center gap-2 rounded-[3px] border border-foreground bg-foreground px-3.5 py-2 shadow-sm">
+                <ArrowRight className="h-4 w-4 animate-pulse text-background" />
+                <span className="label-eyebrow !text-background">Sprechzeiten → Karte</span>
               </span>
             </div>
-            <SwipeRow className="lg:grid lg:grid-cols-2 lg:gap-px lg:bg-border">
+            <div className="relative">
+              <SwipeRow className="lg:grid lg:grid-cols-2 lg:gap-px lg:bg-border">
             {/* Sprechzeiten */}
             <motion.div {...fadeUp} className="w-[85vw] max-w-[400px] snap-start shrink-0 border border-border bg-card p-7 lg:w-auto lg:max-w-none lg:border-0 lg:p-10">
               <div className="flex items-center justify-between">
@@ -950,6 +954,12 @@ export default function Landing() {
 
             <SwipeHint />
             </SwipeRow>
+            {/* Rechte Kante: dezenter Verlauf, der weiteres Wischen ankündigt */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-card via-card/70 to-transparent lg:hidden"
+            />
+            </div>
           </div>
         </div>
       </section>
