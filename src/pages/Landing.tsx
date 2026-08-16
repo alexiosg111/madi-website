@@ -147,13 +147,13 @@ function SwipeHint() {
   return (
     <div
       aria-hidden
-      className="flex w-28 shrink-0 flex-col items-center justify-center gap-2 border-b border-border bg-foreground/[0.04] text-foreground lg:hidden"
+      className="flex w-32 shrink-0 flex-col items-center justify-center gap-2.5 border-b border-border bg-foreground/[0.06] text-foreground lg:hidden"
     >
-      <span className="flex items-center gap-1.5 text-foreground/80">
-        <ArrowLeft className="h-4 w-4 opacity-40" />
-        <ArrowRight className="h-4 w-4 animate-pulse" />
+      <span className="flex items-center gap-2 text-foreground/90">
+        <ArrowLeft className="h-5 w-5 opacity-40" />
+        <ArrowRight className="h-5 w-5 animate-pulse" />
       </span>
-      <span className="label-eyebrow text-foreground/85">Wischen</span>
+      <span className="label-eyebrow text-foreground">Weiter wischen</span>
     </div>
   );
 }
@@ -318,8 +318,8 @@ export default function Landing() {
               <div className="flex min-w-0 items-center gap-2.5">
                 <span className="label-eyebrow tabular-nums">{String(activeIndex + 1).padStart(2, "0")}</span>
                 <span aria-hidden className="h-px w-4 shrink-0 bg-foreground/30" />
-                <span className="relative block h-[14px] overflow-hidden">
-                  <span aria-hidden className="invisible inline-block whitespace-nowrap text-[10.5px] uppercase tracking-[0.18em] leading-none">{activeLabel}</span>
+                <span className="relative block h-[16px] overflow-hidden">
+                  <span aria-hidden className="invisible inline-block whitespace-nowrap text-[10.5px] uppercase tracking-[0.18em] leading-tight">{activeLabel}</span>
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span
                       key={active}
@@ -327,7 +327,7 @@ export default function Landing() {
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -12, opacity: 0 }}
                       transition={{ duration: 0.25, ease: [0.22, 0.61, 0.36, 1] }}
-                      className="absolute left-0 top-0 block whitespace-nowrap text-[10.5px] uppercase tracking-[0.18em] leading-none text-foreground/90"
+                      className="absolute left-0 top-0 block whitespace-nowrap text-[10.5px] uppercase tracking-[0.18em] leading-tight text-foreground/90"
                     >
                       {activeLabel}
                     </motion.span>
@@ -404,8 +404,8 @@ export default function Landing() {
                     {String(activeIndex + 1).padStart(2, "0")} / {String(CHAPTER_COUNT).padStart(2, "0")}
                   </span>
                   <span aria-hidden className="h-px w-4 bg-foreground/30" />
-                  <span className="relative block h-[16px] overflow-hidden">
-                    <span aria-hidden className="invisible inline-block whitespace-nowrap font-serif italic text-[15px] leading-none">{activeLabel}</span>
+                  <span className="relative block h-[20px] overflow-hidden">
+                    <span aria-hidden className="invisible inline-block whitespace-nowrap font-serif italic text-[15px] leading-tight">{activeLabel}</span>
                     <AnimatePresence mode="wait" initial={false}>
                       <motion.span
                         key={active}
@@ -413,7 +413,7 @@ export default function Landing() {
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -12, opacity: 0 }}
                         transition={{ duration: 0.22, ease: [0.22, 0.61, 0.36, 1] }}
-                        className="absolute left-0 top-0 block whitespace-nowrap font-serif italic text-[15px] leading-none"
+                        className="absolute left-0 top-0 block whitespace-nowrap font-serif italic text-[15px] leading-tight"
                       >
                         {activeLabel}
                       </motion.span>
@@ -489,8 +489,8 @@ export default function Landing() {
                   {String(activeIndex + 1).padStart(2, "0")} / {String(CHAPTER_COUNT).padStart(2, "0")}
                 </span>
                 <span aria-hidden className="hidden h-px w-5 shrink-0 bg-foreground/30 sm:block" />
-                <span className="relative block h-[18px] shrink-0 overflow-hidden">
-                  <span aria-hidden className="invisible inline-block whitespace-nowrap font-serif italic text-[16px] leading-none">{activeLabel}</span>
+                <span className="relative block h-[22px] shrink-0 overflow-hidden">
+                  <span aria-hidden className="invisible inline-block whitespace-nowrap font-serif italic text-[16px] leading-tight">{activeLabel}</span>
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span
                       key={active}
@@ -498,7 +498,7 @@ export default function Landing() {
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -16, opacity: 0 }}
                       transition={{ duration: 0.28, ease: [0.22, 0.61, 0.36, 1] }}
-                      className="absolute left-0 top-0 block whitespace-nowrap font-serif italic text-[16px] leading-none text-foreground"
+                      className="absolute left-0 top-0 block whitespace-nowrap font-serif italic text-[16px] leading-tight text-foreground"
                     >
                       {activeLabel}
                     </motion.span>
@@ -532,7 +532,7 @@ export default function Landing() {
           {/* Editorialer Doppelspalt — Text links, Cover rechts */}
           <div className="mt-10 lg:mt-16 grid grid-cols-1 lg:grid-cols-12 gap-x-10 gap-y-12">
             {/* Textspalte */}
-            <div className="lg:col-span-6 flex flex-col justify-end">
+            <div className="lg:col-span-6 flex min-w-0 flex-col justify-end">
               {/* Headline — der Markenname, mit Luft zum Atmen */}
               <motion.h1
                 initial={{ opacity: 0, y: 24 }}
@@ -572,7 +572,7 @@ export default function Landing() {
             </div>
 
             {/* Cover-Spalte — Praxis-Foto als gerahmter Anker */}
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-6 min-w-0">
               <motion.figure
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -582,17 +582,17 @@ export default function Landing() {
                 <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[5/6] overflow-hidden rounded-[2px] border border-border bg-muted">
                   <img
                     src="/assets/praxis_1.jpeg"
-                    alt="Praxis der Gastropraxis Bad Segeberg — eine ruhige, modern gestaltete Praxis mit natürlichem Licht."
+                    alt="Ruhige, modern gestaltete Praxisräume der Gastropraxis."
                     className="absolute inset-0 h-full w-full object-cover"
                     loading="eager"
                     decoding="async"
                     // @ts-expect-error — fetchpriority is valid in React 19+
                     fetchpriority="high"
                   />
+                  <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent px-4 pb-3 pt-14 sm:px-5 sm:pb-4">
+                    <span className="font-serif text-[17px] leading-tight text-white sm:text-[19px]">Dr. med. Maher Madi</span>
+                  </figcaption>
                 </div>
-                <figcaption className="mt-3 text-[11.5px] text-muted-foreground">
-                  <span className="font-serif text-[16px] leading-tight text-foreground/90">Dr. med. Maher Madi</span>
-                </figcaption>
               </motion.figure>
             </div>
           </div>
@@ -640,10 +640,7 @@ export default function Landing() {
                   transition={{ duration: 0.6, delay: 0.08 * i, ease: [0.22, 0.61, 0.36, 1] }}
                   className="group relative w-[85vw] max-w-[400px] snap-start shrink-0 border-r border-b border-border p-7 lg:p-10 lg:w-1/3 lg:max-w-none lg:border-b-0 last:border-r-0 transition-colors duration-500 hover:bg-card/60"
                 >
-                  <div className="flex items-center justify-between">
-                    <Eyebrow>{c.k}</Eyebrow>
-                    <span className="font-serif text-muted-foreground/70 text-sm">{String(i + 1).padStart(2, "0")} / 03</span>
-                  </div>
+                  <Eyebrow>{c.k}</Eyebrow>
                   <h3 className="mt-6 font-serif text-2xl leading-tight transition-colors group-hover:text-foreground/80">
                     {c.title}
                   </h3>
@@ -784,8 +781,7 @@ export default function Landing() {
               {SERVICES.map((s) => (
                 <CarouselItem key={s.title} className="pl-3 md:pl-4 basis-[85%] md:basis-1/2 lg:basis-1/3">
                   <article className="group relative flex h-full flex-col border border-border bg-card p-7 lg:p-9 transition-colors duration-500 hover:bg-card/70">
-                    <div className="flex items-center justify-between">
-                      <span className="font-serif text-sm text-muted-foreground/80 tracking-tight">{s.n}</span>
+                    <div className="flex items-center justify-end">
                       <s.icon className="h-4 w-4 text-foreground/70 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                     </div>
                     <h3 className="mt-6 font-serif text-[26px] lg:text-[30px] leading-tight">{s.title}</h3>
@@ -855,7 +851,7 @@ export default function Landing() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12 sm:py-24 lg:py-32">
           <Rule>Perspektive</Rule>
           <div className="mt-10 grid grid-cols-12 gap-x-8 gap-y-10">
-            <div className="col-span-12 lg:col-span-7">
+            <div className="col-span-12 min-w-0 lg:col-span-7">
               <h2 className="font-serif text-[34px] lg:text-[46px] leading-[1.06] tracking-[-0.01em] max-w-[22ch] text-balance">
                 Eine Diagnostik, die Zeit lässt — und Klarheit schafft.
               </h2>
@@ -870,11 +866,11 @@ export default function Landing() {
           </div>
 
           <div className="mt-10 lg:mt-16">
-            <div className="mb-3 flex items-center justify-between gap-3 lg:hidden">
-              <span className="label-eyebrow">Sprechzeiten → Lage</span>
-              <span className="inline-flex shrink-0 items-center gap-1.5 rounded-[2px] border border-border bg-foreground/[0.04] px-2.5 py-1.5 label-eyebrow text-foreground/85">
-                <ArrowRight className="h-3.5 w-3.5 animate-pulse" />
-                Wischen
+            <div className="mb-4 flex items-center justify-between gap-3 lg:hidden">
+              <span className="label-eyebrow">Sprechzeiten</span>
+              <span className="inline-flex shrink-0 items-center gap-2 rounded-[2px] border border-foreground/25 bg-foreground/10 px-3 py-2 label-eyebrow text-foreground">
+                <ArrowRight className="h-4 w-4 animate-pulse" />
+                Wischen → Karte
               </span>
             </div>
             <SwipeRow className="lg:grid lg:grid-cols-2 lg:gap-px lg:bg-border">
@@ -1043,7 +1039,7 @@ export default function Landing() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-12 sm:py-24 lg:py-32">
           <Rule>Kontakt</Rule>
           <div className="mt-10 grid grid-cols-12 gap-x-8 gap-y-12">
-            <div className="col-span-12 lg:col-span-7">
+            <div className="col-span-12 min-w-0 lg:col-span-7">
               <h2 id="termin" className="font-serif text-[40px] lg:text-[60px] leading-[1.04] tracking-[-0.01em] text-balance">
                 Termin in der<br />
                 Gastropraxis.
