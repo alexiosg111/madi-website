@@ -321,7 +321,8 @@ export default function Landing() {
               <div className="flex min-w-0 items-center gap-2.5">
                 <span className="label-eyebrow tabular-nums">{String(activeIndex + 1).padStart(2, "0")}</span>
                 <span aria-hidden className="h-px w-4 shrink-0 bg-foreground/30" />
-                <span className="relative block h-[14px] min-w-[7ch] overflow-hidden">
+                <span className="relative block h-[14px] overflow-hidden">
+                  <span aria-hidden className="invisible inline-block whitespace-nowrap text-[10.5px] uppercase tracking-[0.18em] leading-none">{activeLabel}</span>
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span
                       key={active}
@@ -329,7 +330,7 @@ export default function Landing() {
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: -12, opacity: 0 }}
                       transition={{ duration: 0.25, ease: [0.22, 0.61, 0.36, 1] }}
-                      className="absolute left-0 top-0 block whitespace-nowrap text-[10.5px] uppercase tracking-[0.18em] text-foreground/90"
+                      className="absolute left-0 top-0 block whitespace-nowrap text-[10.5px] uppercase tracking-[0.18em] leading-none text-foreground/90"
                     >
                       {activeLabel}
                     </motion.span>
@@ -406,7 +407,8 @@ export default function Landing() {
                     {String(activeIndex + 1).padStart(2, "0")} / {String(CHAPTER_COUNT).padStart(2, "0")}
                   </span>
                   <span aria-hidden className="h-px w-4 bg-foreground/30" />
-                  <span className="relative block h-[16px] min-w-[6ch] overflow-hidden">
+                  <span className="relative block h-[16px] overflow-hidden">
+                    <span aria-hidden className="invisible inline-block whitespace-nowrap font-serif italic text-[15px] leading-none">{activeLabel}</span>
                     <AnimatePresence mode="wait" initial={false}>
                       <motion.span
                         key={active}
@@ -451,7 +453,7 @@ export default function Landing() {
               <div className="border-t border-border px-5 py-5 space-y-4">
                 <div className="space-y-2.5 text-[13px] leading-relaxed text-muted-foreground">
                   <p className="flex items-center gap-2"><Phone className="h-3.5 w-3.5 shrink-0" /> 04551-882977</p>
-                  <p className="flex items-center gap-2"><Mail className="h-3.5 w-3.5 shrink-0" /> Gastroenterologie-Segeberg@web.de</p>
+                  <p className="flex items-start gap-2"><Mail className="h-3.5 w-3.5 shrink-0" /> <span className="min-w-0 break-all">Gastroenterologie-Segeberg@web.de</span></p>
                   <p className="flex items-center gap-2"><MapPin className="h-3.5 w-3.5 shrink-0" /> Dahlienstr. 19b, 23795 Bad Segeberg</p>
                 </div>
                 <div className="flex items-center gap-3">
@@ -490,7 +492,8 @@ export default function Landing() {
                   {String(activeIndex + 1).padStart(2, "0")} / {String(CHAPTER_COUNT).padStart(2, "0")}
                 </span>
                 <span aria-hidden className="hidden h-px w-5 shrink-0 bg-foreground/30 sm:block" />
-                <span className="relative block h-[18px] min-w-[6ch] shrink-0 overflow-hidden">
+                <span className="relative block h-[18px] shrink-0 overflow-hidden">
+                  <span aria-hidden className="invisible inline-block whitespace-nowrap font-serif italic text-[16px] leading-none">{activeLabel}</span>
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span
                       key={active}
@@ -614,10 +617,6 @@ export default function Landing() {
                     </span>
                   </div>
                 </div>
-                <figcaption className="mt-3 flex items-center justify-between text-[11.5px] text-muted-foreground">
-                  <span className="label-eyebrow">Abb. I · Praxis</span>
-                  <span className="label-eyebrow">2024</span>
-                </figcaption>
               </motion.figure>
             </div>
           </div>
@@ -768,10 +767,9 @@ export default function Landing() {
               </motion.figure>
 
               {/* Credentials strip */}
-              <div className="mt-8 border-t border-border pt-6 grid grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-4">
+              <div className="mt-8 border-t border-border pt-6 grid grid-cols-2 gap-y-6 gap-x-4">
                 {[
                   { v: "25+", l: "Jahre klinische Erfahrung" },
-                  { v: "DGIM", l: "Deutsche Gesellschaft für Innere Medizin" },
                   { v: "DGVS", l: "Gastroenterologie" },
                 ].map((c) => (
                   <div key={c.l} className="border-l border-border pl-4">
@@ -941,9 +939,8 @@ export default function Landing() {
                   </div>
                 ))}
               </div>
-              <div className="mt-6 flex items-center justify-between text-[12px] text-muted-foreground">
-                <span className="flex items-center gap-2"><Sun className="h-3.5 w-3.5" /> Jetzt: <span className="tabular-nums text-foreground">{now || "—"}</span> Uhr</span>
-                <span>und nach Vereinbarung.</span>
+              <div className="mt-6 flex items-center gap-2 text-[12px] text-muted-foreground">
+                <Sun className="h-3.5 w-3.5" /> Jetzt: <span className="tabular-nums text-foreground">{now || "—"}</span> Uhr
               </div>
             </motion.div>
             {/* Map / Lage card */}
