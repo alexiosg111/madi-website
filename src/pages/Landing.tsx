@@ -92,7 +92,7 @@ const HOURS = [
   { day: "Dienstag", open: "08:30 – 11:30", close: "15:00 – 15:30" },
   { day: "Mittwoch", open: "08:30 – 11:30", close: "15:00 – 15:30" },
   { day: "Donnerstag", open: "08:30 – 11:30", close: "15:00 – 15:30" },
-  { day: "Freitag", open: "08:30 – 11:30", close: "—" },
+  { day: "Freitag", open: "nach Vereinbarung", close: "—" },
 ] as const;
 
 type TimelineEntry = { year: string; title: string; place?: string; current?: boolean };
@@ -701,7 +701,7 @@ export default function Landing() {
                 <SwipeRow className="sm:grid sm:grid-cols-12 sm:items-start sm:gap-x-5 sm:mx-0 sm:px-0 sm:overflow-visible sm:snap-none">
                 {/* Porträt Dr. med. Maher Madi */}
                 <div className="relative w-[85vw] max-w-[400px] snap-start shrink-0 sm:w-auto sm:max-w-none sm:col-span-7">
-                  <div className="relative aspect-[5/4] overflow-hidden rounded-[2px] border border-border bg-secondary/40">
+                  <div className="relative aspect-[3/4] overflow-hidden rounded-[2px] border border-border bg-secondary/40">
                     <img
                       src="/assets/maher_portrait.jpeg"
                       alt="Porträt von Dr. med. Maher Madi, Facharzt für Innere Medizin und Gastroenterologie in Bad Segeberg."
@@ -721,7 +721,7 @@ export default function Landing() {
 
                 {/* Praxis — versetztes Editorial-Frame */}
                 <div className="relative w-[85vw] max-w-[400px] snap-start shrink-0 sm:w-auto sm:max-w-none sm:col-span-5 sm:pt-14">
-                  <div className="relative aspect-[5/4] overflow-hidden rounded-[2px] border border-border bg-secondary/40">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-[2px] border border-border bg-secondary/40">
                     <img
                       src="/assets/praxis_2.jpeg"
                       alt="Behandlungsraum der Gastropraxis Bad Segeberg — moderne, ruhige Ausstattung."
@@ -856,7 +856,7 @@ export default function Landing() {
                 Eine Diagnostik, die Zeit lässt — und Klarheit schafft.
               </h2>
             </div>
-            <div className="col-span-12 lg:col-span-5">
+            <div className="col-span-12 min-w-0 lg:col-span-5">
               <p className="text-[15px] leading-[1.7] text-foreground/85 max-w-[44ch]">
                 Wir glauben, dass eine gute Diagnostik vor allem eines braucht: Zeit für das Gespräch
                 und Geräte, denen man vertrauen kann. Bei uns finden Sie beides — vom hochauflösenden
@@ -995,7 +995,7 @@ export default function Landing() {
                 <span className="label-eyebrow">Laufbahn</span>
                 <span className="label-eyebrow">Zum Wischen</span>
               </div>
-              <ol className="no-scrollbar -mx-6 px-6 lg:mx-0 lg:px-0 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [will-change:scroll-position] lg:block lg:overflow-visible">
+              <ol className="no-scrollbar -mx-6 px-6 lg:mx-0 lg:px-0 flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] lg:block lg:overflow-visible">
               {TIMELINE.map((t, i) => (
                 <motion.li
                   key={t.year}
@@ -1063,7 +1063,7 @@ export default function Landing() {
             </div>
 
             {/* Contact card */}
-            <div className="col-span-12 lg:col-span-5">
+            <div className="col-span-12 min-w-0 lg:col-span-5">
               <div className="border border-border bg-background p-6 lg:p-8 rounded-[2px] h-full flex flex-col">
                 <Eyebrow>Praxisadresse</Eyebrow>
                 <h3 className="mt-5 font-serif text-2xl leading-tight">
