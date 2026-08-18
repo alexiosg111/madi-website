@@ -92,7 +92,7 @@ const HOURS = [
   { day: "Dienstag", open: "08:30 – 11:30", close: "15:00 – 15:30" },
   { day: "Mittwoch", open: "08:30 – 11:30", close: "15:00 – 15:30" },
   { day: "Donnerstag", open: "08:30 – 11:30", close: "15:00 – 15:30" },
-  { day: "Freitag", open: "nach Vereinbarung", close: "—" },
+  { day: "Freitag", open: "—", close: "—" },
 ] as const;
 
 type TimelineEntry = { year: string; title: string; place?: string; current?: boolean };
@@ -318,7 +318,7 @@ export default function Landing() {
               <div className="flex min-w-0 items-center gap-2.5">
                 <span className="label-eyebrow tabular-nums">{String(activeIndex + 1).padStart(2, "0")}</span>
                 <span aria-hidden className="h-px w-4 shrink-0 bg-foreground/30" />
-                <span className="relative block h-[16px] overflow-hidden">
+                <span className="relative block h-[16px] min-w-0 overflow-hidden">
                   <span aria-hidden className="invisible inline-block whitespace-nowrap text-[10.5px] uppercase tracking-[0.18em] leading-tight">{activeLabel}</span>
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span
@@ -333,7 +333,7 @@ export default function Landing() {
                     </motion.span>
                   </AnimatePresence>
                 </span>
-                <span className="shrink-0 text-[9.5px] uppercase tracking-[0.16em] text-muted-foreground/60">
+                <span className="hidden min-[380px]:inline shrink-0 text-[9.5px] uppercase tracking-[0.16em] text-muted-foreground/60">
                   Sie sind hier
                 </span>
               </div>
@@ -404,7 +404,7 @@ export default function Landing() {
                     {String(activeIndex + 1).padStart(2, "0")} / {String(CHAPTER_COUNT).padStart(2, "0")}
                   </span>
                   <span aria-hidden className="h-px w-4 bg-foreground/30" />
-                  <span className="relative block h-[20px] overflow-hidden">
+                  <span className="relative block h-[20px] min-w-0 overflow-hidden">
                     <span aria-hidden className="invisible inline-block whitespace-nowrap font-serif italic text-[15px] leading-tight">{activeLabel}</span>
                     <AnimatePresence mode="wait" initial={false}>
                       <motion.span
@@ -489,7 +489,7 @@ export default function Landing() {
                   {String(activeIndex + 1).padStart(2, "0")} / {String(CHAPTER_COUNT).padStart(2, "0")}
                 </span>
                 <span aria-hidden className="hidden h-px w-5 shrink-0 bg-foreground/30 sm:block" />
-                <span className="relative block h-[22px] shrink-0 overflow-hidden">
+                <span className="relative block h-[22px] min-w-0 overflow-hidden">
                   <span aria-hidden className="invisible inline-block whitespace-nowrap font-serif italic text-[16px] leading-tight">{activeLabel}</span>
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span
@@ -579,7 +579,7 @@ export default function Landing() {
                 transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
                 className="relative"
               >
-                <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[5/6] overflow-hidden rounded-[2px] border border-border bg-muted">
+                <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] overflow-hidden rounded-[2px] border border-border bg-muted">
                   <img
                     src="/assets/praxis_1.jpeg"
                     alt="Ruhige, modern gestaltete Praxisräume der Gastropraxis."

@@ -194,21 +194,17 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
-  /* Off-screen sections skip rendering entirely — the single biggest win
-     for smooth scroll FPS on a long landing page. Only active on desktop:
-     on Android Chrome, content-visibility can clip/cut off section text at
-     small viewports, so mobile keeps plain rendering. */
-  @media (min-width: 1024px) {
-    .cv-auto {
-      content-visibility: auto;
-      contain-intrinsic-size: auto 1200px;
-    }
-  }
+  /* NOTE: content-visibility:auto was intentionally removed — it caused
+     intermittent text cut-off on Android/Chromium, even above 1024px. */
 }
 
 /* Sleek smooth scroll, restrained */
 html {
   scroll-behavior: smooth;
+  /* Prevent Android/Chromium font-boosting from inflating text and
+     clipping it inside fixed-size containers. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* Android/Chromium: prevent accidental horizontal clipping/cut-off of text
@@ -218,10 +214,18 @@ body {
   overflow-x: clip;
 }
 
-/* Sticky-header offset so anchored sections are never hidden */
+/* Sticky-header offset so anchored sections are never hidden.
+   The header is taller on desktop (large logo), so use a bigger offset there. */
 section[id],
 div[id] {
-  scroll-margin-top: 6.75rem;
+  scroll-margin-top: 6.5rem;
+}
+
+@media (min-width: 640px) {
+  section[id],
+  div[id] {
+    scroll-margin-top: 12.5rem;
+  }
 }
 
 /* Focus ring: refined */
