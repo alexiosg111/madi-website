@@ -28,6 +28,7 @@ import {
   Sun,
   X,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 type NavItem = { label: string; href: string };
 const NAV: NavItem[] = [
@@ -39,7 +40,16 @@ const NAV: NavItem[] = [
   { label: "Kontakt", href: "#kontakt" },
 ];
 
-const SERVICES = [
+type Service = {
+  n: string;
+  title: string;
+  sub: string;
+  body: string;
+  icon: LucideIcon;
+  sprite?: "0% 50%" | "50% 50%" | "100% 50%";
+};
+
+const SERVICES: Service[] = [
   {
     n: "01",
     title: "Gastroskopie",
@@ -47,6 +57,7 @@ const SERVICES = [
     body:
       "Diagnostische und therapeutische Spiegelung von Speiseröhre, Magen und Zwölffingerdarm — ambulant, mit schonender Sedierung und moderner HD-Technik.",
     icon: ScanLine,
+    sprite: "0% 50%",
   },
   {
     n: "02",
@@ -63,6 +74,7 @@ const SERVICES = [
     body:
       "Hochauflösender Ultraschall der Bauchgefäße, Oberbauchorgane und der Weichteile — nicht-invasiv, ohne Strahlenbelastung.",
     icon: Activity,
+    sprite: "100% 50%",
   },
   {
     n: "04",
@@ -70,6 +82,7 @@ const SERVICES = [
     sub: "Dünndarm-Diagnostik",
     body: "Kapsel mit einer Miniatur-Kamera zur ambulanten Untersuchung des Dünndarms. Sinnvoll bei unklarer Anämie, Verdacht auf Morbus Crohn oder okkulter Blutung — schmerzfrei und ohne Sedierung.",
     icon: Pill,
+    sprite: "50% 50%",
   },
   {
     n: "05",
@@ -272,7 +285,7 @@ export default function Landing() {
               <img
                 src="/assets/IMG-20260809-WA0019-1.png"
                 alt="Logo der Gastropraxis Bad Segeberg"
-                className="h-14 w-auto object-contain sm:h-[144px]"
+                className="h-14 w-auto shrink-0 object-contain sm:h-[144px]"
                 loading="eager"
                 decoding="async"
               />
@@ -782,7 +795,23 @@ export default function Landing() {
                 <CarouselItem key={s.title} className="pl-3 md:pl-4 basis-[85%] md:basis-1/2 lg:basis-1/3">
                   <article className="group relative flex h-full flex-col border border-border bg-card p-7 lg:p-9 transition-colors duration-500 hover:bg-card/70">
                     <div className="flex items-center justify-end">
-                      <s.icon className="h-4 w-4 text-foreground/70 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-[2px] bg-foreground transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                        {s.sprite ? (
+                          <div
+                            aria-hidden
+                            className="h-8 w-8"
+                            style={{
+                              backgroundImage:
+                                "url(/assets/ChatGPT_Image_18._Aug._2026__21_42_01.png)",
+                              backgroundSize: "300% 100%",
+                              backgroundPosition: `${s.sprite} 50%`,
+                              backgroundRepeat: "no-repeat",
+                            }}
+                          />
+                        ) : (
+                          <s.icon className="h-5 w-5 text-background" />
+                        )}
+                      </div>
                     </div>
                     <h3 className="mt-6 font-serif text-[26px] lg:text-[30px] leading-tight">{s.title}</h3>
                     <p className="mt-2 text-[12.5px] uppercase tracking-[0.16em] text-muted-foreground">
@@ -1107,7 +1136,7 @@ export default function Landing() {
                 <img
                   src="/assets/IMG-20260809-WA0019-1.png"
                   alt="Logo der Gastropraxis Bad Segeberg"
-                  className="h-14 w-auto object-contain sm:h-[144px]"
+                  className="h-14 w-auto shrink-0 object-contain sm:h-[144px]"
                   loading="lazy"
                   decoding="async"
                 />
