@@ -211,7 +211,23 @@ html {
    without creating a scroll container (keeps the sticky header working). */
 html,
 body {
-  overflow-x: clip;
+  overflow-x: hidden;
+}
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+/* Media never exceeds its container — protects against Android/Chromium reflow. */
+img,
+picture,
+video,
+canvas,
+svg,
+iframe {
+  max-width: 100%;
 }
 
 /* Sticky-header offset so anchored sections are never hidden.

@@ -551,7 +551,7 @@ export default function Landing() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
-                className="font-serif text-[34px] min-[420px]:text-[46px] sm:text-[68px] lg:text-[84px] xl:text-[96px] leading-[1.08] sm:leading-[1.04] tracking-[-0.015em] text-balance"
+                className="font-serif text-[clamp(2rem,9.5vw,2.875rem)] sm:text-[68px] lg:text-[84px] xl:text-[96px] leading-[1.08] sm:leading-[1.04] tracking-[-0.015em] text-balance"
               >
                 <span className="block">Gastropraxis</span>
                 <span className="block">Bad Segeberg.</span>
@@ -679,7 +679,7 @@ export default function Landing() {
               <Eyebrow>Über die Praxis</Eyebrow>
               <motion.h2
                 {...fadeUp}
-                className="mt-5 font-serif text-[36px] lg:text-[52px] leading-[1.04] tracking-[-0.01em] text-balance"
+                className="mt-5 font-serif text-[clamp(2rem,8.5vw,2.25rem)] lg:text-[52px] leading-[1.04] tracking-[-0.01em] text-balance"
               >
                 Eine ruhige Praxis,<br />
                 in der Sie als Mensch zählen.
@@ -768,7 +768,7 @@ export default function Landing() {
               <Eyebrow>Leistungen</Eyebrow>
               <motion.h2
                 {...fadeUp}
-                className="mt-4 font-serif text-[36px] lg:text-[52px] leading-[1.05] tracking-[-0.01em] max-w-[20ch] text-balance"
+                className="mt-4 font-serif text-[clamp(2rem,8.5vw,2.25rem)] lg:text-[52px] leading-[1.05] tracking-[-0.01em] max-w-[20ch] text-balance"
               >
                 Diagnostik und Therapie,<br />
                 auf das Wesentliche gebracht.
@@ -813,7 +813,7 @@ export default function Landing() {
                         )}
                       </div>
                     </div>
-                    <h3 className="mt-6 font-serif text-[26px] lg:text-[30px] leading-tight">{s.title}</h3>
+                    <h3 className="mt-6 font-serif text-[clamp(1.375rem,7vw,1.625rem)] lg:text-[30px] leading-tight">{s.title}</h3>
                     <p className="mt-2 text-[12.5px] uppercase tracking-[0.16em] text-muted-foreground">
                       {s.sub}
                     </p>
@@ -881,7 +881,7 @@ export default function Landing() {
           <Rule>Perspektive</Rule>
           <div className="mt-10 grid grid-cols-12 gap-x-8 gap-y-10">
             <div className="col-span-12 min-w-0 lg:col-span-7">
-              <h2 className="font-serif text-[34px] lg:text-[46px] leading-[1.06] tracking-[-0.01em] max-w-[22ch] text-balance">
+              <h2 className="font-serif text-[clamp(1.9rem,8vw,2.125rem)] lg:text-[46px] leading-[1.06] tracking-[-0.01em] max-w-[22ch] text-balance">
                 Eine Diagnostik, die Zeit lässt — und Klarheit schafft.
               </h2>
             </div>
@@ -999,7 +999,7 @@ export default function Landing() {
           <div className="grid grid-cols-12 gap-x-8 gap-y-10">
             <div className="col-span-12 lg:col-span-4">
               <Eyebrow>Ärztliche Laufbahn</Eyebrow>
-              <h2 className="mt-4 font-serif text-[32px] lg:text-[42px] leading-[1.08] tracking-[-0.01em] max-w-[18ch] text-balance">
+              <h2 className="mt-4 font-serif text-[clamp(1.85rem,8vw,2rem)] lg:text-[42px] leading-[1.08] tracking-[-0.01em] max-w-[18ch] text-balance">
                 Erfahrung, die Vertrauen schafft.
               </h2>
               <div className="mt-6 space-y-4 max-w-[46ch]">
@@ -1079,7 +1079,7 @@ export default function Landing() {
           <Rule>Kontakt</Rule>
           <div className="mt-10 grid grid-cols-12 gap-x-8 gap-y-12">
             <div className="col-span-12 min-w-0 lg:col-span-7">
-              <h2 id="termin" className="font-serif text-[40px] lg:text-[60px] leading-[1.04] tracking-[-0.01em] text-balance">
+              <h2 id="termin" className="font-serif text-[clamp(2rem,9.5vw,2.5rem)] lg:text-[60px] leading-[1.04] tracking-[-0.01em] text-balance">
                 Termin in der<br />
                 Gastropraxis.
               </h2>
