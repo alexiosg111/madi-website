@@ -11,3 +11,13 @@ RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
+
+# Immer die frischeste index.html ausliefern, damit neue Builds
+# (mit neuen gehashten CSS/JS-Dateinamen) sofort auf allen Geräten ankommen.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+</IfModule>

@@ -281,16 +281,16 @@ export default function Landing() {
       <div className="border-b border-border/70 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 sticky top-0 z-40">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <div className="flex h-16 items-center justify-between sm:h-[152px]">
-            <a href="#top" className="group flex items-center gap-3">
+            <a href="#top" className="group flex min-w-0 shrink items-center gap-2.5 sm:gap-3">
               <img
                 src="/assets/IMG-20260809-WA0019-1.png"
                 alt="Logo der Gastropraxis Bad Segeberg"
-                className="h-14 w-auto shrink-0 object-contain sm:h-[144px]"
+                className="h-12 w-auto shrink-0 object-contain min-[380px]:h-14 sm:h-[144px]"
                 loading="eager"
                 decoding="async"
               />
               <span className="min-w-0 leading-tight">
-                <span className="block font-serif text-[19px] font-bold leading-tight tracking-tight sm:text-[34px]">Dr. med.<br className="sm:hidden" />Maher Madi</span>
+                <span className="block font-serif text-[17px] min-[380px]:text-[19px] font-bold leading-tight tracking-tight sm:text-[34px]">Dr. med.<br className="sm:hidden" />Maher Madi</span>
               </span>
             </a>
             <div className="flex items-center gap-2.5">
@@ -895,14 +895,14 @@ export default function Landing() {
           </div>
 
           <div className="mt-10 lg:mt-16">
-            <div className="mb-4 flex items-center justify-between gap-3 lg:hidden">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-x-3 gap-y-2 lg:hidden">
               <span className="inline-flex items-center gap-2 label-eyebrow">
                 <ArrowLeft className="h-4 w-4 opacity-50" />
                 <ArrowRight className="h-4 w-4 animate-pulse" />
               </span>
               <span className="inline-flex shrink-0 items-center gap-2 rounded-[3px] border border-foreground bg-foreground px-3.5 py-2 shadow-sm">
                 <ArrowRight className="h-4 w-4 animate-pulse text-background" />
-                <span className="label-eyebrow !text-background">Sprechzeiten → Karte</span>
+                <span className="label-eyebrow !text-background whitespace-nowrap">Sprechzeiten → Karte</span>
               </span>
             </div>
             <div className="relative">
