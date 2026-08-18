@@ -92,7 +92,7 @@ const HOURS = [
   { day: "Dienstag", open: "08:30 – 11:30", close: "15:00 – 15:30" },
   { day: "Mittwoch", open: "08:30 – 11:30", close: "15:00 – 15:30" },
   { day: "Donnerstag", open: "08:30 – 11:30", close: "15:00 – 15:30" },
-  { day: "Freitag", open: "—", close: "—" },
+  { day: "Freitag", open: "nach Vereinbarung", close: "—" },
 ] as const;
 
 type TimelineEntry = { year: string; title: string; place?: string; current?: boolean };
