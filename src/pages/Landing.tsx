@@ -46,7 +46,7 @@ type Service = {
   sub: string;
   body: string;
   icon: LucideIcon;
-  sprite?: "0% 50%" | "50% 50%" | "100% 50%";
+  iconImg?: string;
 };
 
 const SERVICES: Service[] = [
@@ -57,7 +57,7 @@ const SERVICES: Service[] = [
     body:
       "Diagnostische und therapeutische Spiegelung von Speiseröhre, Magen und Zwölffingerdarm — ambulant, mit schonender Sedierung und moderner HD-Technik.",
     icon: ScanLine,
-    sprite: "50% 50%",
+    iconImg: "/assets/icon-gastroskopie.png",
   },
   {
     n: "02",
@@ -66,7 +66,7 @@ const SERVICES: Service[] = [
     body:
       "Vorsorge- und Kontroll-Koloskopie mit Polypektomie. Abklärung von Beschwerden, CED-Verlaufskontrollen und Früherkennung kolorektaler Karzinome.",
     icon: Microscope,
-    sprite: "100% 50%",
+    iconImg: "/assets/icon-koloskopie.png",
   },
   {
     n: "03",
@@ -75,7 +75,7 @@ const SERVICES: Service[] = [
     body:
       "Hochauflösender Ultraschall der Bauchgefäße, Oberbauchorgane und der Weichteile — nicht-invasiv, ohne Strahlenbelastung.",
     icon: Activity,
-    sprite: "0% 50%",
+    iconImg: "/assets/icon-sonographie.png",
   },
   {
     n: "04",
@@ -795,20 +795,18 @@ export default function Landing() {
                   <article className="group relative flex h-full flex-col border border-border bg-card p-7 lg:p-9 transition-colors duration-500 hover:bg-card/70">
                     <div className="flex items-center justify-end">
                       <div className="grid h-16 w-16 shrink-0 place-items-center transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                        {s.sprite ? (
+                        {s.iconImg ? (
                           <div
                             aria-hidden
                             className="h-14 w-14"
                             style={{
                               backgroundColor: "var(--foreground)",
-                              WebkitMaskImage:
-                                "url(/assets/ChatGPT_Image_18._Aug._2026__21_42_01.png)",
-                              maskImage:
-                                "url(/assets/ChatGPT_Image_18._Aug._2026__21_42_01.png)",
-                              WebkitMaskSize: "300% 100%",
-                              maskSize: "300% 100%",
-                              WebkitMaskPosition: `${s.sprite} 50%`,
-                              maskPosition: `${s.sprite} 50%`,
+                              WebkitMaskImage: `url(${s.iconImg})`,
+                              maskImage: `url(${s.iconImg})`,
+                              WebkitMaskSize: "100% 100%",
+                              maskSize: "100% 100%",
+                              WebkitMaskPosition: "center",
+                              maskPosition: "center",
                               WebkitMaskRepeat: "no-repeat",
                               maskRepeat: "no-repeat",
                             }}
