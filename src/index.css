@@ -207,17 +207,11 @@ html {
   text-size-adjust: 100%;
 }
 
-/* Android/Chromium: prevent accidental horizontal clipping/cut-off of text
-   without creating a scroll container (keeps the sticky header working). */
-html,
-body {
+/* Prevent a sideways scrollbar on narrow/Android screens. Applied to <html>
+   only: the old overflow-x: clip on html+body hard-clipped overflowing text,
+   which is exactly the "abgeschnitten" symptom on Android. */
+html {
   overflow-x: hidden;
-}
-@supports (overflow: clip) {
-  html,
-  body {
-    overflow-x: clip;
-  }
 }
 
 /* Media never exceeds its container — protects against Android/Chromium reflow. */

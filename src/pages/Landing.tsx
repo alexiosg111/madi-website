@@ -331,7 +331,7 @@ export default function Landing() {
               <div className="flex min-w-0 items-center gap-2.5">
                 <span className="label-eyebrow tabular-nums">{String(activeIndex + 1).padStart(2, "0")}</span>
                 <span aria-hidden className="h-px w-4 shrink-0 bg-foreground/30" />
-                <span className="relative block h-[16px] min-w-0 overflow-hidden">
+                <span className="relative block h-[18px] min-w-0 overflow-hidden">
                   <span aria-hidden className="invisible inline-block whitespace-nowrap text-[10.5px] uppercase tracking-[0.18em] leading-tight">{activeLabel}</span>
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span
@@ -417,7 +417,7 @@ export default function Landing() {
                     {String(activeIndex + 1).padStart(2, "0")} / {String(CHAPTER_COUNT).padStart(2, "0")}
                   </span>
                   <span aria-hidden className="h-px w-4 bg-foreground/30" />
-                  <span className="relative block h-[20px] min-w-0 overflow-hidden">
+                  <span className="relative block h-[24px] min-w-0 overflow-hidden">
                     <span aria-hidden className="invisible inline-block whitespace-nowrap font-serif italic text-[15px] leading-tight">{activeLabel}</span>
                     <AnimatePresence mode="wait" initial={false}>
                       <motion.span
@@ -502,7 +502,7 @@ export default function Landing() {
                   {String(activeIndex + 1).padStart(2, "0")} / {String(CHAPTER_COUNT).padStart(2, "0")}
                 </span>
                 <span aria-hidden className="hidden h-px w-5 shrink-0 bg-foreground/30 sm:block" />
-                <span className="relative block h-[22px] min-w-0 overflow-hidden">
+                <span className="relative block h-[26px] min-w-0 overflow-hidden">
                   <span aria-hidden className="invisible inline-block whitespace-nowrap font-serif italic text-[16px] leading-tight">{activeLabel}</span>
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span
