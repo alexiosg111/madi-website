@@ -599,8 +599,7 @@ export default function Landing() {
                     className="absolute inset-0 h-full w-full object-cover"
                     loading="eager"
                     decoding="async"
-                    // @ts-expect-error — fetchpriority is valid in React 19+
-                    fetchpriority="high"
+                    fetchPriority="high"
                   />
                   <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent px-4 pb-3 pt-14 sm:px-5 sm:pb-4">
                     <span className="font-serif text-[17px] leading-tight text-white sm:text-[19px]">Dr. med. Maher Madi</span>
@@ -795,21 +794,27 @@ export default function Landing() {
                 <CarouselItem key={s.title} className="pl-3 md:pl-4 basis-[85%] md:basis-1/2 lg:basis-1/3">
                   <article className="group relative flex h-full flex-col border border-border bg-card p-7 lg:p-9 transition-colors duration-500 hover:bg-card/70">
                     <div className="flex items-center justify-end">
-                      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-[2px] bg-foreground transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                      <div className="grid h-12 w-12 shrink-0 place-items-center transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
                         {s.sprite ? (
                           <div
                             aria-hidden
                             className="h-8 w-8"
                             style={{
-                              backgroundImage:
+                              backgroundColor: "var(--foreground)",
+                              WebkitMaskImage:
                                 "url(/assets/ChatGPT_Image_18._Aug._2026__21_42_01.png)",
-                              backgroundSize: "300% 100%",
-                              backgroundPosition: `${s.sprite} 50%`,
-                              backgroundRepeat: "no-repeat",
+                              maskImage:
+                                "url(/assets/ChatGPT_Image_18._Aug._2026__21_42_01.png)",
+                              WebkitMaskSize: "300% 100%",
+                              maskSize: "300% 100%",
+                              WebkitMaskPosition: `${s.sprite} 50%`,
+                              maskPosition: `${s.sprite} 50%`,
+                              WebkitMaskRepeat: "no-repeat",
+                              maskRepeat: "no-repeat",
                             }}
                           />
                         ) : (
-                          <s.icon className="h-5 w-5 text-background" />
+                          <s.icon className="h-6 w-6 text-foreground" />
                         )}
                       </div>
                     </div>
