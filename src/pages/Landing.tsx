@@ -794,11 +794,11 @@ export default function Landing() {
                 <CarouselItem key={s.title} className="pl-3 md:pl-4 basis-[85%] md:basis-1/2 lg:basis-1/3">
                   <article className="group relative flex h-full flex-col border border-border bg-card p-7 lg:p-9 transition-colors duration-500 hover:bg-card/70">
                     <div className="flex items-center justify-end">
-                      <div className="grid h-12 w-12 shrink-0 place-items-center transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                      <div className="grid h-16 w-16 shrink-0 place-items-center transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
                         {s.sprite ? (
                           <div
                             aria-hidden
-                            className="h-8 w-8"
+                            className="h-14 w-14"
                             style={{
                               backgroundColor: "var(--foreground)",
                               WebkitMaskImage:
@@ -814,7 +814,7 @@ export default function Landing() {
                             }}
                           />
                         ) : (
-                          <s.icon className="h-6 w-6 text-foreground" />
+                          <s.icon className="h-9 w-9 text-foreground" />
                         )}
                       </div>
                     </div>
