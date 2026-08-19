@@ -57,7 +57,7 @@ const SERVICES: Service[] = [
     body:
       "Diagnostische und therapeutische Spiegelung von Speiseröhre, Magen und Zwölffingerdarm — ambulant, mit schonender Sedierung und moderner HD-Technik.",
     icon: ScanLine,
-    sprite: "0% 50%",
+    sprite: "50% 50%",
   },
   {
     n: "02",
@@ -66,6 +66,7 @@ const SERVICES: Service[] = [
     body:
       "Vorsorge- und Kontroll-Koloskopie mit Polypektomie. Abklärung von Beschwerden, CED-Verlaufskontrollen und Früherkennung kolorektaler Karzinome.",
     icon: Microscope,
+    sprite: "100% 50%",
   },
   {
     n: "03",
@@ -74,7 +75,7 @@ const SERVICES: Service[] = [
     body:
       "Hochauflösender Ultraschall der Bauchgefäße, Oberbauchorgane und der Weichteile — nicht-invasiv, ohne Strahlenbelastung.",
     icon: Activity,
-    sprite: "100% 50%",
+    sprite: "0% 50%",
   },
   {
     n: "04",
@@ -82,7 +83,6 @@ const SERVICES: Service[] = [
     sub: "Dünndarm-Diagnostik",
     body: "Kapsel mit einer Miniatur-Kamera zur ambulanten Untersuchung des Dünndarms. Sinnvoll bei unklarer Anämie, Verdacht auf Morbus Crohn oder okkulter Blutung — schmerzfrei und ohne Sedierung.",
     icon: Pill,
-    sprite: "50% 50%",
   },
   {
     n: "05",
