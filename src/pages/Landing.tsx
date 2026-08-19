@@ -796,20 +796,13 @@ export default function Landing() {
                     <div className="flex items-center justify-end">
                       <div className="grid h-16 w-16 shrink-0 place-items-center transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
                         {s.iconImg ? (
-                          <div
+                          <img
+                            src={s.iconImg}
+                            alt=""
                             aria-hidden
-                            className="h-14 w-14"
-                            style={{
-                              backgroundColor: "var(--foreground)",
-                              WebkitMaskImage: `url(${s.iconImg})`,
-                              maskImage: `url(${s.iconImg})`,
-                              WebkitMaskSize: "100% 100%",
-                              maskSize: "100% 100%",
-                              WebkitMaskPosition: "center",
-                              maskPosition: "center",
-                              WebkitMaskRepeat: "no-repeat",
-                              maskRepeat: "no-repeat",
-                            }}
+                            className="h-14 w-14 object-contain"
+                            loading="lazy"
+                            decoding="async"
                           />
                         ) : (
                           <s.icon className="h-9 w-9 text-foreground" />
